@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="cn.com.gome.framework.dao.mapper.edit.TblTaskCodeGeneratorEditMapper">
+
+	<insert id="save"
+		parameterType="cn.com.gome.framework.dao.entity.TblTaskCodeGenerator">
+		insert into TBL_TASK_CODE_GENERATOR(
+		TABLE_NUMBERS,CHILD_PROJECT_CODE,TABLE_CHAN,TABLE_ENG,LOCK_FLG,LOCK_TM,RUN_COUNTS,TABLE_KEY,TASK_ASK,TASK_CLASS_NAME,CREATE_TIME
+		)
+		values(
+		SEQ_TASK_CODE_GENERATOR_ID.nextval,
+		#{childProjectCode,jdbcType=INTEGER},
+		#{tableChan,jdbcType=VARCHAR},
+		#{tableEng,jdbcType=VARCHAR},
+		#{lockFlg,jdbcType=VARCHAR},
+		#{lockTm,jdbcType=VARCHAR},
+		#{runCounts,jdbcType=VARCHAR},
+		#{tableKey,jdbcType=VARCHAR},
+		#{taskAsk,jdbcType=VARCHAR},
+		#{taskClassName,jdbcType=VARCHAR},
+		#{createTime,jdbcType=CHAR}
+		)
+	</insert>
+
+	<update id="edit" parameterType="cn.com.gome.framework.dao.entity.TblTaskCodeGenerator">
+		update TBL_TASK_CODE_GENERATOR
+		<set>
+			<if test="childProjectCode != null">
+				CHILD_PROJECT_CODE = #{childProjectCode,jdbcType=INTEGER},
+			</if>
+			<if test="tableChan != null">
+				TABLE_CHAN = #{tableChan,jdbcType=VARCHAR},
+			</if>
+			<if test="tableEng != null">
+				TABLE_ENG = #{tableEng,jdbcType=VARCHAR},
+			</if>
+			<if test="lockFlg != null">
+				LOCK_FLG = #{lockFlg,jdbcType=VARCHAR},
+			</if>
+			<if test="lockTm != null">
+				LOCK_TM = #{lockTm,jdbcType=VARCHAR},
+			</if>
+			<if test="runCounts != null">
+				RUN_COUNTS = #{runCounts,jdbcType=VARCHAR},
+			</if>
+			<if test="tableKey != null">
+				TABLE_KEY = #{tableKey,jdbcType=VARCHAR},
+			</if>
+			<if test="taskAsk != null">
+				TASK_ASK = #{taskAsk,jdbcType=VARCHAR},
+			</if>
+			<if test="taskClassName != null">
+				TASK_CLASS_NAME = #{taskClassName,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=CHAR},
+			</if>
+		</set>
+		where TABLE_NUMBERS=#{tableNumbers,jdbcType=INTEGER}
+	</update>
+
+	<update id="editInfo" parameterType="java.util.Map">
+		update TBL_TASK_CODE_GENERATOR
+		<set>
+			<if test="childProjectCodeNew != null">
+				CHILD_PROJECT_CODE = #{childProjectCodeNew,jdbcType=INTEGER},
+			</if>
+			<if test="tableChanNew != null">
+				TABLE_CHAN = #{tableChanNew,jdbcType=VARCHAR},
+			</if>
+			<if test="tableEngNew != null">
+				TABLE_ENG = #{tableEngNew,jdbcType=VARCHAR},
+			</if>
+			<if test="lockFlgNew != null">
+				LOCK_FLG = #{lockFlgNew,jdbcType=VARCHAR},
+			</if>
+			<if test="lockTmNew != null">
+				LOCK_TM = #{lockTmNew,jdbcType=VARCHAR},
+			</if>
+			<if test="runCountsNew != null">
+				RUN_COUNTS = #{runCountsNew,jdbcType=VARCHAR},
+			</if>
+			<if test="tableKeyNew != null">
+				TABLE_KEY = #{tableKeyNew,jdbcType=VARCHAR},
+			</if>
+			<if test="taskAskNew != null">
+				TASK_ASK = #{taskAskNew,jdbcType=VARCHAR},
+			</if>
+			<if test="taskClassNameNew != null">
+				TASK_CLASS_NAME = #{taskClassNameNew,jdbcType=VARCHAR},
+			</if>
+			<if test="createTimeNew != null">
+				CREATE_TIME = #{createTimeNew,jdbcType=CHAR},
+			</if>
+		</set>
+		<where>
+			<if test="tableNumbers != null  and tableNumbers !='' ">
+				AND TABLE_NUMBERS = #{tableNumbers,jdbcType=INTEGER}
+			</if>
+			<if test="childProjectCode != null  and childProjectCode !='' ">
+				AND CHILD_PROJECT_CODE = #{childProjectCode,jdbcType=INTEGER}
+			</if>
+			<if test="tableChan != null  and tableChan !='' ">
+				AND TABLE_CHAN = #{tableChan,jdbcType=VARCHAR}
+			</if>
+			<if test="tableEng != null  and tableEng !='' ">
+				AND TABLE_ENG = #{tableEng,jdbcType=VARCHAR}
+			</if>
+			<if test="lockFlg != null  and lockFlg !='' ">
+				AND LOCK_FLG = #{lockFlg,jdbcType=VARCHAR}
+			</if>
+			<if test="lockTm != null  and lockTm !='' ">
+				AND LOCK_TM = #{lockTm,jdbcType=VARCHAR}
+			</if>
+			<if test="runCounts != null  and runCounts !='' ">
+				AND RUN_COUNTS = #{runCounts,jdbcType=VARCHAR}
+			</if>
+			<if test="tableKey != null  and tableKey !='' ">
+				AND TABLE_KEY = #{tableKey,jdbcType=VARCHAR}
+			</if>
+			<if test="taskAsk != null  and taskAsk !='' ">
+				AND TASK_ASK = #{taskAsk,jdbcType=VARCHAR}
+			</if>
+			<if test="taskClassName != null  and taskClassName !='' ">
+				AND TASK_CLASS_NAME = #{taskClassName,jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null  and createTime !='' ">
+				AND CREATE_TIME = #{createTime,jdbcType=CHAR}
+			</if>
+		</where>
+	</update>
+
+	<delete id="del" parameterType="cn.com.gome.framework.dao.entity.TblTaskCodeGenerator">
+		delete from TBL_TASK_CODE_GENERATOR
+		<where>
+			<if test="tableNumbers != null">
+				AND TABLE_NUMBERS = #{tableNumbers,jdbcType=INTEGER}
+			</if>
+			<if test="childProjectCode != null">
+				AND CHILD_PROJECT_CODE =
+				#{childProjectCode,jdbcType=INTEGER}
+			</if>
+			<if test="tableChan != null">
+				AND TABLE_CHAN = #{tableChan,jdbcType=VARCHAR}
+			</if>
+			<if test="tableEng != null">
+				AND TABLE_ENG = #{tableEng,jdbcType=VARCHAR}
+			</if>
+			<if test="lockFlg != null">
+				AND LOCK_FLG = #{lockFlg,jdbcType=VARCHAR}
+			</if>
+			<if test="lockTm != null">
+				AND LOCK_TM = #{lockTm,jdbcType=VARCHAR}
+			</if>
+			<if test="runCounts != null">
+				AND RUN_COUNTS = #{runCounts,jdbcType=VARCHAR}
+			</if>
+			<if test="tableKey != null">
+				AND TABLE_KEY = #{tableKey,jdbcType=VARCHAR}
+			</if>
+			<if test="taskAsk != null">
+				AND TASK_ASK = #{taskAsk,jdbcType=VARCHAR}
+			</if>
+			<if test="taskClassName != null">
+				AND TASK_CLASS_NAME = #{taskClassName,jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				AND CREATE_TIME = #{createTime,jdbcType=CHAR}
+			</if>
+		</where>
+	</delete>
+
+	<delete id="delList" parameterType="java.util.List">
+		delete from TBL_TASK_CODE_GENERATOR where TABLE_NUMBERS in (
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			#{item,jdbcType=INTEGER}
+		</foreach>
+		)
+	</delete>
+</mapper>

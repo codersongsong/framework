@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="cn.com.gome.framework.dao.mapper.edit.TblTaskConfigInfoEditMapper">
+
+	<insert id="save" parameterType="cn.com.gome.framework.dao.entity.TblTaskConfigInfo">
+		insert into
+		TBL_TASK_CONFIG_INFO(
+		TASK_NO,SYS_NO,TASK_NAME,RUN_RULE,BUSINESS_OBJ_NAME,TASK_COUNT,TASK_LIMIT_COUNT,FULL_TASK_COUNT,
+		BUSINESS_INFO,GROUP_TAL,TASK_RUN_TEMPLATE,STATUS,CONFIG_TIME,UP_PERSON,UP_TIME,ESTIMATE_OBJ_COUNT
+		)
+		values(
+		sys_guid(),
+		#{sysNo,jdbcType=INTEGER},
+		#{taskName,jdbcType=VARCHAR},
+		#{runRule,jdbcType=VARCHAR},
+		#{businessObjName,jdbcType=VARCHAR},
+		#{taskCount,jdbcType=INTEGER},
+		#{onetaskLimitCount,jdbcType=INTEGER},
+		#{fullTaskCount,jdbcType=INTEGER},
+		#{businessInfo,jdbcType=VARCHAR},
+		#{groupTal,jdbcType=VARCHAR},
+		#{taskRunTemplate,jdbcType=CHAR},
+		#{status,jdbcType=INTEGER},
+		#{configTime,jdbcType=CHAR},
+		#{upPerson,jdbcType=VARCHAR},
+		#{upTime,jdbcType=CHAR},
+		#{estimateObjCount,jdbcType=INTEGER}
+		)
+	</insert>
+
+	<update id="edit" parameterType="cn.com.gome.framework.dao.entity.TblTaskConfigInfo">
+		update TBL_TASK_CONFIG_INFO
+		<set>
+			<if test="sysNo != null">
+				SYS_NO = #{sysNo,jdbcType=INTEGER},
+			</if>
+			<if test="taskName != null">
+				TASK_NAME = #{taskName,jdbcType=VARCHAR},
+			</if>
+			<if test="runRule != null">
+				RUN_RULE = #{runRule,jdbcType=VARCHAR},
+			</if>
+			<if test="businessObjName != null">
+				BUSINESS_OBJ_NAME = #{businessObjName,jdbcType=VARCHAR},
+			</if>
+			<if test="taskCount != null">
+				TASK_COUNT = #{taskCount,jdbcType=INTEGER},
+			</if>
+			<if test="onetaskLimitCount != null">
+				TASK_LIMIT_COUNT = #{onetaskLimitCount,jdbcType=INTEGER},
+			</if>
+			<if test="fullTaskCount != null">
+				FULL_TASK_COUNT = #{fullTaskCount,jdbcType=INTEGER},
+			</if>
+			<if test="businessInfo != null">
+				BUSINESS_INFO = #{businessInfo,jdbcType=VARCHAR},
+			</if>
+			<if test="groupTal != null">
+				GROUP_TAL = #{groupTal,jdbcType=VARCHAR},
+			</if>
+			<if test="taskRunTemplate != null">
+				TASK_RUN_TEMPLATE = #{taskRunTemplate,jdbcType=CHAR},
+			</if>
+			<if test="status != null">
+				STATUS = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="configTime != null">
+				CONFIG_TIME = #{configTime,jdbcType=CHAR},
+			</if>
+			<if test="upPerson != null">
+				UP_PERSON = #{upPerson,jdbcType=VARCHAR},
+			</if>
+			<if test="upTime != null">
+				UP_TIME = #{upTime,jdbcType=CHAR},
+			</if>
+			<if test="estimateObjCount != null">
+				ESTIMATE_OBJ_COUNT = #{estimateObjCount,jdbcType=INTEGER},
+			</if>
+		</set>
+		where TASK_NO=#{taskNo,jdbcType=CHAR}
+	</update>
+
+	<update id="editInfo" parameterType="java.util.Map">
+		update TBL_TASK_CONFIG_INFO
+		<set>
+			<if test="sysNoNew != null">
+				SYS_NO = #{sysNoNew,jdbcType=INTEGER},
+			</if>
+			<if test="taskNameNew != null">
+				TASK_NAME = #{taskNameNew,jdbcType=VARCHAR},
+			</if>
+			<if test="runRuleNew != null">
+				RUN_RULE = #{runRuleNew,jdbcType=VARCHAR},
+			</if>
+			<if test="businessObjNameNew != null">
+				BUSINESS_OBJ_NAME = #{businessObjNameNew,jdbcType=VARCHAR},
+			</if>
+			<if test="taskCountNew != null">
+				TASK_COUNT = #{taskCountNew,jdbcType=INTEGER},
+			</if>
+			<if test="onetaskLimitCountNew != null">
+				TASK_LIMIT_COUNT = #{onetaskLimitCountNew,jdbcType=INTEGER},
+			</if>
+			<if test="fullTaskCountNew != null">
+				FULL_TASK_COUNT = #{fullTaskCountNew,jdbcType=INTEGER},
+			</if>
+			<if test="businessInfoNew != null">
+				BUSINESS_INFO = #{businessInfoNew,jdbcType=VARCHAR},
+			</if>
+			<if test="groupTalNew != null">
+				GROUP_TAL = #{groupTalNew,jdbcType=VARCHAR},
+			</if>
+			<if test="taskRunTemplateNew != null">
+				TASK_RUN_TEMPLATE = #{taskRunTemplateNew,jdbcType=CHAR},
+			</if>
+			<if test="statusNew != null">
+				STATUS = #{statusNew,jdbcType=INTEGER},
+			</if>
+			<if test="configTimeNew != null">
+				CONFIG_TIME = #{configTimeNew,jdbcType=CHAR},
+			</if>
+			<if test="upPersonNew != null">
+				UP_PERSON = #{upPersonNew,jdbcType=VARCHAR},
+			</if>
+			<if test="upTimeNew != null">
+				UP_TIME = #{upTimeNew,jdbcType=CHAR},
+			</if>
+			<if test="estimateObjCountNew != null">
+				ESTIMATE_OBJ_COUNT = #{estimateObjCountNew,jdbcType=INTEGER},
+			</if>
+		</set>
+		<where>
+			<if test="taskNo != null  and taskNo !='' ">
+				AND TASK_NO = #{taskNo,jdbcType=CHAR}
+			</if>
+			<if test="sysNo != null  and sysNo !='' ">
+				AND SYS_NO = #{sysNo,jdbcType=INTEGER}
+			</if>
+			<if test="taskName != null  and taskName !='' ">
+				AND TASK_NAME = #{taskName,jdbcType=VARCHAR}
+			</if>
+			<if test="runRule != null  and runRule !='' ">
+				AND RUN_RULE = #{runRule,jdbcType=VARCHAR}
+			</if>
+			<if test="businessObjName != null  and businessObjName !='' ">
+				AND BUSINESS_OBJ_NAME = #{businessObjName,jdbcType=VARCHAR}
+			</if>
+			<if test="taskCount != null  and taskCount !='' ">
+				AND TASK_COUNT = #{taskCount,jdbcType=INTEGER}
+			</if>
+			<if test="onetaskLimitCount != null  and onetaskLimitCount !='' ">
+				AND TASK_LIMIT_COUNT = #{onetaskLimitCount,jdbcType=INTEGER}
+			</if>
+			<if test="fullTaskCount != null  and fullTaskCount !='' ">
+				AND FULL_TASK_COUNT = #{fullTaskCount,jdbcType=INTEGER}
+			</if>
+			<if test="businessInfo != null  and businessInfo !='' ">
+				AND BUSINESS_INFO = #{businessInfo,jdbcType=VARCHAR}
+			</if>
+			<if test="groupTal != null  and groupTal !='' ">
+				AND GROUP_TAL = #{groupTal,jdbcType=VARCHAR}
+			</if>
+			<if test="taskRunTemplate != null  and taskRunTemplate !='' ">
+				AND TASK_RUN_TEMPLATE = #{taskRunTemplate,jdbcType=CHAR}
+			</if>
+			<if test="status != null  and status !='' ">
+				AND STATUS = #{status,jdbcType=INTEGER}
+			</if>
+			<if test="configTime != null  and configTime !='' ">
+				AND CONFIG_TIME = #{configTime,jdbcType=CHAR}
+			</if>
+			<if test="upPerson != null  and upPerson !='' ">
+				AND UP_PERSON = #{upPerson,jdbcType=VARCHAR}
+			</if>
+			<if test="upTime != null  and upTime !='' ">
+				AND UP_TIME = #{upTime,jdbcType=CHAR}
+			</if>
+		</where>
+	</update>
+
+	<delete id="del" parameterType="cn.com.gome.framework.dao.entity.TblTaskConfigInfo">
+		delete from TBL_TASK_CONFIG_INFO
+		<where>
+			<if test="taskNo != null">
+				AND TASK_NO = #{taskNo,jdbcType=CHAR}
+			</if>
+			<if test="sysNo != null">
+				AND SYS_NO = #{sysNo,jdbcType=INTEGER}
+			</if>
+			<if test="taskName != null">
+				AND TASK_NAME = #{taskName,jdbcType=VARCHAR}
+			</if>
+			<if test="runRule != null">
+				AND RUN_RULE = #{runRule,jdbcType=VARCHAR}
+			</if>
+			<if test="businessObjName != null">
+				AND BUSINESS_OBJ_NAME =
+				#{businessObjName,jdbcType=VARCHAR}
+			</if>
+			<if test="taskCount != null">
+				AND TASK_COUNT = #{taskCount,jdbcType=INTEGER}
+			</if>
+			<if test="onetaskLimitCount != null">
+				AND TASK_LIMIT_COUNT =
+				#{onetaskLimitCount,jdbcType=INTEGER}
+			</if>
+			<if test="fullTaskCount != null">
+				AND FULL_TASK_COUNT = #{fullTaskCount,jdbcType=INTEGER}
+			</if>
+			<if test="businessInfo != null">
+				AND BUSINESS_INFO = #{businessInfo,jdbcType=VARCHAR}
+			</if>
+			<if test="groupTal != null">
+				AND GROUP_TAL = #{groupTal,jdbcType=VARCHAR}
+			</if>
+			<if test="taskRunTemplate != null">
+				AND TASK_RUN_TEMPLATE = #{taskRunTemplate,jdbcType=CHAR}
+			</if>
+			<if test="status != null">
+				AND STATUS = #{status,jdbcType=INTEGER}
+			</if>
+			<if test="configTime != null">
+				AND CONFIG_TIME = #{configTime,jdbcType=CHAR}
+			</if>
+			<if test="upPerson != null">
+				AND UP_PERSON = #{upPerson,jdbcType=VARCHAR}
+			</if>
+			<if test="upTime != null">
+				AND UP_TIME = #{upTime,jdbcType=CHAR}
+			</if>
+		</where>
+	</delete>
+
+	<delete id="delList" parameterType="java.util.List">
+		delete from TBL_TASK_CONFIG_INFO where TASK_NO in (
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			#{item,jdbcType=CHAR}
+		</foreach>
+		)
+	</delete>
+</mapper>

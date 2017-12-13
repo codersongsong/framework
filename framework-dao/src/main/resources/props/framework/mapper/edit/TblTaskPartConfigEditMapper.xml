@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+	<mapper namespace="cn.com.gome.framework.dao.mapper.edit.TblTaskPartConfigEditMapper">
+	
+	<insert id="save" parameterType="cn.com.gome.framework.dao.entity.TblTaskPartConfig">
+		insert into TBL_TASK_PART_CONFIG(
+		PART_NO,TASK_NO,OBJ_TASK_KEY,TASK_RUN_SERVER,TASK_RUN_PORT,PART_VALUE,MODE_VALUE,OBJECT_TAL,UP_TIME
+		)
+		values(
+			sys_guid(),
+			#{taskNo,jdbcType=CHAR},
+			#{objTaskKey,jdbcType=VARCHAR},
+			#{taskRunServer,jdbcType=VARCHAR},
+			#{taskRunPort,jdbcType=INTEGER},
+			#{partValue,jdbcType=VARCHAR},
+			#{modeValue,jdbcType=VARCHAR},
+			#{objectTal,jdbcType=VARCHAR},
+			#{upTime,jdbcType=CHAR}
+		)
+	</insert>
+	
+	<update id="edit" parameterType="cn.com.gome.framework.dao.entity.TblTaskPartConfig" >
+		update TBL_TASK_PART_CONFIG
+		<set>
+			 <if test="taskNo != null">
+		     	TASK_NO = #{taskNo,jdbcType=CHAR},
+		     </if>
+			 <if test="objTaskKey != null">
+		     	OBJ_TASK_KEY = #{objTaskKey,jdbcType=VARCHAR},
+		     </if>
+			 <if test="taskRunServer != null">
+		     	TASK_RUN_SERVER = #{taskRunServer,jdbcType=VARCHAR},
+		     </if>
+			 <if test="taskRunPort != null">
+		     	TASK_RUN_PORT = #{taskRunPort,jdbcType=INTEGER},
+		     </if>
+			 <if test="partValue != null">
+		     	PART_VALUE = #{partValue,jdbcType=VARCHAR},
+		     </if>
+			 <if test="modeValue != null">
+		     	MODE_VALUE = #{modeValue,jdbcType=VARCHAR},
+		     </if>
+			 <if test="objectTal != null">
+		     	OBJECT_TAL = #{objectTal,jdbcType=VARCHAR},
+		     </if>
+			 <if test="upTime != null">
+		     	UP_TIME = #{upTime,jdbcType=CHAR},
+		     </if>
+		</set>
+		where PART_NO=#{partNo,jdbcType=CHAR}
+	</update>
+
+	<update id="editInfo" parameterType="java.util.Map" >
+		update TBL_TASK_PART_CONFIG
+		<set>
+			 <if test="taskNoNew != null">
+		     	TASK_NO = #{taskNoNew,jdbcType=CHAR},
+		     </if>
+			 <if test="objTaskKeyNew != null">
+		     	OBJ_TASK_KEY = #{objTaskKeyNew,jdbcType=VARCHAR},
+		     </if>
+			 <if test="taskRunServerNew != null">
+		     	TASK_RUN_SERVER = #{taskRunServerNew,jdbcType=VARCHAR},
+		     </if>
+			 <if test="taskRunPortNew != null">
+		     	TASK_RUN_PORT = #{taskRunPortNew,jdbcType=INTEGER},
+		     </if>
+			 <if test="partValueNew != null">
+		     	PART_VALUE = #{partValueNew,jdbcType=VARCHAR},
+		     </if>
+			 <if test="modeValueNew != null">
+		     	MODE_VALUE = #{modeValueNew,jdbcType=VARCHAR},
+		     </if>
+			 <if test="objectTalNew != null">
+		     	OBJECT_TAL = #{objectTalNew,jdbcType=VARCHAR},
+		     </if>
+			 <if test="upTimeNew != null">
+		     	UP_TIME = #{upTimeNew,jdbcType=CHAR},
+		     </if>
+		</set>
+		<where>		<if test="partNo != null  and partNo !='' ">
+			AND PART_NO = #{partNo,jdbcType=CHAR}
+		</if>
+		<if test="taskNo != null  and taskNo !='' ">
+			AND TASK_NO = #{taskNo,jdbcType=CHAR}
+		</if>
+		<if test="objTaskKey != null  and objTaskKey !='' ">
+			AND OBJ_TASK_KEY = #{objTaskKey,jdbcType=VARCHAR}
+		</if>
+		<if test="taskRunServer != null  and taskRunServer !='' ">
+			AND TASK_RUN_SERVER = #{taskRunServer,jdbcType=VARCHAR}
+		</if>
+		<if test="taskRunPort != null  and taskRunPort !='' ">
+			AND TASK_RUN_PORT = #{taskRunPort,jdbcType=INTEGER}
+		</if>
+		<if test="partValue != null  and partValue !='' ">
+			AND PART_VALUE = #{partValue,jdbcType=VARCHAR}
+		</if>
+		<if test="modeValue != null  and modeValue !='' ">
+			AND MODE_VALUE = #{modeValue,jdbcType=VARCHAR}
+		</if>
+		<if test="objectTal != null  and objectTal !='' ">
+			AND OBJECT_TAL = #{objectTal,jdbcType=VARCHAR}
+		</if>
+		<if test="upTime != null  and upTime !='' ">
+			AND UP_TIME = #{upTime,jdbcType=CHAR}
+		</if>
+		</where>
+	</update>
+
+	<delete id="del" parameterType="cn.com.gome.framework.dao.entity.TblTaskPartConfig">
+		delete from TBL_TASK_PART_CONFIG
+		<where>
+			<if test="partNo != null">
+				AND PART_NO = #{partNo,jdbcType=CHAR}
+			 </if>
+			<if test="taskNo != null">
+				AND TASK_NO = #{taskNo,jdbcType=CHAR}
+			 </if>
+			<if test="objTaskKey != null">
+				AND OBJ_TASK_KEY = #{objTaskKey,jdbcType=VARCHAR}
+			 </if>
+			<if test="taskRunServer != null">
+				AND TASK_RUN_SERVER = #{taskRunServer,jdbcType=VARCHAR}
+			 </if>
+			<if test="taskRunPort != null">
+				AND TASK_RUN_PORT = #{taskRunPort,jdbcType=INTEGER}
+			 </if>
+			<if test="partValue != null">
+				AND PART_VALUE = #{partValue,jdbcType=VARCHAR}
+			 </if>
+			<if test="modeValue != null">
+				AND MODE_VALUE = #{modeValue,jdbcType=VARCHAR}
+			 </if>
+			<if test="objectTal != null">
+				AND OBJECT_TAL = #{objectTal,jdbcType=VARCHAR}
+			 </if>
+			<if test="upTime != null">
+				AND UP_TIME = #{upTime,jdbcType=CHAR}
+			 </if>
+		</where>
+	</delete>	
+
+	<delete id="delList" parameterType="java.util.List">
+		delete from TBL_TASK_PART_CONFIG where PART_NO in (
+			<foreach collection="list" item="item" index="index" separator=",">
+				 #{item,jdbcType=CHAR}
+			</foreach>
+		)
+	</delete>
+</mapper>

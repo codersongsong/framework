@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.gome.framework.dao.mapper.edit.TblTaskRunningLogEditMapper">
+
+	<insert id="save" parameterType="cn.com.gome.framework.dao.entity.TblTaskRunningLog">
+		insert into
+		TBL_TASK_RUNNING_LOG(
+		RUN_NO,TASK_NO,OBJ_TASK_NAME,OBJECT_TAL,TASK_RUN_SERVER,TASK_RUN_PORT,PART_VALUE,PRE_RUN_TIME,NEXT_RUN_TIME,DDL_STATUS,UP_PERSON,UP_TIME,MODE_VALUE,EXECUTE_COUNT
+		)
+		values(
+		sys_guid(),
+		#{taskNo,jdbcType=CHAR},
+		#{objTaskName,jdbcType=VARCHAR},
+		#{objectTal,jdbcType=VARCHAR},
+		#{taskRunServer,jdbcType=VARCHAR},
+		#{taskRunPort,jdbcType=INTEGER},
+		#{partValue,jdbcType=VARCHAR},
+		#{preRunTime,jdbcType=CHAR},
+		#{nextRunTime,jdbcType=CHAR},
+		#{ddlStatus,jdbcType=CHAR},
+		#{upPerson,jdbcType=VARCHAR},
+		#{upTime,jdbcType=CHAR},
+		#{modeValue,jdbcType=VARCHAR},
+		#{executeCount,jdbcType=INTEGER}
+		)
+	</insert>
+
+	<update id="edit" parameterType="cn.com.gome.framework.dao.entity.TblTaskRunningLog">
+		update TBL_TASK_RUNNING_LOG
+		<set>
+			<if test="taskNo != null">
+				TASK_NO = #{taskNo,jdbcType=CHAR},
+			</if>
+			<if test="objTaskName != null">
+				OBJ_TASK_NAME = #{objTaskName,jdbcType=VARCHAR},
+			</if>
+			<if test="objectTal != null">
+				OBJECT_TAL = #{objectTal,jdbcType=VARCHAR},
+			</if>
+			<if test="taskRunServer != null">
+				TASK_RUN_SERVER = #{taskRunServer,jdbcType=VARCHAR},
+			</if>
+			<if test="taskRunPort != null">
+				TASK_RUN_PORT = #{taskRunPort,jdbcType=INTEGER},
+			</if>
+			<if test="partValue != null">
+				PART_VALUE = #{partValue,jdbcType=VARCHAR},
+			</if>
+			<if test="preRunTime != null">
+				PRE_RUN_TIME = #{preRunTime,jdbcType=CHAR},
+			</if>
+			<if test="nextRunTime != null">
+				NEXT_RUN_TIME = #{nextRunTime,jdbcType=CHAR},
+			</if>
+			<if test="ddlStatus != null">
+				DDL_STATUS = #{ddlStatus,jdbcType=CHAR},
+			</if>
+			<if test="upPerson != null">
+				UP_PERSON = #{upPerson,jdbcType=VARCHAR},
+			</if>
+			<if test="upTime != null">
+				UP_TIME = #{upTime,jdbcType=CHAR},
+			</if>
+			<if test="modeValue != null">
+				MODE_VALUE = #{modeValue,jdbcType=VARCHAR},
+			</if>
+			<if test="executeCount != null ">
+				 EXECUTE_COUNT = #{executeCount,jdbcType=INTEGER}
+			</if>
+		</set>
+		where RUN_NO=#{runNo,jdbcType=CHAR}
+	</update>
+
+	<update id="editInfo" parameterType="java.util.Map">
+		update TBL_TASK_RUNNING_LOG
+		<set>
+			<if test="taskNoNew != null">
+				TASK_NO = #{taskNoNew,jdbcType=CHAR},
+			</if>
+			<if test="objTaskNameNew != null">
+				OBJ_TASK_NAME = #{objTaskNameNew,jdbcType=VARCHAR},
+			</if>
+			<if test="objectTalNew != null">
+				OBJECT_TAL = #{objectTalNew,jdbcType=VARCHAR},
+			</if>
+			<if test="taskRunServerNew != null">
+				TASK_RUN_SERVER = #{taskRunServerNew,jdbcType=VARCHAR},
+			</if>
+			<if test="taskRunPortNew != null">
+				TASK_RUN_PORT = #{taskRunPortNew,jdbcType=INTEGER},
+			</if>
+			<if test="partValueNew != null">
+				PART_VALUE = #{partValueNew,jdbcType=VARCHAR},
+			</if>
+			<if test="preRunTimeNew != null">
+				PRE_RUN_TIME = #{preRunTimeNew,jdbcType=CHAR},
+			</if>
+			<if test="nextRunTimeNew != null">
+				NEXT_RUN_TIME = #{nextRunTimeNew,jdbcType=CHAR},
+			</if>
+			<if test="ddlStatusNew != null">
+				DDL_STATUS = #{ddlStatusNew,jdbcType=CHAR},
+			</if>
+			<if test="upPersonNew != null">
+				UP_PERSON = #{upPersonNew,jdbcType=VARCHAR},
+			</if>
+			<if test="upTimeNew != null">
+				UP_TIME = #{upTimeNew,jdbcType=CHAR},
+			</if>
+			<if test="modeValueNew != null">
+				MODE_VALUE = #{modeValueNew,jdbcType=VARCHAR},
+			</if>
+			<if test="executeCount != null ">
+				AND EXECUTE_COUNT = #{executeCount,jdbcType=INTEGER}
+			</if>
+		</set>
+		<where>
+			<if test="runNo != null  and runNo !='' ">
+				AND RUN_NO = #{runNo,jdbcType=CHAR}
+			</if>
+			<if test="taskNo != null  and taskNo !='' ">
+				AND TASK_NO = #{taskNo,jdbcType=CHAR}
+			</if>
+			<if test="objTaskName != null  and objTaskName !='' ">
+				AND OBJ_TASK_NAME = #{objTaskName,jdbcType=VARCHAR}
+			</if>
+			<if test="objectTal != null  and objectTal !='' ">
+				AND OBJECT_TAL = #{objectTal,jdbcType=VARCHAR}
+			</if>
+			<if test="taskRunServer != null  and taskRunServer !='' ">
+				AND TASK_RUN_SERVER = #{taskRunServer,jdbcType=VARCHAR}
+			</if>
+			<if test="taskRunPort != null  and taskRunPort !='' ">
+				AND TASK_RUN_PORT = #{taskRunPort,jdbcType=INTEGER}
+			</if>
+			<if test="partValue != null  and partValue !='' ">
+				AND PART_VALUE = #{partValue,jdbcType=VARCHAR}
+			</if>
+			<if test="preRunTime != null  and preRunTime !='' ">
+				AND PRE_RUN_TIME = #{preRunTime,jdbcType=CHAR}
+			</if>
+			<if test="nextRunTime != null  and nextRunTime !='' ">
+				AND NEXT_RUN_TIME = #{nextRunTime,jdbcType=CHAR}
+			</if>
+			<if test="ddlStatus != null  and ddlStatus !='' ">
+				AND DDL_STATUS = #{ddlStatus,jdbcType=CHAR}
+			</if>
+			<if test="upPerson != null  and upPerson !='' ">
+				AND UP_PERSON = #{upPerson,jdbcType=VARCHAR}
+			</if>
+			<if test="upTime != null  and upTime !='' ">
+				AND UP_TIME = #{upTime,jdbcType=CHAR}
+			</if>
+			<if test="modeValue != null and modeValue !=''">
+				AND MODE_VALUE = #{modeValue,jdbcType=VARCHAR}
+			</if>
+			<if test="executeCount != null and executeCount !='' ">
+				AND EXECUTE_COUNT = #{executeCount,jdbcType=INTEGER}
+			</if>
+		</where>
+	</update>
+
+	<delete id="del" parameterType="cn.com.gome.framework.dao.entity.TblTaskRunningLog">
+		delete from TBL_TASK_RUNNING_LOG
+		<where>
+			<if test="runNo != null">
+				AND RUN_NO = #{runNo,jdbcType=CHAR}
+			</if>
+			<if test="taskNo != null">
+				AND TASK_NO = #{taskNo,jdbcType=CHAR}
+			</if>
+			<if test="objTaskName != null">
+				AND OBJ_TASK_NAME = #{objTaskName,jdbcType=VARCHAR}
+			</if>
+			<if test="objectTal != null">
+				AND OBJECT_TAL = #{objectTal,jdbcType=VARCHAR}
+			</if>
+			<if test="taskRunServer != null">
+				AND TASK_RUN_SERVER = #{taskRunServer,jdbcType=VARCHAR}
+			</if>
+			<if test="taskRunPort != null">
+				AND TASK_RUN_PORT = #{taskRunPort,jdbcType=INTEGER}
+			</if>
+			<if test="partValue != null">
+				AND PART_VALUE = #{partValue,jdbcType=VARCHAR}
+			</if>
+			<if test="preRunTime != null">
+				AND PRE_RUN_TIME = #{preRunTime,jdbcType=CHAR}
+			</if>
+			<if test="nextRunTime != null">
+				AND NEXT_RUN_TIME = #{nextRunTime,jdbcType=CHAR}
+			</if>
+			<if test="ddlStatus != null">
+				AND DDL_STATUS = #{ddlStatus,jdbcType=CHAR}
+			</if>
+			<if test="upPerson != null">
+				AND UP_PERSON = #{upPerson,jdbcType=VARCHAR}
+			</if>
+			<if test="upTime != null">
+				AND UP_TIME = #{upTime,jdbcType=CHAR}
+			</if>
+			<if test="modeValue != null">
+				AND MODE_VALUE = #{modeValue,jdbcType=VARCHAR}
+			</if>
+			<if test="executeCount != null ">
+				AND EXECUTE_COUNT = #{executeCount,jdbcType=INTEGER}
+			</if>
+		</where>
+	</delete>
+
+	<delete id="delList" parameterType="java.util.List">
+		delete from TBL_TASK_RUNNING_LOG where RUN_NO in (
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			#{item,jdbcType=CHAR}
+		</foreach>
+		)
+	</delete>
+</mapper>

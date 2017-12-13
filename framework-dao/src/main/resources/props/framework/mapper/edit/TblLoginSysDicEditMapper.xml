@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+	<mapper namespace="cn.com.gome.framework.dao.mapper.edit.TblLoginSysDicEditMapper">
+	
+	<insert id="save" parameterType="cn.com.gome.framework.dao.entity.TblLoginSysDic">
+		insert into TBL_LOGIN_SYS_DIC(
+		ID,L2_CODE,L2_DESC,CODE_PARAM,CODE_VALUE,CODE_IDX,RECORD_CREATE_TM
+		)
+		values(
+			sys_guid(),
+			#{l2Code,jdbcType=VARCHAR},
+			#{l2Desc,jdbcType=VARCHAR},
+			#{codeParam,jdbcType=VARCHAR},
+			#{codeValue,jdbcType=VARCHAR},
+			#{codeIdx,jdbcType=INTEGER},
+			#{recordCreateTm,jdbcType=CHAR}
+		)
+	</insert>
+	
+	<update id="edit" parameterType="cn.com.gome.framework.dao.entity.TblLoginSysDic" >
+		update TBL_LOGIN_SYS_DIC
+		<set>
+			 <if test="l2Code != null">
+		     	L2_CODE = #{l2Code,jdbcType=VARCHAR},
+		     </if>
+			 <if test="l2Desc != null">
+		     	L2_DESC = #{l2Desc,jdbcType=VARCHAR},
+		     </if>
+			 <if test="codeParam != null">
+		     	CODE_PARAM = #{codeParam,jdbcType=VARCHAR},
+		     </if>
+			 <if test="codeValue != null">
+		     	CODE_VALUE = #{codeValue,jdbcType=VARCHAR},
+		     </if>
+			 <if test="codeIdx != null">
+		     	CODE_IDX = #{codeIdx,jdbcType=INTEGER},
+		     </if>
+			 <if test="recordCreateTm != null">
+		     	RECORD_CREATE_TM = #{recordCreateTm,jdbcType=CHAR},
+		     </if>
+		</set>
+		where ID=#{id,jdbcType=CHAR}
+	</update>
+
+	<update id="editInfo" parameterType="java.util.Map" >
+		update TBL_LOGIN_SYS_DIC
+		<set>
+			 <if test="l2CodeNew != null">
+		     	L2_CODE = #{l2CodeNew,jdbcType=VARCHAR},
+		     </if>
+			 <if test="l2DescNew != null">
+		     	L2_DESC = #{l2DescNew,jdbcType=VARCHAR},
+		     </if>
+			 <if test="codeParamNew != null">
+		     	CODE_PARAM = #{codeParamNew,jdbcType=VARCHAR},
+		     </if>
+			 <if test="codeValueNew != null">
+		     	CODE_VALUE = #{codeValueNew,jdbcType=VARCHAR},
+		     </if>
+			 <if test="codeIdxNew != null">
+		     	CODE_IDX = #{codeIdxNew,jdbcType=INTEGER},
+		     </if>
+			 <if test="recordCreateTmNew != null">
+		     	RECORD_CREATE_TM = #{recordCreateTmNew,jdbcType=CHAR},
+		     </if>
+		</set>
+		<where>		<if test="id != null  and id !='' ">
+			AND ID = #{id,jdbcType=CHAR}
+		</if>
+		<if test="l2Code != null  and l2Code !='' ">
+			AND L2_CODE = #{l2Code,jdbcType=VARCHAR}
+		</if>
+		<if test="l2Desc != null  and l2Desc !='' ">
+			AND L2_DESC = #{l2Desc,jdbcType=VARCHAR}
+		</if>
+		<if test="codeParam != null  and codeParam !='' ">
+			AND CODE_PARAM = #{codeParam,jdbcType=VARCHAR}
+		</if>
+		<if test="codeValue != null  and codeValue !='' ">
+			AND CODE_VALUE = #{codeValue,jdbcType=VARCHAR}
+		</if>
+		<if test="codeIdx != null  and codeIdx !='' ">
+			AND CODE_IDX = #{codeIdx,jdbcType=INTEGER}
+		</if>
+		<if test="recordCreateTm != null  and recordCreateTm !='' ">
+			AND RECORD_CREATE_TM = #{recordCreateTm,jdbcType=CHAR}
+		</if>
+		</where>
+	</update>
+
+	<delete id="del" parameterType="cn.com.gome.framework.dao.entity.TblLoginSysDic">
+		delete from TBL_LOGIN_SYS_DIC
+		<where>
+			<if test="id != null">
+				AND ID = #{id,jdbcType=CHAR}
+			 </if>
+			<if test="l2Code != null">
+				AND L2_CODE = #{l2Code,jdbcType=VARCHAR}
+			 </if>
+			<if test="l2Desc != null">
+				AND L2_DESC = #{l2Desc,jdbcType=VARCHAR}
+			 </if>
+			<if test="codeParam != null">
+				AND CODE_PARAM = #{codeParam,jdbcType=VARCHAR}
+			 </if>
+			<if test="codeValue != null">
+				AND CODE_VALUE = #{codeValue,jdbcType=VARCHAR}
+			 </if>
+			<if test="codeIdx != null">
+				AND CODE_IDX = #{codeIdx,jdbcType=INTEGER}
+			 </if>
+			<if test="recordCreateTm != null">
+				AND RECORD_CREATE_TM = #{recordCreateTm,jdbcType=CHAR}
+			 </if>
+		</where>
+	</delete>	
+
+	<delete id="delList" parameterType="java.util.List">
+		delete from TBL_LOGIN_SYS_DIC where ID in (
+			<foreach collection="list" item="item" index="index" separator=",">
+				 #{item,jdbcType=CHAR}
+			</foreach>
+		)
+	</delete>
+</mapper>

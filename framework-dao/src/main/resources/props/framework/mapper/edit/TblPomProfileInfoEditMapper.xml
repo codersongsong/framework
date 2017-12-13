@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.gome.framework.dao.mapper.edit.TblPomProfileInfoEditMapper">
+
+	<insert id="save" parameterType="cn.com.gome.framework.dao.entity.TblPomProfileInfo">
+		insert into TBL_POM_PROFILE_INFO(
+		ID,CONFIG_DESCRIPTION,CONFIG_NAME,TYPE,AND_DEPENDENCY_ID,ENV_DEV,ENV_UAT,ENV_PRE,ENV_LIVE,GROUP_INFO,CREATE_TIME,UPDATE_TIME,AND_PROJECT_ID
+		)
+		values(
+			#{id,jdbcType=VARCHAR},
+			#{configDescription,jdbcType=VARCHAR},
+			#{configName,jdbcType=VARCHAR},
+			#{type,jdbcType=CHAR},
+			#{andDependencyId,jdbcType=VARCHAR},
+			#{envDev,jdbcType=VARCHAR},
+			#{envUat,jdbcType=VARCHAR},
+			#{envPre,jdbcType=VARCHAR},
+			#{envLive,jdbcType=VARCHAR},
+			#{groupInfo,jdbcType=VARCHAR},
+			#{createTime,jdbcType=CHAR},
+			#{updateTime,jdbcType=CHAR},
+			#{andProjectId,jdbcType=VARCHAR}
+		)
+	</insert>
+
+	<update id="edit" parameterType="cn.com.gome.framework.dao.entity.TblPomProfileInfo">
+		update TBL_POM_PROFILE_INFO
+		<set>
+            <if test="configName != null">
+                CONFIG_NAME=#{configName,jdbcType=VARCHAR},
+            </if>
+			<if test="configDescription != null">
+				CONFIG_DESCRIPTION = #{configDescription,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				TYPE = #{type,jdbcType=CHAR},
+			</if>
+			<if test="andDependencyId != null">
+				AND_DEPENDENCY_ID = #{andDependencyId,jdbcType=VARCHAR},
+			</if>
+			<if test="envDev != null">
+				ENV_DEV = #{envDev,jdbcType=VARCHAR},
+			</if>
+			<if test="envUat != null">
+				ENV_UAT = #{envUat,jdbcType=VARCHAR},
+			</if>
+			<if test="envPre != null">
+				ENV_PRE = #{envPre,jdbcType=VARCHAR},
+			</if>
+			<if test="envLive != null">
+				ENV_LIVE = #{envLive,jdbcType=VARCHAR},
+			</if>
+			<if test="groupInfo != null">
+				GROUP_INFO = #{groupInfo,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=CHAR},
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME = #{updateTime,jdbcType=CHAR},
+			</if>
+			<if test="andProjectId != null">
+				AND_PROJECT_ID = #{andProjectId,jdbcType=VARCHAR},
+			</if>
+		</set>
+        where ID=#{id,jdbcType=VARCHAR}
+	</update>
+
+	<update id="editNull" parameterType="cn.com.gome.framework.dao.entity.TblPomProfileInfo">
+		update TBL_POM_PROFILE_INFO
+		<set>
+			CONFIG_DESCRIPTION = #{configDescription,jdbcType=VARCHAR},
+			TYPE = #{type,jdbcType=CHAR},
+			AND_DEPENDENCY_ID = #{andDependencyId,jdbcType=VARCHAR},
+			ENV_DEV = #{envDev,jdbcType=VARCHAR},
+			ENV_UAT = #{envUat,jdbcType=VARCHAR},
+			ENV_PRE = #{envPre,jdbcType=VARCHAR},
+			ENV_LIVE = #{envLive,jdbcType=VARCHAR},
+			GROUP_INFO = #{groupInfo,jdbcType=VARCHAR},
+			CREATE_TIME = #{createTime,jdbcType=CHAR},
+			UPDATE_TIME = #{updateTime,jdbcType=CHAR},
+            CONFIG_NAME=#{configName,jdbcType=VARCHAR},
+			AND_PROJECT_ID = #{andProjectId,jdbcType=VARCHAR},
+		</set>
+        where ID=#{id,jdbcType=VARCHAR}
+	</update>
+
+	<update id="editInfo" parameterType="java.util.Map">
+		update TBL_POM_PROFILE_INFO
+		<set>
+			<if test="configDescriptionNew != null">
+				CONFIG_DESCRIPTION = #{configDescriptionNew,jdbcType=VARCHAR},
+			</if>
+			<if test="typeNew != null">
+				TYPE = #{typeNew,jdbcType=CHAR},
+			</if>
+			<if test="andDependencyIdNew != null">
+				AND_DEPENDENCY_ID = #{andDependencyIdNew,jdbcType=VARCHAR},
+			</if>
+			<if test="envDevNew != null">
+				ENV_DEV = #{envDevNew,jdbcType=VARCHAR},
+			</if>
+			<if test="envUatNew != null">
+				ENV_UAT = #{envUatNew,jdbcType=VARCHAR},
+			</if>
+			<if test="envPreNew != null">
+				ENV_PRE = #{envPreNew,jdbcType=VARCHAR},
+			</if>
+			<if test="envLiveNew != null">
+				ENV_LIVE = #{envLiveNew,jdbcType=VARCHAR},
+			</if>
+			<if test="groupInfoNew != null">
+				GROUP_INFO = #{groupInfoNew,jdbcType=VARCHAR},
+			</if>
+			<if test="createTimeNew != null">
+				CREATE_TIME = #{createTimeNew,jdbcType=CHAR},
+			</if>
+			<if test="updateTimeNew != null">
+				UPDATE_TIME = #{updateTimeNew,jdbcType=CHAR},
+			</if>
+			<if test="andProjectIdNew != null">
+				AND_PROJECT_ID = #{andProjectIdNew,jdbcType=VARCHAR},
+			</if>
+		</set>
+		<where>
+			<if test="id != null  and id !='' ">
+				AND ID = #{id,jdbcType=VARCHAR}
+			</if>
+			<if test="configDescription != null  and configDescription !='' ">
+				AND CONFIG_DESCRIPTION = #{configDescription,jdbcType=VARCHAR}
+			</if>
+			<if test="configName != null  and configName !='' ">
+				AND CONFIG_NAME = #{configName,jdbcType=VARCHAR}
+			</if>
+			<if test="type != null  and type !='' ">
+				AND TYPE = #{type,jdbcType=CHAR}
+			</if>
+			<if test="andDependencyId != null  and andDependencyId !='' ">
+				AND AND_DEPENDENCY_ID = #{andDependencyId,jdbcType=VARCHAR}
+			</if>
+			<if test="envDev != null  and envDev !='' ">
+				AND ENV_DEV = #{envDev,jdbcType=VARCHAR}
+			</if>
+			<if test="envUat != null  and envUat !='' ">
+				AND ENV_UAT = #{envUat,jdbcType=VARCHAR}
+			</if>
+			<if test="envPre != null  and envPre !='' ">
+				AND ENV_PRE = #{envPre,jdbcType=VARCHAR}
+			</if>
+			<if test="envLive != null  and envLive !='' ">
+				AND ENV_LIVE = #{envLive,jdbcType=VARCHAR}
+			</if>
+			<if test="groupInfo != null  and groupInfo !='' ">
+				AND GROUP_INFO = #{groupInfo,jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null  and createTime !='' ">
+				AND CREATE_TIME = #{createTime,jdbcType=CHAR}
+			</if>
+			<if test="updateTime != null  and updateTime !='' ">
+				AND UPDATE_TIME = #{updateTime,jdbcType=CHAR}
+			</if>
+			<if test="andProjectId != null  and andProjectId !='' ">
+				AND AND_PROJECT_ID = #{andProjectId,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</update>
+
+	<delete id="del" parameterType="java.util.List">
+		delete from TBL_POM_PROFILE_INFO where CONFIG_NAME in (
+		<foreach collection="list" item="item" index="index" separator=",">
+			#{item,jdbcType=VARCHAR}
+		</foreach>
+		)
+	</delete>
+</mapper>

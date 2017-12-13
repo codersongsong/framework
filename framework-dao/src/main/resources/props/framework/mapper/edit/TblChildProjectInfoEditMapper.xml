@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="cn.com.gome.framework.dao.mapper.edit.TblChildProjectInfoEditMapper">
+
+	<insert id="save"
+		parameterType="cn.com.gome.framework.dao.entity.TblChildProjectInfo">
+		insert into TBL_CHILD_PROJECT_INFO(
+		CHILD_PROJECT_CODE,PROJECT_CODE,CHILD_PROJECT_NAME,CHILD_PROJECT_ENG,PROJECT_TYPE,PROJECT_PATH,CONFIG_FILE_NAME,VERSION_CONFIG,BASIC_JAR,CREATE_TIME,PACKAGE_TYPE
+		)
+		values(
+			SEQ_NUMBER_SERIALIZ_ID.nextval,
+			#{projectCode,jdbcType=INTEGER},
+			#{childProjectName,jdbcType=VARCHAR},
+			#{childProjectEng,jdbcType=VARCHAR},
+			#{projectType,jdbcType=CHAR},
+			#{projectPath,jdbcType=VARCHAR},
+			#{configFileName,jdbcType=VARCHAR},
+			#{versionConfig,jdbcType=VARCHAR},
+			#{basicJar,jdbcType=VARCHAR},
+			#{createTime,jdbcType=CHAR},
+			#{packageType,jdbcType=CHAR}
+		)
+	</insert>
+
+	<update id="edit"
+		parameterType="cn.com.gome.framework.dao.entity.TblChildProjectInfo">
+		update TBL_CHILD_PROJECT_INFO
+		<set>
+			<if test="projectCode != null">
+				PROJECT_CODE = #{projectCode,jdbcType=INTEGER},
+			</if>
+			<if test="childProjectName != null">
+				CHILD_PROJECT_NAME = #{childProjectName,jdbcType=VARCHAR},
+			</if>
+			<if test="childProjectEng != null">
+				CHILD_PROJECT_ENG = #{childProjectEng,jdbcType=VARCHAR},
+			</if>
+			<if test="projectType != null">
+				PROJECT_TYPE = #{projectType,jdbcType=CHAR},
+			</if>
+			<if test="packageType != null">
+				PACKAGE_TYPE = #{packageType,jdbcType=CHAR},
+			</if>
+			<if test="projectPath != null">
+				PROJECT_PATH = #{projectPath,jdbcType=VARCHAR},
+			</if>
+			<if test="configFileName != null">
+				CONFIG_FILE_NAME = #{configFileName,jdbcType=VARCHAR},
+			</if>
+			<if test="versionConfig != null">
+				VERSION_CONFIG = #{versionConfig,jdbcType=VARCHAR},
+			</if>
+			<if test="basicJar != null">
+				BASIC_JAR = #{basicJar,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=CHAR},
+			</if>
+		</set>
+		where CHILD_PROJECT_CODE=#{childProjectCode,jdbcType=INTEGER}
+	</update>
+
+	<update id="editInfo" parameterType="java.util.Map">
+		update TBL_CHILD_PROJECT_INFO
+		<set>
+			<if test="projectCodeNew != null">
+				PROJECT_CODE = #{projectCodeNew,jdbcType=INTEGER},
+			</if>
+			<if test="childProjectNameNew != null">
+				CHILD_PROJECT_NAME = #{childProjectNameNew,jdbcType=VARCHAR},
+			</if>
+			<if test="childProjectEngNew != null">
+				CHILD_PROJECT_ENG = #{childProjectEngNew,jdbcType=VARCHAR},
+			</if>
+			<if test="projectTypeNew != null">
+				PROJECT_TYPE = #{projectTypeNew,jdbcType=CHAR},
+			</if>
+			<if test="packageTypeNew != null">
+				PACKAGE_TYPE = #{packageTypeNew,jdbcType=CHAR},
+			</if>
+			<if test="projectPathNew != null">
+				PROJECT_PATH = #{projectPathNew,jdbcType=VARCHAR},
+			</if>
+			<if test="configFileNameNew != null">
+				CONFIG_FILE_NAME = #{configFileNameNew,jdbcType=VARCHAR},
+			</if>
+			<if test="versionConfigNew != null">
+				VERSION_CONFIG = #{versionConfigNew,jdbcType=VARCHAR},
+			</if>
+			<if test="basicJarNew != null">
+				BASIC_JAR = #{basicJarNew,jdbcType=VARCHAR},
+			</if>
+			<if test="createTimeNew != null">
+				CREATE_TIME = #{createTimeNew,jdbcType=CHAR},
+			</if>
+		</set>
+		<where>
+			<if test="childProjectCode != null  and childProjectCode !='' ">
+				AND CHILD_PROJECT_CODE = #{childProjectCode,jdbcType=INTEGER}
+			</if>
+			<if test="projectCode != null  and projectCode !='' ">
+				AND PROJECT_CODE = #{projectCode,jdbcType=INTEGER}
+			</if>
+			<if test="childProjectName != null  and childProjectName !='' ">
+				AND CHILD_PROJECT_NAME = #{childProjectName,jdbcType=VARCHAR}
+			</if>
+			<if test="childProjectEng != null  and childProjectEng !='' ">
+				AND CHILD_PROJECT_ENG = #{childProjectEng,jdbcType=VARCHAR}
+			</if>
+			<if test="projectType != null  and projectType !='' ">
+				AND PROJECT_TYPE = #{projectType,jdbcType=CHAR}
+			</if>
+			<if test="packageType != null">
+				AND PACKAGE_TYPE = #{packageType,jdbcType=CHAR}
+			</if>
+			<if test="projectPath != null  and projectPath !='' ">
+				AND PROJECT_PATH = #{projectPath,jdbcType=VARCHAR}
+			</if>
+			<if test="configFileName != null  and configFileName !='' ">
+				AND CONFIG_FILE_NAME = #{configFileName,jdbcType=VARCHAR}
+			</if>
+			<if test="versionConfig != null  and versionConfig !='' ">
+				AND VERSION_CONFIG = #{versionConfig,jdbcType=VARCHAR}
+			</if>
+			<if test="basicJar != null  and basicJar !='' ">
+				AND BASIC_JAR = #{basicJar,jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null  and createTime !='' ">
+				AND CREATE_TIME = #{createTime,jdbcType=CHAR}
+			</if>
+		</where>
+	</update>
+
+	<delete id="del"
+		parameterType="cn.com.gome.framework.dao.entity.TblChildProjectInfo">
+		delete from TBL_CHILD_PROJECT_INFO
+		<where>
+			<if test="childProjectCode != null">
+				AND CHILD_PROJECT_CODE =
+				#{childProjectCode,jdbcType=INTEGER}
+			</if>
+			<if test="projectCode != null">
+				AND PROJECT_CODE = #{projectCode,jdbcType=INTEGER}
+			</if>
+			<if test="childProjectName != null">
+				AND CHILD_PROJECT_NAME =
+				#{childProjectName,jdbcType=VARCHAR}
+			</if>
+			<if test="childProjectEng != null">
+				AND CHILD_PROJECT_ENG =
+				#{childProjectEng,jdbcType=VARCHAR}
+			</if>
+			<if test="projectType != null">
+				AND PROJECT_TYPE = #{projectType,jdbcType=CHAR}
+			</if>
+			<if test="packageType != null">
+				AND PACKAGE_TYPE = #{packageType,jdbcType=CHAR}
+			</if>
+			<if test="projectPath != null">
+				AND PROJECT_PATH = #{projectPath,jdbcType=VARCHAR}
+			</if>
+			<if test="configFileName != null">
+				AND CONFIG_FILE_NAME = #{configFileName,jdbcType=VARCHAR}
+			</if>
+			<if test="versionConfig != null">
+				AND VERSION_CONFIG = #{versionConfig,jdbcType=VARCHAR}
+			</if>
+			<if test="basicJar != null">
+				AND BASIC_JAR = #{basicJar,jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				AND CREATE_TIME = #{createTime,jdbcType=CHAR}
+			</if>
+		</where>
+	</delete>
+
+	<delete id="delList" parameterType="java.util.List">
+		delete from TBL_CHILD_PROJECT_INFO where CHILD_PROJECT_CODE in (
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			#{item,jdbcType=INTEGER}
+		</foreach>
+		)
+	</delete>
+</mapper>

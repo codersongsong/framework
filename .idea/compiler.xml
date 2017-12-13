@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="framework-dao" />
+        <module name="framework-generator" />
+        <module name="framework-task" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="framework" target="1.5" />
+      <module name="framework-dao" target="1.7" />
+      <module name="framework-generator" target="1.7" />
+      <module name="framework-task" target="1.7" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

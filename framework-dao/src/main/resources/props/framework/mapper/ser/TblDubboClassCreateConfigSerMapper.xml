@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="cn.com.gome.framework.dao.mapper.ser.TblDubboClassCreateConfigSerMapper">
+	<resultMap id="BaseResultMap"
+		type="cn.com.gome.framework.dao.entity.TblDubboClassCreateConfig">
+		<id column="CLASS_NO" property="classNo" jdbcType="INTEGER" />
+		<result column="CHILD_PROJECT_CODE" property="childProjectCode"
+			jdbcType="INTEGER" />
+		<result column="CREATE_TYPE" property="createType" jdbcType="CHAR" />
+		<result column="DUBBO_CLASS" property="dubboClass" jdbcType="VARCHAR" />
+		<result column="DUBBO_CLASS_ASK" property="dubboClassAsk"
+			jdbcType="VARCHAR" />
+		<result column="DUBBO_CLASS_METHOD" property="dubboClassMethod"
+			jdbcType="VARCHAR" />
+		<result column="DUBBO_CLASS_METHOD_ASK" property="dubboClassMethodAsk"
+			jdbcType="VARCHAR" />
+		<result column="SERVICE_CALSS" property="serviceCalss"
+			jdbcType="VARCHAR" />
+		<result column="SERVICE_CALSS_ASK" property="serviceCalssAsk"
+			jdbcType="VARCHAR" />
+		<result column="SERVICE_CALSS_METHOD" property="serviceCalssMethod"
+			jdbcType="VARCHAR" />
+		<result column="SERVICE_CALSS_METHOD_ASK" property="serviceCalssMethodAsk"
+			jdbcType="VARCHAR" />
+		<result column="LOGIC_CALSS" property="logicCalss" jdbcType="VARCHAR" />
+		<result column="LOGIC_CALSS_ASK" property="logicCalssAsk"
+			jdbcType="VARCHAR" />
+		<result column="SAVE_ADDRESS" property="saveAddress" jdbcType="VARCHAR" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="CHAR" />
+		<result column="UP_TIME" property="upTime" jdbcType="CHAR" />
+	</resultMap>
+	<resultMap id="BasePoResultMap"
+		type="cn.com.gome.framework.po.DubboClassCreateConfigPo">
+		<id column="CLASS_NO" property="classNo" jdbcType="INTEGER" />
+		<result column="CHILD_PROJECT_CODE" property="childProjectCode"
+			jdbcType="INTEGER" />
+		<result column="CREATE_TYPE" property="createType" jdbcType="CHAR" />
+		<result column="DUBBO_CLASS" property="dubboClass" jdbcType="VARCHAR" />
+		<result column="DUBBO_CLASS_ASK" property="dubboClassAsk"
+			jdbcType="VARCHAR" />
+		<result column="DUBBO_CLASS_METHOD" property="dubboClassMethod"
+			jdbcType="VARCHAR" />
+		<result column="DUBBO_CLASS_METHOD_ASK" property="dubboClassMethodAsk"
+			jdbcType="VARCHAR" />
+		<result column="SERVICE_CALSS" property="serviceCalss"
+			jdbcType="VARCHAR" />
+		<result column="SERVICE_CALSS_ASK" property="serviceCalssAsk"
+			jdbcType="VARCHAR" />
+		<result column="SERVICE_CALSS_METHOD" property="serviceCalssMethod"
+			jdbcType="VARCHAR" />
+		<result column="SERVICE_CALSS_METHOD_ASK" property="serviceCalssMethodAsk"
+			jdbcType="VARCHAR" />
+		<result column="LOGIC_CALSS" property="logicCalss" jdbcType="VARCHAR" />
+		<result column="LOGIC_CALSS_ASK" property="logicCalssAsk"
+			jdbcType="VARCHAR" />
+		<result column="SAVE_ADDRESS" property="saveAddress" jdbcType="VARCHAR" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="CHAR" />
+		<result column="UP_TIME" property="upTime" jdbcType="CHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		CLASS_NO,CHILD_PROJECT_CODE,CREATE_TYPE,DUBBO_CLASS,DUBBO_CLASS_ASK,DUBBO_CLASS_METHOD,DUBBO_CLASS_METHOD_ASK,SERVICE_CALSS,SERVICE_CALSS_ASK,SERVICE_CALSS_METHOD,SERVICE_CALSS_METHOD_ASK,LOGIC_CALSS,LOGIC_CALSS_ASK,SAVE_ADDRESS,CREATE_TIME,UP_TIME
+	</sql>
+	<select id="query" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from TBL_DUBBO_CLASS_CREATE_CONFIG
+		where CLASS_NO =
+		#{classNo,jdbcType=INTEGER}
+	</select>
+	<sql id="comm_where">
+		<where>
+			<if test="classNo != null ">
+				AND CLASS_NO = #{classNo,jdbcType=INTEGER}
+			</if>
+			<if test="childProjectCode != null ">
+				AND CHILD_PROJECT_CODE = #{childProjectCode,jdbcType=INTEGER}
+			</if>
+			<if test="createType != null ">
+				AND CREATE_TYPE = #{createType,jdbcType=CHAR}
+			</if>
+			<if test="dubboClass != null ">
+				AND DUBBO_CLASS = #{dubboClass,jdbcType=VARCHAR}
+			</if>
+			<if test="dubboClassAsk != null ">
+				AND DUBBO_CLASS_ASK = #{dubboClassAsk,jdbcType=VARCHAR}
+			</if>
+			<if test="dubboClassMethod != null ">
+				AND DUBBO_CLASS_METHOD = #{dubboClassMethod,jdbcType=VARCHAR}
+			</if>
+			<if test="dubboClassMethodAsk != null ">
+				AND DUBBO_CLASS_METHOD_ASK = #{dubboClassMethodAsk,jdbcType=VARCHAR}
+			</if>
+			<if test="serviceCalss != null ">
+				AND SERVICE_CALSS = #{serviceCalss,jdbcType=VARCHAR}
+			</if>
+			<if test="serviceCalssAsk != null ">
+				AND SERVICE_CALSS_ASK = #{serviceCalssAsk,jdbcType=VARCHAR}
+			</if>
+			<if test="serviceCalssMethod != null ">
+				AND SERVICE_CALSS_METHOD = #{serviceCalssMethod,jdbcType=VARCHAR}
+			</if>
+			<if test="serviceCalssMethodAsk != null ">
+				AND SERVICE_CALSS_METHOD_ASK =
+				#{serviceCalssMethodAsk,jdbcType=VARCHAR}
+			</if>
+			<if test="logicCalss != null ">
+				AND LOGIC_CALSS = #{logicCalss,jdbcType=VARCHAR}
+			</if>
+			<if test="logicCalssAsk != null ">
+				AND LOGIC_CALSS_ASK = #{logicCalssAsk,jdbcType=VARCHAR}
+			</if>
+			<if test="saveAddress != null ">
+				AND SAVE_ADDRESS = #{saveAddress,jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null ">
+				AND CREATE_TIME = #{createTime,jdbcType=CHAR}
+			</if>
+			<if test="upTime != null ">
+				AND UP_TIME = #{upTime,jdbcType=CHAR}
+			</if>
+		</where>
+
+	</sql>
+	<select id="queryObj" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from TBL_DUBBO_CLASS_CREATE_CONFIG
+		<include refid="comm_where"></include>
+	</select>
+	<select id="queryPo" resultMap="BasePoResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from TBL_DUBBO_CLASS_CREATE_CONFIG
+		<include refid="comm_where"></include>
+	</select>
+	<select id="queryList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from TBL_DUBBO_CLASS_CREATE_CONFIG
+		<include refid="comm_where"></include>
+	</select>
+	<sql id="page_where">
+		<where>
+			<if test="f.classNo != null ">
+				AND CLASS_NO = #{f.classNo,jdbcType=INTEGER}
+			</if>
+			<if test="f.childProjectCode != null ">
+				AND CHILD_PROJECT_CODE = #{f.childProjectCode,jdbcType=INTEGER}
+			</if>
+			<if test="f.createType != null ">
+				AND CREATE_TYPE = #{f.createType,jdbcType=CHAR}
+			</if>
+			<if test="f.dubboClass != null ">
+				AND DUBBO_CLASS = #{f.dubboClass,jdbcType=VARCHAR}
+			</if>
+			<if test="f.dubboClassAsk != null ">
+				AND DUBBO_CLASS_ASK = #{f.dubboClassAsk,jdbcType=VARCHAR}
+			</if>
+			<if test="f.dubboClassMethod != null ">
+				AND DUBBO_CLASS_METHOD = #{f.dubboClassMethod,jdbcType=VARCHAR}
+			</if>
+			<if test="f.dubboClassMethodAsk != null ">
+				AND DUBBO_CLASS_METHOD_ASK = #{f.dubboClassMethodAsk,jdbcType=VARCHAR}
+			</if>
+			<if test="f.serviceCalss != null ">
+				AND SERVICE_CALSS = #{f.serviceCalss,jdbcType=VARCHAR}
+			</if>
+			<if test="f.serviceCalssAsk != null ">
+				AND SERVICE_CALSS_ASK = #{f.serviceCalssAsk,jdbcType=VARCHAR}
+			</if>
+			<if test="f.serviceCalssMethod != null ">
+				AND SERVICE_CALSS_METHOD = #{f.serviceCalssMethod,jdbcType=VARCHAR}
+			</if>
+			<if test="f.serviceCalssMethodAsk != null ">
+				AND SERVICE_CALSS_METHOD_ASK =
+				#{f.serviceCalssMethodAsk,jdbcType=VARCHAR}
+			</if>
+			<if test="f.logicCalss != null ">
+				AND LOGIC_CALSS = #{f.logicCalss,jdbcType=VARCHAR}
+			</if>
+			<if test="f.logicCalssAsk != null ">
+				AND LOGIC_CALSS_ASK = #{f.logicCalssAsk,jdbcType=VARCHAR}
+			</if>
+			<if test="f.saveAddress != null ">
+				AND SAVE_ADDRESS = #{f.saveAddress,jdbcType=VARCHAR}
+			</if>
+			<if test="f.createTime != null ">
+				AND CREATE_TIME = #{f.createTime,jdbcType=CHAR}
+			</if>
+			<if test="f.upTime != null ">
+				AND UP_TIME = #{f.upTime,jdbcType=CHAR}
+			</if>
+		</where>
+	</sql>
+	<select id="queryPageListCount" resultType="java.lang.Integer">
+		select count(1) from TBL_DUBBO_CLASS_CREATE_CONFIG
+		<include refid="page_where"></include>
+	</select>
+	<select id="queryPageList" resultMap="BaseResultMap">
+        <![CDATA[ select * from ( select interTable.*,rownum rn from ( ]]>
+		select
+		AA.CLASS_NO,AA.CHILD_PROJECT_CODE,AA.CREATE_TYPE,AA.DUBBO_CLASS,AA.DUBBO_CLASS_ASK,AA.DUBBO_CLASS_METHOD,AA.DUBBO_CLASS_METHOD_ASK,AA.SERVICE_CALSS,AA.SERVICE_CALSS_ASK,AA.SERVICE_CALSS_METHOD,AA.SERVICE_CALSS_METHOD_ASK,AA.LOGIC_CALSS,AA.LOGIC_CALSS_ASK,AA.SAVE_ADDRESS,AA.CREATE_TIME,AA.UP_TIME
+		from TBL_DUBBO_CLASS_CREATE_CONFIG AA
+		<include refid="page_where"></include>
+		) interTable where 
+	    <![CDATA[ rownum <= #{limit}+#{offset} ]]>
+		) outerTable where 
+	    <![CDATA[ outerTable.rn > #{limit} ]]>
+	</select>
+	<select id="queryPageVoList" resultMap="BasePoResultMap">
+        <![CDATA[ select * from ( select interTable.*,rownum rn from ( ]]>
+		select
+		AA.CLASS_NO,AA.CHILD_PROJECT_CODE,AA.CREATE_TYPE,AA.DUBBO_CLASS,AA.DUBBO_CLASS_ASK,AA.DUBBO_CLASS_METHOD,AA.DUBBO_CLASS_METHOD_ASK,AA.SERVICE_CALSS,AA.SERVICE_CALSS_ASK,AA.SERVICE_CALSS_METHOD,AA.SERVICE_CALSS_METHOD_ASK,AA.LOGIC_CALSS,AA.LOGIC_CALSS_ASK,AA.SAVE_ADDRESS,AA.CREATE_TIME,AA.UP_TIME
+		from TBL_DUBBO_CLASS_CREATE_CONFIG AA
+		<include refid="page_where"></include>
+		) interTable where 
+	    <![CDATA[ rownum <= #{limit}+#{offset} ]]>
+		) outerTable where 
+	    <![CDATA[ outerTable.rn > #{limit} ]]>
+	</select>
+</mapper>

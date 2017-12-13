@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+        namespace="cn.com.gome.framework.dao.mapper.edit.TblDubboClassCreateConfigEditMapper">
+
+    <insert id="save"
+            parameterType="cn.com.gome.framework.dao.entity.TblDubboClassCreateConfig">
+
+        <!-- 获取序列值，并赋值到对象的planid字段-->
+        <selectKey keyProperty="classNo" resultType="java.lang.Integer" order="BEFORE">
+            select SEQ_NUMBER_SERIALIZ_ID.nextval from dual
+        </selectKey>
+
+
+		insert into TBL_DUBBO_CLASS_CREATE_CONFIG(
+		CLASS_NO,CHILD_PROJECT_CODE,CREATE_TYPE,DUBBO_CLASS,DUBBO_CLASS_ASK,DUBBO_CLASS_METHOD,DUBBO_CLASS_METHOD_ASK,SERVICE_CALSS,SERVICE_CALSS_ASK,SERVICE_CALSS_METHOD,SERVICE_CALSS_METHOD_ASK,LOGIC_CALSS,LOGIC_CALSS_ASK,SAVE_ADDRESS,CREATE_TIME,UP_TIME
+		)
+		values(
+		#{classNo,jdbcType=INTEGER},
+		#{childProjectCode,jdbcType=INTEGER},
+		#{createType,jdbcType=CHAR},
+		#{dubboClass,jdbcType=VARCHAR},
+		#{dubboClassAsk,jdbcType=VARCHAR},
+		#{dubboClassMethod,jdbcType=VARCHAR},
+		#{dubboClassMethodAsk,jdbcType=VARCHAR},
+		#{serviceCalss,jdbcType=VARCHAR},
+		#{serviceCalssAsk,jdbcType=VARCHAR},
+		#{serviceCalssMethod,jdbcType=VARCHAR},
+		#{serviceCalssMethodAsk,jdbcType=VARCHAR},
+		#{logicCalss,jdbcType=VARCHAR},
+		#{logicCalssAsk,jdbcType=VARCHAR},
+		#{saveAddress,jdbcType=VARCHAR},
+		#{createTime,jdbcType=CHAR},
+		#{upTime,jdbcType=CHAR}
+		)
+	</insert>
+
+    <update id="edit"
+            parameterType="cn.com.gome.framework.dao.entity.TblDubboClassCreateConfig">
+        update TBL_DUBBO_CLASS_CREATE_CONFIG
+        <set>
+            <if test="childProjectCode != null">
+                CHILD_PROJECT_CODE = #{childProjectCode,jdbcType=INTEGER},
+            </if>
+            <if test="createType != null">
+                CREATE_TYPE = #{createType,jdbcType=CHAR},
+            </if>
+            <if test="dubboClass != null">
+                DUBBO_CLASS = #{dubboClass,jdbcType=VARCHAR},
+            </if>
+            <if test="dubboClassAsk != null">
+                DUBBO_CLASS_ASK = #{dubboClassAsk,jdbcType=VARCHAR},
+            </if>
+            <if test="dubboClassMethod != null">
+                DUBBO_CLASS_METHOD = #{dubboClassMethod,jdbcType=VARCHAR},
+            </if>
+            <if test="dubboClassMethodAsk != null">
+                DUBBO_CLASS_METHOD_ASK = #{dubboClassMethodAsk,jdbcType=VARCHAR},
+            </if>
+            <if test="serviceCalss != null">
+                SERVICE_CALSS = #{serviceCalss,jdbcType=VARCHAR},
+            </if>
+            <if test="serviceCalssAsk != null">
+                SERVICE_CALSS_ASK = #{serviceCalssAsk,jdbcType=VARCHAR},
+            </if>
+            <if test="serviceCalssMethod != null">
+                SERVICE_CALSS_METHOD = #{serviceCalssMethod,jdbcType=VARCHAR},
+            </if>
+            <if test="serviceCalssMethodAsk != null">
+                SERVICE_CALSS_METHOD_ASK = #{serviceCalssMethodAsk,jdbcType=VARCHAR},
+            </if>
+            <if test="logicCalss != null">
+                LOGIC_CALSS = #{logicCalss,jdbcType=VARCHAR},
+            </if>
+            <if test="logicCalssAsk != null">
+                LOGIC_CALSS_ASK = #{logicCalssAsk,jdbcType=VARCHAR},
+            </if>
+            <if test="saveAddress != null">
+                SAVE_ADDRESS = #{saveAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME = #{createTime,jdbcType=CHAR},
+            </if>
+            <if test="upTime != null">
+                UP_TIME = #{upTime,jdbcType=CHAR},
+            </if>
+        </set>
+        where CLASS_NO=#{classNo,jdbcType=INTEGER}
+    </update>
+
+    <update id="editInfo" parameterType="java.util.Map">
+        update TBL_DUBBO_CLASS_CREATE_CONFIG
+        <set>
+            <if test="childProjectCodeNew != null">
+                CHILD_PROJECT_CODE = #{childProjectCodeNew,jdbcType=INTEGER},
+            </if>
+            <if test="createTypeNew != null">
+                CREATE_TYPE = #{createTypeNew,jdbcType=CHAR},
+            </if>
+            <if test="dubboClassNew != null">
+                DUBBO_CLASS = #{dubboClassNew,jdbcType=VARCHAR},
+            </if>
+            <if test="dubboClassAskNew != null">
+                DUBBO_CLASS_ASK = #{dubboClassAskNew,jdbcType=VARCHAR},
+            </if>
+            <if test="dubboClassMethodNew != null">
+                DUBBO_CLASS_METHOD = #{dubboClassMethodNew,jdbcType=VARCHAR},
+            </if>
+            <if test="dubboClassMethodAskNew != null">
+                DUBBO_CLASS_METHOD_ASK = #{dubboClassMethodAskNew,jdbcType=VARCHAR},
+            </if>
+            <if test="serviceCalssNew != null">
+                SERVICE_CALSS = #{serviceCalssNew,jdbcType=VARCHAR},
+            </if>
+            <if test="serviceCalssAskNew != null">
+                SERVICE_CALSS_ASK = #{serviceCalssAskNew,jdbcType=VARCHAR},
+            </if>
+            <if test="serviceCalssMethodNew != null">
+                SERVICE_CALSS_METHOD = #{serviceCalssMethodNew,jdbcType=VARCHAR},
+            </if>
+            <if test="serviceCalssMethodAskNew != null">
+                SERVICE_CALSS_METHOD_ASK = #{serviceCalssMethodAskNew,jdbcType=VARCHAR},
+            </if>
+            <if test="logicCalssNew != null">
+                LOGIC_CALSS = #{logicCalssNew,jdbcType=VARCHAR},
+            </if>
+            <if test="logicCalssAskNew != null">
+                LOGIC_CALSS_ASK = #{logicCalssAskNew,jdbcType=VARCHAR},
+            </if>
+            <if test="saveAddressNew != null">
+                SAVE_ADDRESS = #{saveAddressNew,jdbcType=VARCHAR},
+            </if>
+            <if test="createTimeNew != null">
+                CREATE_TIME = #{createTimeNew,jdbcType=CHAR},
+            </if>
+            <if test="upTimeNew != null">
+                UP_TIME = #{upTimeNew,jdbcType=CHAR},
+            </if>
+        </set>
+        <where>
+            <if test="classNo != null  and classNo !='' ">
+                AND CLASS_NO = #{classNo,jdbcType=INTEGER}
+            </if>
+            <if test="childProjectCode != null  and childProjectCode !='' ">
+                AND CHILD_PROJECT_CODE = #{childProjectCode,jdbcType=INTEGER}
+            </if>
+            <if test="createType != null  and createType !='' ">
+                AND CREATE_TYPE = #{createType,jdbcType=CHAR}
+            </if>
+            <if test="dubboClass != null  and dubboClass !='' ">
+                AND DUBBO_CLASS = #{dubboClass,jdbcType=VARCHAR}
+            </if>
+            <if test="dubboClassAsk != null  and dubboClassAsk !='' ">
+                AND DUBBO_CLASS_ASK = #{dubboClassAsk,jdbcType=VARCHAR}
+            </if>
+            <if test="dubboClassMethod != null  and dubboClassMethod !='' ">
+                AND DUBBO_CLASS_METHOD = #{dubboClassMethod,jdbcType=VARCHAR}
+            </if>
+            <if test="dubboClassMethodAsk != null  and dubboClassMethodAsk !='' ">
+                AND DUBBO_CLASS_METHOD_ASK = #{dubboClassMethodAsk,jdbcType=VARCHAR}
+            </if>
+            <if test="serviceCalss != null  and serviceCalss !='' ">
+                AND SERVICE_CALSS = #{serviceCalss,jdbcType=VARCHAR}
+            </if>
+            <if test="serviceCalssAsk != null  and serviceCalssAsk !='' ">
+                AND SERVICE_CALSS_ASK = #{serviceCalssAsk,jdbcType=VARCHAR}
+            </if>
+            <if test="serviceCalssMethod != null  and serviceCalssMethod !='' ">
+                AND SERVICE_CALSS_METHOD = #{serviceCalssMethod,jdbcType=VARCHAR}
+            </if>
+            <if test="serviceCalssMethodAsk != null  and serviceCalssMethodAsk !='' ">
+                AND SERVICE_CALSS_METHOD_ASK =
+                #{serviceCalssMethodAsk,jdbcType=VARCHAR}
+            </if>
+            <if test="logicCalss != null  and logicCalss !='' ">
+                AND LOGIC_CALSS = #{logicCalss,jdbcType=VARCHAR}
+            </if>
+            <if test="logicCalssAsk != null  and logicCalssAsk !='' ">
+                AND LOGIC_CALSS_ASK = #{logicCalssAsk,jdbcType=VARCHAR}
+            </if>
+            <if test="saveAddress != null  and saveAddress !='' ">
+                AND SAVE_ADDRESS = #{saveAddress,jdbcType=VARCHAR}
+            </if>
+            <if test="createTime != null  and createTime !='' ">
+                AND CREATE_TIME = #{createTime,jdbcType=CHAR}
+            </if>
+            <if test="upTime != null  and upTime !='' ">
+                AND UP_TIME = #{upTime,jdbcType=CHAR}
+            </if>
+        </where>
+    </update>
+
+    <delete id="del"
+            parameterType="cn.com.gome.framework.dao.entity.TblDubboClassCreateConfig">
+        delete from TBL_DUBBO_CLASS_CREATE_CONFIG
+        <where>
+            <if test="classNo != null">
+                AND CLASS_NO = #{classNo,jdbcType=INTEGER}
+            </if>
+            <if test="childProjectCode != null">
+                AND CHILD_PROJECT_CODE =
+                #{childProjectCode,jdbcType=INTEGER}
+            </if>
+            <if test="createType != null">
+                AND CREATE_TYPE = #{createType,jdbcType=CHAR}
+            </if>
+            <if test="dubboClass != null">
+                AND DUBBO_CLASS = #{dubboClass,jdbcType=VARCHAR}
+            </if>
+            <if test="dubboClassAsk != null">
+                AND DUBBO_CLASS_ASK = #{dubboClassAsk,jdbcType=VARCHAR}
+            </if>
+            <if test="dubboClassMethod != null">
+                AND DUBBO_CLASS_METHOD =
+                #{dubboClassMethod,jdbcType=VARCHAR}
+            </if>
+            <if test="dubboClassMethodAsk != null">
+                AND DUBBO_CLASS_METHOD_ASK =
+                #{dubboClassMethodAsk,jdbcType=VARCHAR}
+            </if>
+            <if test="serviceCalss != null">
+                AND SERVICE_CALSS = #{serviceCalss,jdbcType=VARCHAR}
+            </if>
+            <if test="serviceCalssAsk != null">
+                AND SERVICE_CALSS_ASK =
+                #{serviceCalssAsk,jdbcType=VARCHAR}
+            </if>
+            <if test="serviceCalssMethod != null">
+                AND SERVICE_CALSS_METHOD =
+                #{serviceCalssMethod,jdbcType=VARCHAR}
+            </if>
+            <if test="serviceCalssMethodAsk != null">
+                AND SERVICE_CALSS_METHOD_ASK =
+                #{serviceCalssMethodAsk,jdbcType=VARCHAR}
+            </if>
+            <if test="logicCalss != null">
+                AND LOGIC_CALSS = #{logicCalss,jdbcType=VARCHAR}
+            </if>
+            <if test="logicCalssAsk != null">
+                AND LOGIC_CALSS_ASK = #{logicCalssAsk,jdbcType=VARCHAR}
+            </if>
+            <if test="saveAddress != null">
+                AND SAVE_ADDRESS = #{saveAddress,jdbcType=VARCHAR}
+            </if>
+            <if test="createTime != null">
+                AND CREATE_TIME = #{createTime,jdbcType=CHAR}
+            </if>
+            <if test="upTime != null">
+                AND UP_TIME = #{upTime,jdbcType=CHAR}
+            </if>
+        </where>
+    </delete>
+
+    <delete id="delList" parameterType="java.util.List">
+        delete from TBL_DUBBO_CLASS_CREATE_CONFIG where CLASS_NO in (
+        <foreach collection="list" item="item" index="index"
+                 separator=",">
+            #{item,jdbcType=INTEGER}
+        </foreach>
+        )
+    </delete>
+</mapper>

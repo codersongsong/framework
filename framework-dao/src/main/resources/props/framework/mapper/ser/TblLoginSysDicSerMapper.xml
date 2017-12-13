@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.gome.framework.dao.mapper.ser.TblLoginSysDicSerMapper">
+	<resultMap id="BaseResultMap" type="cn.com.gome.framework.dao.entity.TblLoginSysDic">
+		<id column="ID" property="id" jdbcType="CHAR" />
+		<result column="L2_CODE" property="l2Code" jdbcType="VARCHAR" />
+		<result column="L2_DESC" property="l2Desc" jdbcType="VARCHAR" />
+		<result column="CODE_PARAM" property="codeParam" jdbcType="VARCHAR" />
+		<result column="CODE_VALUE" property="codeValue" jdbcType="VARCHAR" />
+		<result column="CODE_IDX" property="codeIdx" jdbcType="INTEGER" />
+		<result column="RECORD_CREATE_TM" property="recordCreateTm"
+			jdbcType="CHAR" />
+	</resultMap>
+	<resultMap id="BasePoResultMap" type="cn.com.gome.framework.po.LoginSysDicPo">
+		<id column="ID" property="id" jdbcType="CHAR" />
+		<result column="L2_CODE" property="l2Code" jdbcType="VARCHAR" />
+		<result column="L2_DESC" property="l2Desc" jdbcType="VARCHAR" />
+		<result column="CODE_PARAM" property="codeParam" jdbcType="VARCHAR" />
+		<result column="CODE_VALUE" property="codeValue" jdbcType="VARCHAR" />
+		<result column="CODE_IDX" property="codeIdx" jdbcType="INTEGER" />
+		<result column="RECORD_CREATE_TM" property="recordCreateTm"
+			jdbcType="CHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID,L2_CODE,L2_DESC,CODE_PARAM,CODE_VALUE,CODE_IDX,RECORD_CREATE_TM
+	</sql>
+	<select id="query" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from TBL_LOGIN_SYS_DIC
+		where ID = #{id,jdbcType=CHAR}
+	</select>
+	<sql id="comm_where">
+		<where>
+			<if test="id != null ">
+				AND ID = #{id,jdbcType=CHAR}
+			</if>
+			<if test="l2Code != null ">
+				AND L2_CODE = #{l2Code,jdbcType=VARCHAR}
+			</if>
+			<if test="l2Desc != null ">
+				AND L2_DESC = #{l2Desc,jdbcType=VARCHAR}
+			</if>
+			<if test="codeParam != null ">
+				AND CODE_PARAM = #{codeParam,jdbcType=VARCHAR}
+			</if>
+			<if test="codeValue != null ">
+				AND CODE_VALUE = #{codeValue,jdbcType=VARCHAR}
+			</if>
+			<if test="codeIdx != null ">
+				AND CODE_IDX = #{codeIdx,jdbcType=INTEGER}
+			</if>
+			<if test="recordCreateTm != null ">
+				AND RECORD_CREATE_TM = #{recordCreateTm,jdbcType=CHAR}
+			</if>
+		</where>
+
+	</sql>
+	<select id="queryObj" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from TBL_LOGIN_SYS_DIC
+		<include refid="comm_where"></include>
+	</select>
+	<select id="queryPo" resultMap="BasePoResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from TBL_LOGIN_SYS_DIC
+		<include refid="comm_where"></include>
+	</select>
+	<select id="queryList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from TBL_LOGIN_SYS_DIC
+		<include refid="comm_where"></include>
+	</select>
+	<sql id="page_where">
+		<where>
+			<if test="f.id != null ">
+				AND ID = #{f.id,jdbcType=CHAR}
+			</if>
+			<if test="f.l2Code != null ">
+				AND L2_CODE = #{f.l2Code,jdbcType=VARCHAR}
+			</if>
+			<if test="f.l2Desc != null ">
+				AND L2_DESC LIKE CONCAT(CONCAT('%',#{f.l2Desc,jdbcType=VARCHAR}), '%') 
+			</if>
+			<if test="f.codeParam != null ">
+				AND CODE_PARAM = #{f.codeParam,jdbcType=VARCHAR}
+			</if>
+			<if test="f.codeValue != null ">
+				AND CODE_VALUE = #{f.codeValue,jdbcType=VARCHAR}
+			</if>
+			<if test="f.codeIdx != null ">
+				AND CODE_IDX = #{f.codeIdx,jdbcType=INTEGER}
+			</if>
+			<if test="f.recordCreateTm != null ">
+				AND RECORD_CREATE_TM = #{f.recordCreateTm,jdbcType=CHAR}
+			</if>
+		</where>
+	</sql>
+	<select id="queryPageListCount" resultType="java.lang.Integer">
+		select count(1) from TBL_LOGIN_SYS_DIC
+		<include refid="page_where"></include>
+	</select>
+	<select id="queryPageList" resultMap="BaseResultMap">
+        <![CDATA[ select * from ( select interTable.*,rownum rn from ( ]]>
+		select
+		AA.ID,AA.L2_CODE,AA.L2_DESC,AA.CODE_PARAM,AA.CODE_VALUE,AA.CODE_IDX,AA.RECORD_CREATE_TM
+		from TBL_LOGIN_SYS_DIC AA
+		<include refid="page_where"></include>
+		) interTable where 
+	    <![CDATA[ rownum <= #{limit}+#{offset} ]]>
+		) outerTable where 
+	    <![CDATA[ outerTable.rn > #{limit} ]]>
+	</select>
+	<select id="queryPageVoList" resultMap="BasePoResultMap">
+        <![CDATA[ select * from ( select interTable.*,rownum rn from ( ]]>
+		select
+		AA.ID,AA.L2_CODE,AA.L2_DESC,AA.CODE_PARAM,AA.CODE_VALUE,AA.CODE_IDX,AA.RECORD_CREATE_TM
+		from TBL_LOGIN_SYS_DIC AA
+		<include refid="page_where"></include>
+		) interTable where 
+	    <![CDATA[ rownum <= #{limit}+#{offset} ]]>
+		) outerTable where 
+	    <![CDATA[ outerTable.rn > #{limit} ]]>
+	</select>
+</mapper>

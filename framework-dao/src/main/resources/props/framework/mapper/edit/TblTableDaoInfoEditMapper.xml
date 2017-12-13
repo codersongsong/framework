@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="cn.com.gome.framework.dao.mapper.edit.TblTableDaoInfoEditMapper">
+
+	<insert id="save" parameterType="cn.com.gome.framework.dao.entity.TblTableDaoInfo">
+		insert into TBL_TABLE_DAO_INFO(
+		TABLE_NUMBERS,CHILD_PROJECT_CODE,TABLE_CHAN,TABLE_ENG,SHOW_COLUMNS,QUERY_COLUMNS,ADD_COLUMNS,PAGE_FORM,EDIT_COLUMNS,VIEW_COLUMNS,COLUMN_TYPE,KEY_TEXT,
+		COLUMNS_NAME,CREATE_TIME,VALIDATE_NAME,ADD_DIC,CREATE_FILES,CREATE_STATUS
+		)
+		values(
+		SEQ_NUMBER_SERIALIZ_ID.nextval,
+		#{childProjectCode,jdbcType=INTEGER},
+		#{tableChan,jdbcType=VARCHAR},
+		#{tableEng,jdbcType=VARCHAR},
+		#{showColumns,jdbcType=VARCHAR},
+		#{queryColumns,jdbcType=VARCHAR},
+		#{addColumns,jdbcType=VARCHAR},
+		#{pageForm,jdbcType=VARCHAR},
+		#{editColumns,jdbcType=VARCHAR},
+		#{viewColumns,jdbcType=VARCHAR},
+		#{columnType,jdbcType=VARCHAR},
+		#{keyText,jdbcType=VARCHAR},
+		#{columnsName,jdbcType=VARCHAR},
+		#{createTime,jdbcType=CHAR},
+		#{validateName,jdbcType=VARCHAR},
+		#{addDic,jdbcType=CHAR},
+		#{createFiles,jdbcType=VARCHAR},
+		#{createStatus,jdbcType=CHAR}
+		)
+	</insert>
+
+	<update id="edit" parameterType="cn.com.gome.framework.dao.entity.TblTableDaoInfo">
+		update TBL_TABLE_DAO_INFO
+		<set>
+			<if test="childProjectCode != null">
+				CHILD_PROJECT_CODE = #{childProjectCode,jdbcType=INTEGER},
+			</if>
+			<if test="tableChan != null">
+				TABLE_CHAN = #{tableChan,jdbcType=VARCHAR},
+			</if>
+			<if test="tableEng != null">
+				TABLE_ENG = #{tableEng,jdbcType=VARCHAR},
+			</if>
+			<if test="showColumns != null">
+				SHOW_COLUMNS = #{showColumns,jdbcType=VARCHAR},
+			</if>
+			<if test="queryColumns != null">
+				QUERY_COLUMNS = #{queryColumns,jdbcType=VARCHAR},
+			</if>
+			<if test="addColumns != null">
+				ADD_COLUMNS = #{addColumns,jdbcType=VARCHAR},
+			</if>
+			<if test="pageForm != null">
+				PAGE_FORM = #{pageForm,jdbcType=VARCHAR},
+			</if>
+			<if test="editColumns != null">
+				EDIT_COLUMNS = #{editColumns,jdbcType=VARCHAR},
+			</if>
+			<if test="viewColumns != null">
+				VIEW_COLUMNS = #{viewColumns,jdbcType=VARCHAR},
+			</if>
+			<if test="columnType != null">
+				COLUMN_TYPE = #{columnType,jdbcType=VARCHAR},
+			</if>
+			<if test="keyText != null">
+				KEY_TEXT = #{keyText,jdbcType=VARCHAR},
+			</if>
+			<if test="columnsName != null">
+				COLUMNS_NAME = #{columnsName,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=CHAR},
+			</if>
+			<if test="validateName != null">
+				VALIDATE_NAME = #{validateName,jdbcType=VARCHAR},
+			</if>
+			<if test="addDic != null">
+				ADD_DIC = #{addDic,jdbcType=CHAR},
+			</if>
+			<if test="createFiles != null">
+				CREATE_FILES = #{createFiles,jdbcType=VARCHAR},
+			</if>
+			<if test="createStatus != null">
+				CREATE_STATUS = #{createStatus,jdbcType=CHAR},
+			</if>
+		</set>
+		where TABLE_NUMBERS=#{tableNumbers,jdbcType=INTEGER}
+	</update>
+
+	<update id="editInfo" parameterType="java.util.Map">
+		update TBL_TABLE_DAO_INFO
+		<set>
+			<if test="childProjectCodeNew != null">
+				CHILD_PROJECT_CODE = #{childProjectCodeNew,jdbcType=INTEGER},
+			</if>
+			<if test="tableChanNew != null">
+				TABLE_CHAN = #{tableChanNew,jdbcType=VARCHAR},
+			</if>
+			<if test="tableEngNew != null">
+				TABLE_ENG = #{tableEngNew,jdbcType=VARCHAR},
+			</if>
+			<if test="showColumnsNew != null">
+				SHOW_COLUMNS = #{showColumnsNew,jdbcType=VARCHAR},
+			</if>
+			<if test="queryColumnsNew != null">
+				QUERY_COLUMNS = #{queryColumnsNew,jdbcType=VARCHAR},
+			</if>
+			<if test="addColumnsNew != null">
+				ADD_COLUMNS = #{addColumnsNew,jdbcType=VARCHAR},
+			</if>
+			<if test="pageFormNew != null">
+				PAGE_FORM = #{pageFormNew,jdbcType=VARCHAR},
+			</if>
+			<if test="editColumnsNew != null">
+				EDIT_COLUMNS = #{editColumnsNew,jdbcType=VARCHAR},
+			</if>
+			<if test="viewColumnsNew != null">
+				VIEW_COLUMNS = #{viewColumnsNew,jdbcType=VARCHAR},
+			</if>
+			<if test="columnTypeNew != null">
+				COLUMN_TYPE = #{columnTypeNew,jdbcType=VARCHAR},
+			</if>
+			<if test="keyTextNew != null">
+				KEY_TEXT = #{keyTextNew,jdbcType=VARCHAR},
+			</if>
+			<if test="columnsNameNew != null">
+				COLUMNS_NAME = #{columnsNameNew,jdbcType=VARCHAR},
+			</if>
+			<if test="createTimeNew != null">
+				CREATE_TIME = #{createTimeNew,jdbcType=CHAR},
+			</if>
+			<if test="createFilesNew != null">
+				CREATE_FILES = #{createFilesNew,jdbcType=VARCHAR},
+			</if>
+			<if test="createStatusNew != null">
+				CREATE_STATUS = #{createStatusNew,jdbcType=CHAR},
+			</if>
+		</set>
+		<where>
+			<if test="tableNumbers != null  and tableNumbers !='' ">
+				AND TABLE_NUMBERS = #{tableNumbers,jdbcType=INTEGER}
+			</if>
+			<if test="childProjectCode != null  and childProjectCode !='' ">
+				AND CHILD_PROJECT_CODE = #{childProjectCode,jdbcType=INTEGER}
+			</if>
+			<if test="tableChan != null  and tableChan !='' ">
+				AND TABLE_CHAN = #{tableChan,jdbcType=VARCHAR}
+			</if>
+			<if test="tableEng != null  and tableEng !='' ">
+				AND TABLE_ENG = #{tableEng,jdbcType=VARCHAR}
+			</if>
+			<if test="showColumns != null  and showColumns !='' ">
+				AND SHOW_COLUMNS = #{showColumns,jdbcType=VARCHAR}
+			</if>
+			<if test="queryColumns != null  and queryColumns !='' ">
+				AND QUERY_COLUMNS = #{queryColumns,jdbcType=VARCHAR}
+			</if>
+			<if test="addColumns != null  and addColumns !='' ">
+				AND ADD_COLUMNS = #{addColumns,jdbcType=VARCHAR}
+			</if>
+			<if test="pageForm != null  and pageForm !='' ">
+				AND PAGE_FORM = #{pageForm,jdbcType=VARCHAR}
+			</if>
+			<if test="editColumns != null  and editColumns !='' ">
+				AND EDIT_COLUMNS = #{editColumns,jdbcType=VARCHAR}
+			</if>
+			<if test="viewColumns != null  and viewColumns !='' ">
+				AND VIEW_COLUMNS = #{viewColumns,jdbcType=VARCHAR}
+			</if>
+			<if test="columnType != null  and columnType !='' ">
+				AND COLUMN_TYPE = #{columnType,jdbcType=VARCHAR}
+			</if>
+			<if test="keyText != null  and keyText !='' ">
+				AND KEY_TEXT = #{keyText,jdbcType=VARCHAR}
+			</if>
+			<if test="columnsName != null  and columnsName !='' ">
+				AND COLUMNS_NAME = #{columnsName,jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null  and createTime !='' ">
+				AND CREATE_TIME = #{createTime,jdbcType=CHAR}
+			</if>
+			<if test="createFiles != null">
+				AND CREATE_FILES = #{createFiles,jdbcType=VARCHAR}
+			</if>
+			<if test="createStatus != null">
+				AND CREATE_STATUS = #{createStatus,jdbcType=CHAR}
+			</if>
+		</where>
+	</update>
+
+	<delete id="del" parameterType="cn.com.gome.framework.dao.entity.TblTableDaoInfo">
+		delete from TBL_TABLE_DAO_INFO
+		<where>
+			<if test="tableNumbers != null">
+				AND TABLE_NUMBERS = #{tableNumbers,jdbcType=INTEGER}
+			</if>
+			<if test="childProjectCode != null">
+				AND CHILD_PROJECT_CODE =
+				#{childProjectCode,jdbcType=INTEGER}
+			</if>
+			<if test="tableChan != null">
+				AND TABLE_CHAN = #{tableChan,jdbcType=VARCHAR}
+			</if>
+			<if test="tableEng != null">
+				AND TABLE_ENG = #{tableEng,jdbcType=VARCHAR}
+			</if>
+			<if test="showColumns != null">
+				AND SHOW_COLUMNS = #{showColumns,jdbcType=VARCHAR}
+			</if>
+			<if test="queryColumns != null">
+				AND QUERY_COLUMNS = #{queryColumns,jdbcType=VARCHAR}
+			</if>
+			<if test="addColumns != null">
+				AND ADD_COLUMNS = #{addColumns,jdbcType=VARCHAR}
+			</if>
+			<if test="pageForm != null">
+				AND PAGE_FORM = #{pageForm,jdbcType=VARCHAR}
+			</if>
+			<if test="editColumns != null">
+				AND EDIT_COLUMNS = #{editColumns,jdbcType=VARCHAR}
+			</if>
+			<if test="viewColumns != null">
+				AND VIEW_COLUMNS = #{viewColumns,jdbcType=VARCHAR}
+			</if>
+			<if test="columnType != null">
+				AND COLUMN_TYPE = #{columnType,jdbcType=VARCHAR}
+			</if>
+			<if test="keyText != null">
+				AND KEY_TEXT = #{keyText,jdbcType=VARCHAR}
+			</if>
+			<if test="columnsName != null">
+				AND COLUMNS_NAME = #{columnsName,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</delete>
+
+	<delete id="delList" parameterType="java.util.List">
+		delete from TBL_TABLE_DAO_INFO where TABLE_NUMBERS in (
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			#{item,jdbcType=INTEGER}
+		</foreach>
+		)
+	</delete>
+</mapper>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+	<mapper namespace="cn.com.gome.framework.dao.mapper.edit.TblBusinessSystemEditMapper">
+	
+	<insert id="save" parameterType="cn.com.gome.framework.dao.entity.TblBusinessSystem">
+		insert into TBL_BUSINESS_SYSTEM(
+		SYS_NO,SYS_NAME,SYS_ENG,SYS_PERSON,PHONE,CREATE_TIME,UP_TIME,UP_PERSON
+		)
+		values(
+			SEQ_LOGIN_NETWORK_ID.nextval,
+			#{sysName,jdbcType=VARCHAR},
+			#{sysEng,jdbcType=VARCHAR},
+			#{sysPerson,jdbcType=VARCHAR},
+			#{phone,jdbcType=VARCHAR},
+			#{createTime,jdbcType=CHAR},
+			#{upTime,jdbcType=CHAR},
+			#{upPerson,jdbcType=VARCHAR}
+		)
+	</insert>
+	
+	<update id="edit" parameterType="cn.com.gome.framework.dao.entity.TblBusinessSystem" >
+		update TBL_BUSINESS_SYSTEM
+		<set>
+			 <if test="sysName != null">
+		     	SYS_NAME = #{sysName,jdbcType=VARCHAR},
+		     </if>
+			 <if test="sysEng != null">
+		     	SYS_ENG = #{sysEng,jdbcType=VARCHAR},
+		     </if>
+			 <if test="sysPerson != null">
+		     	SYS_PERSON = #{sysPerson,jdbcType=VARCHAR},
+		     </if>
+			 <if test="phone != null">
+		     	PHONE = #{phone,jdbcType=VARCHAR},
+		     </if>
+			 <if test="createTime != null">
+		     	CREATE_TIME = #{createTime,jdbcType=CHAR},
+		     </if>
+			 <if test="upTime != null">
+		     	UP_TIME = #{upTime,jdbcType=CHAR},
+		     </if>
+			 <if test="upPerson != null">
+		     	UP_PERSON = #{upPerson,jdbcType=VARCHAR},
+		     </if>
+		</set>
+		where SYS_NO=#{sysNo,jdbcType=INTEGER}
+	</update>
+
+	<update id="editInfo" parameterType="java.util.Map" >
+		update TBL_BUSINESS_SYSTEM
+		<set>
+			 <if test="sysNameNew != null">
+		     	SYS_NAME = #{sysNameNew,jdbcType=VARCHAR},
+		     </if>
+			 <if test="sysEngNew != null">
+		     	SYS_ENG = #{sysEngNew,jdbcType=VARCHAR},
+		     </if>
+			 <if test="sysPersonNew != null">
+		     	SYS_PERSON = #{sysPersonNew,jdbcType=VARCHAR},
+		     </if>
+			 <if test="phoneNew != null">
+		     	PHONE = #{phoneNew,jdbcType=VARCHAR},
+		     </if>
+			 <if test="createTimeNew != null">
+		     	CREATE_TIME = #{createTimeNew,jdbcType=CHAR},
+		     </if>
+			 <if test="upTimeNew != null">
+		     	UP_TIME = #{upTimeNew,jdbcType=CHAR},
+		     </if>
+			 <if test="upPersonNew != null">
+		     	UP_PERSON = #{upPersonNew,jdbcType=VARCHAR},
+		     </if>
+		</set>
+		<where>		<if test="sysNo != null  and sysNo !='' ">
+			AND SYS_NO = #{sysNo,jdbcType=INTEGER}
+		</if>
+		<if test="sysName != null  and sysName !='' ">
+			AND SYS_NAME = #{sysName,jdbcType=VARCHAR}
+		</if>
+		<if test="sysEng != null  and sysEng !='' ">
+			AND SYS_ENG = #{sysEng,jdbcType=VARCHAR}
+		</if>
+		<if test="sysPerson != null  and sysPerson !='' ">
+			AND SYS_PERSON = #{sysPerson,jdbcType=VARCHAR}
+		</if>
+		<if test="phone != null  and phone !='' ">
+			AND PHONE = #{phone,jdbcType=VARCHAR}
+		</if>
+		<if test="createTime != null  and createTime !='' ">
+			AND CREATE_TIME = #{createTime,jdbcType=CHAR}
+		</if>
+		<if test="upTime != null  and upTime !='' ">
+			AND UP_TIME = #{upTime,jdbcType=CHAR}
+		</if>
+		<if test="upPerson != null  and upPerson !='' ">
+			AND UP_PERSON = #{upPerson,jdbcType=VARCHAR}
+		</if>
+		</where>
+	</update>
+
+	<delete id="del" parameterType="cn.com.gome.framework.dao.entity.TblBusinessSystem">
+		delete from TBL_BUSINESS_SYSTEM
+		<where>
+			<if test="sysNo != null">
+				AND SYS_NO = #{sysNo,jdbcType=INTEGER}
+			 </if>
+			<if test="sysName != null">
+				AND SYS_NAME = #{sysName,jdbcType=VARCHAR}
+			 </if>
+			<if test="sysEng != null">
+				AND SYS_ENG = #{sysEng,jdbcType=VARCHAR}
+			 </if>
+			<if test="sysPerson != null">
+				AND SYS_PERSON = #{sysPerson,jdbcType=VARCHAR}
+			 </if>
+			<if test="phone != null">
+				AND PHONE = #{phone,jdbcType=VARCHAR}
+			 </if>
+			<if test="createTime != null">
+				AND CREATE_TIME = #{createTime,jdbcType=CHAR}
+			 </if>
+			<if test="upTime != null">
+				AND UP_TIME = #{upTime,jdbcType=CHAR}
+			 </if>
+			<if test="upPerson != null">
+				AND UP_PERSON = #{upPerson,jdbcType=VARCHAR}
+			 </if>
+		</where>
+	</delete>	
+
+	<delete id="delList" parameterType="java.util.List">
+		delete from TBL_BUSINESS_SYSTEM where SYS_NO in (
+			<foreach collection="list" item="item" index="index" separator=",">
+				 #{item,jdbcType=INTEGER}
+			</foreach>
+		)
+	</delete>
+</mapper>

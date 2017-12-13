@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.gome.framework.dao.mapper.ser.TblTaskRunningLogSerMapper">
+	<resultMap id="BaseResultMap" type="cn.com.gome.framework.dao.entity.TblTaskRunningLog">
+		<id column="RUN_NO" property="runNo" jdbcType="CHAR" />
+		<result column="TASK_NO" property="taskNo" jdbcType="CHAR" />
+		<result column="OBJ_TASK_NAME" property="objTaskName" jdbcType="VARCHAR" />
+		<result column="OBJECT_TAL" property="objectTal" jdbcType="VARCHAR" />
+		<result column="TASK_RUN_SERVER" property="taskRunServer" jdbcType="VARCHAR" />
+		<result column="TASK_RUN_PORT" property="taskRunPort" jdbcType="INTEGER" />
+		<result column="PART_VALUE" property="partValue" jdbcType="VARCHAR" />
+		<result column="PRE_RUN_TIME" property="preRunTime" jdbcType="CHAR" />
+		<result column="NEXT_RUN_TIME" property="nextRunTime" jdbcType="CHAR" />
+		<result column="DDL_STATUS" property="ddlStatus" jdbcType="CHAR" />
+		<result column="UP_PERSON" property="upPerson" jdbcType="VARCHAR" />
+		<result column="UP_TIME" property="upTime" jdbcType="CHAR" />
+		<result column="MODE_VALUE" property="modeValue" jdbcType="VARCHAR" />
+		<result column="EXECUTE_COUNT" property="executeCount" jdbcType="INTEGER" />
+	</resultMap>
+	<resultMap id="BasePoResultMap" type="cn.com.gome.framework.po.TaskRunningLogPo">
+		<id column="RUN_NO" property="runNo" jdbcType="CHAR" />
+		<result column="TASK_NO" property="taskNo" jdbcType="CHAR" />
+		<result column="OBJ_TASK_NAME" property="objTaskName" jdbcType="VARCHAR" />
+		<result column="OBJECT_TAL" property="objectTal" jdbcType="VARCHAR" />
+		<result column="TASK_RUN_SERVER" property="taskRunServer"
+			jdbcType="VARCHAR" />
+		<result column="TASK_RUN_PORT" property="taskRunPort" jdbcType="INTEGER" />
+		<result column="PART_VALUE" property="partValue" jdbcType="VARCHAR" />
+		<result column="PRE_RUN_TIME" property="preRunTime" jdbcType="CHAR" />
+		<result column="NEXT_RUN_TIME" property="nextRunTime" jdbcType="CHAR" />
+		<result column="DDL_STATUS" property="ddlStatus" jdbcType="CHAR" />
+		<result column="UP_PERSON" property="upPerson" jdbcType="VARCHAR" />
+		<result column="UP_TIME" property="upTime" jdbcType="CHAR" />
+		<result column="MODE_VALUE" property="modeValue" jdbcType="VARCHAR" />
+		<result column="EXECUTE_COUNT" property="executeCount" jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		RUN_NO,TASK_NO,OBJ_TASK_NAME,OBJECT_TAL,TASK_RUN_SERVER,TASK_RUN_PORT,PART_VALUE,PRE_RUN_TIME,NEXT_RUN_TIME,DDL_STATUS,UP_PERSON,UP_TIME,MODE_VALUE,EXECUTE_COUNT
+	</sql>
+	<select id="query" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from TBL_TASK_RUNNING_LOG
+		where RUN_NO = #{runNo,jdbcType=CHAR}
+	</select>
+	<sql id="comm_where">
+		<where>
+			<if test="runNo != null ">
+				AND RUN_NO = #{runNo,jdbcType=CHAR}
+			</if>
+			<if test="taskNo != null ">
+				AND TASK_NO = #{taskNo,jdbcType=CHAR}
+			</if>
+			<if test="objTaskName != null ">
+				AND OBJ_TASK_NAME = #{objTaskName,jdbcType=VARCHAR}
+			</if>
+			<if test="objectTal != null ">
+				AND OBJECT_TAL = #{objectTal,jdbcType=VARCHAR}
+			</if>
+			<if test="taskRunServer != null ">
+				AND TASK_RUN_SERVER = #{taskRunServer,jdbcType=VARCHAR}
+			</if>
+			<if test="taskRunPort != null ">
+				AND TASK_RUN_PORT = #{taskRunPort,jdbcType=INTEGER}
+			</if>
+			<if test="partValue != null ">
+				AND PART_VALUE = #{partValue,jdbcType=VARCHAR}
+			</if>
+			<if test="preRunTime != null ">
+				AND PRE_RUN_TIME = #{preRunTime,jdbcType=CHAR}
+			</if>
+			<if test="nextRunTime != null ">
+				AND NEXT_RUN_TIME = #{nextRunTime,jdbcType=CHAR}
+			</if>
+			<if test="ddlStatus != null ">
+				AND DDL_STATUS = #{ddlStatus,jdbcType=CHAR}
+			</if>
+			<if test="upPerson != null ">
+				AND UP_PERSON = #{upPerson,jdbcType=VARCHAR}
+			</if>
+			<if test="upTime != null ">
+				AND UP_TIME = #{upTime,jdbcType=CHAR}
+			</if>
+			<if test="executeCount != null ">
+				AND EXECUTE_COUNT = #{executeCount,jdbcType=INTEGER}
+			</if>
+		</where>
+
+	</sql>
+	<select id="queryObj" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from TBL_TASK_RUNNING_LOG
+		<include refid="comm_where"></include>
+	</select>
+	<select id="queryPo" resultMap="BasePoResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from TBL_TASK_RUNNING_LOG
+		<include refid="comm_where"></include>
+	</select>
+	<select id="queryList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from TBL_TASK_RUNNING_LOG
+		<include refid="comm_where"></include>
+	</select>
+	
+	<select id="queryNullList" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select * from tbl_task_running_log b where b.task_no=#{taskNo,jdbcType=CHAR} and (b.ddl_status='010' or b.ddl_status='020') and b.object_tal not in 
+		(
+		      select a.object_tal  from TBL_TASK_PART_CONFIG a where a.task_no=#{taskNo,jdbcType=CHAR}
+		)
+	</select>
+	
+	<select id="query040List" resultMap="BaseResultMap">
+		select ab.task_run_server,ab.task_run_port,ab.object_tal,count(1) as RUN_INTERVAL_TM  
+		<![CDATA[from tbl_task_running_log ab where ab.DDL_STATUS <> '040' ]]>
+		group by ab.task_run_server,ab.task_run_port,ab.object_tal
+	</select>
+	<sql id="page_where">
+		<where>
+			<if test="f.runNo != null ">
+				AND RUN_NO = #{f.runNo,jdbcType=CHAR}
+			</if>
+			<if test="f.taskNo != null ">
+				AND TASK_NO = #{f.taskNo,jdbcType=CHAR}
+			</if>
+			<if test="f.objTaskName != null ">
+				AND OBJ_TASK_NAME = #{f.objTaskName,jdbcType=VARCHAR}
+			</if>
+			<if test="f.objectTal != null ">
+				AND OBJECT_TAL = #{f.objectTal,jdbcType=VARCHAR}
+			</if>
+			<if test="f.taskRunServer != null ">
+				AND TASK_RUN_SERVER = #{f.taskRunServer,jdbcType=VARCHAR}
+			</if>
+			<if test="f.taskRunPort != null ">
+				AND TASK_RUN_PORT = #{f.taskRunPort,jdbcType=INTEGER}
+			</if>
+			<if test="f.partValue != null ">
+				AND PART_VALUE = #{f.partValue,jdbcType=VARCHAR}
+			</if>
+			<if test="f.preRunTime != null ">
+				AND PRE_RUN_TIME = #{f.preRunTime,jdbcType=CHAR}
+			</if>
+			<if test="f.nextRunTime != null ">
+				AND NEXT_RUN_TIME = #{f.nextRunTime,jdbcType=CHAR}
+			</if>
+			<if test="f.ddlStatus != null ">
+				AND DDL_STATUS = #{f.ddlStatus,jdbcType=CHAR}
+			</if>
+			<if test="f.upPerson != null ">
+				AND UP_PERSON = #{f.upPerson,jdbcType=VARCHAR}
+			</if>
+			<if test="f.upTime != null ">
+				AND UP_TIME = #{f.upTime,jdbcType=CHAR}
+			</if>
+			<if test="f.executeCount != null ">
+				AND EXECUTE_COUNT = #{f.executeCount,jdbcType=INTEGER}
+			</if>
+		</where>
+	</sql>
+	<select id="queryPageListCount" resultType="java.lang.Integer">
+		select count(1) from TBL_TASK_RUNNING_LOG
+		<include refid="page_where"></include>
+	</select>
+	<select id="queryPageList" resultMap="BaseResultMap">
+        <![CDATA[ select * from ( select interTable.*,rownum rn from ( ]]>
+		select
+		AA.RUN_NO,AA.TASK_NO,AA.OBJ_TASK_NAME,AA.OBJECT_TAL,AA.TASK_RUN_SERVER,AA.TASK_RUN_PORT,AA.PART_VALUE,AA.PRE_RUN_TIME,AA.NEXT_RUN_TIME,AA.DDL_STATUS,AA.UP_PERSON,AA.UP_TIME
+		,AA.MODE_VALUE,AA.EXECUTE_COUNT
+		from TBL_TASK_RUNNING_LOG AA
+		<include refid="page_where"></include>
+		) interTable where 
+	    <![CDATA[ rownum <= #{limit}+#{offset} ]]>
+		) outerTable where
+	    <![CDATA[ outerTable.rn > #{limit} ]]>
+	</select>
+	<select id="queryPageVoList" resultMap="BasePoResultMap">
+        <![CDATA[ select * from ( select interTable.*,rownum rn from ( ]]>
+		select
+		AA.RUN_NO,AA.TASK_NO,AA.OBJ_TASK_NAME,AA.OBJECT_TAL,AA.TASK_RUN_SERVER,AA.TASK_RUN_PORT,AA.PART_VALUE,AA.PRE_RUN_TIME,AA.NEXT_RUN_TIME,AA.DDL_STATUS,AA.UP_PERSON,AA.UP_TIME,
+		AA.MODE_VALUE,AA.EXECUTE_COUNT
+		from TBL_TASK_RUNNING_LOG AA
+		<include refid="page_where"></include>
+		order by AA.Ddl_Status asc, AA.UP_TIME desc
+		) interTable where 
+	    <![CDATA[ rownum <= #{limit}+#{offset} ]]>
+		) outerTable where 
+	    <![CDATA[ outerTable.rn > #{limit} ]]>
+	</select>
+
+	<select id="queryAddrList" resultMap="BaseResultMap">
+		select a.task_run_server,a.task_run_port from tbl_task_running_log a
+		where a.task_no = #{taskNo,jdbcType=CHAR}
+		and a.ddl_status in
+		<foreach item="item" index="index" collection="ddlStatus" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+		group by a.task_run_server, a.task_run_port
+	</select>
+
+
+	<select id="queryListByStatus" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from TBL_TASK_RUNNING_LOG a
+		where a.task_no = #{taskNo,jdbcType=CHAR}
+		and a.ddl_status in
+		<foreach item="item" index="index" collection="ddlStatus" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+		order by a.up_time desc
+	</select>
+</mapper>

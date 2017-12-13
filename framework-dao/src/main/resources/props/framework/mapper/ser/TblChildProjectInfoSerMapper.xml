@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="cn.com.gome.framework.dao.mapper.ser.TblChildProjectInfoSerMapper">
+	<resultMap id="BaseResultMap"
+		type="cn.com.gome.framework.dao.entity.TblChildProjectInfo">
+		<id column="CHILD_PROJECT_CODE" property="childProjectCode"
+			jdbcType="INTEGER" />
+		<result column="PROJECT_CODE" property="projectCode" jdbcType="INTEGER" />
+		<result column="CHILD_PROJECT_NAME" property="childProjectName"
+			jdbcType="VARCHAR" />
+		<result column="CHILD_PROJECT_ENG" property="childProjectEng"
+			jdbcType="VARCHAR" />
+		<result column="PROJECT_TYPE" property="projectType" jdbcType="CHAR" />
+		<result column="PACKAGE_TYPE" property="packageType" jdbcType="CHAR" />
+		<result column="PROJECT_PATH" property="projectPath" jdbcType="VARCHAR" />
+		<result column="CONFIG_FILE_NAME" property="configFileName"
+			jdbcType="VARCHAR" />
+		<result column="VERSION_CONFIG" property="versionConfig"
+			jdbcType="VARCHAR" />
+		<result column="BASIC_JAR" property="basicJar" jdbcType="VARCHAR" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="CHAR" />
+	</resultMap>
+	<resultMap id="BasePoResultMap" type="cn.com.gome.framework.po.ChildProjectInfoPo">
+		<id column="CHILD_PROJECT_CODE" property="childProjectCode"
+			jdbcType="INTEGER" />
+		<result column="PROJECT_CODE" property="projectCode" jdbcType="INTEGER" />
+		<result column="CHILD_PROJECT_NAME" property="childProjectName"
+			jdbcType="VARCHAR" />
+		<result column="CHILD_PROJECT_ENG" property="childProjectEng"
+			jdbcType="VARCHAR" />
+		<result column="PROJECT_TYPE" property="projectType" jdbcType="CHAR" />
+		<result column="PACKAGE_TYPE" property="packageType" jdbcType="CHAR" />
+		<result column="PROJECT_PATH" property="projectPath" jdbcType="VARCHAR" />
+		<result column="CONFIG_FILE_NAME" property="configFileName"
+			jdbcType="VARCHAR" />
+		<result column="VERSION_CONFIG" property="versionConfig"
+			jdbcType="VARCHAR" />
+		<result column="BASIC_JAR" property="basicJar" jdbcType="VARCHAR" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="CHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		CHILD_PROJECT_CODE,PROJECT_CODE,CHILD_PROJECT_NAME,CHILD_PROJECT_ENG,PROJECT_TYPE,PROJECT_PATH,CONFIG_FILE_NAME,VERSION_CONFIG,BASIC_JAR,CREATE_TIME,PACKAGE_TYPE
+	</sql>
+	<select id="query" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from TBL_CHILD_PROJECT_INFO
+		where CHILD_PROJECT_CODE =
+		#{childProjectCode,jdbcType=INTEGER}
+	</select>
+	<sql id="comm_where">
+		<where>
+			<if test="childProjectCode != null ">
+				AND CHILD_PROJECT_CODE = #{childProjectCode,jdbcType=INTEGER}
+			</if>
+			<if test="projectCode != null ">
+				AND PROJECT_CODE = #{projectCode,jdbcType=INTEGER}
+			</if>
+			<if test="childProjectName != null ">
+				AND CHILD_PROJECT_NAME = #{childProjectName,jdbcType=VARCHAR}
+			</if>
+			<if test="childProjectEng != null ">
+				AND CHILD_PROJECT_ENG = #{childProjectEng,jdbcType=VARCHAR}
+			</if>
+			<if test="projectType != null ">
+				AND PROJECT_TYPE = #{projectType,jdbcType=CHAR}
+			</if>
+			<if test="packageType != null">
+				AND PACKAGE_TYPE = #{packageType,jdbcType=CHAR}
+			</if>
+			<if test="projectPath != null ">
+				AND PROJECT_PATH = #{projectPath,jdbcType=VARCHAR}
+			</if>
+			<if test="configFileName != null ">
+				AND CONFIG_FILE_NAME = #{configFileName,jdbcType=VARCHAR}
+			</if>
+			<if test="versionConfig != null ">
+				AND VERSION_CONFIG = #{versionConfig,jdbcType=VARCHAR}
+			</if>
+			<if test="basicJar != null ">
+				AND BASIC_JAR = #{basicJar,jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null ">
+				AND CREATE_TIME = #{createTime,jdbcType=CHAR}
+			</if>
+		</where>
+
+	</sql>
+	<select id="queryObj" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from TBL_CHILD_PROJECT_INFO
+		<include refid="comm_where"></include>
+	</select>
+	<select id="queryPo" resultMap="BasePoResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from TBL_CHILD_PROJECT_INFO
+		<include refid="comm_where"></include>
+	</select>
+	<select id="queryList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from TBL_CHILD_PROJECT_INFO
+		<include refid="comm_where"></include>
+	</select>
+	<sql id="page_where">
+		<where>
+			<if test="f.childProjectCode != null ">
+				AND CHILD_PROJECT_CODE = #{f.childProjectCode,jdbcType=INTEGER}
+			</if>
+			<if test="f.projectCode != null ">
+				AND PROJECT_CODE = #{f.projectCode,jdbcType=INTEGER}
+			</if>
+			<if test="f.childProjectName != null ">
+				AND CHILD_PROJECT_NAME LIKE CONCAT(CONCAT('%',#{f.f.childProjectName,jdbcType=VARCHAR}), '%') 
+			</if>
+			<if test="f.childProjectEng != null ">
+				AND CHILD_PROJECT_ENG = #{f.childProjectEng,jdbcType=VARCHAR}
+			</if>
+			<if test="f.projectType != null ">
+				AND PROJECT_TYPE = #{f.projectType,jdbcType=CHAR}
+			</if>
+			<if test="f.packageType != null">
+				AND PACKAGE_TYPE = #{f.packageType,jdbcType=CHAR}
+			</if>
+			<if test="f.projectPath != null ">
+				AND PROJECT_PATH = #{f.projectPath,jdbcType=VARCHAR}
+			</if>
+			<if test="f.configFileName != null ">
+				AND CONFIG_FILE_NAME = #{f.configFileName,jdbcType=VARCHAR}
+			</if>
+			<if test="f.versionConfig != null ">
+				AND VERSION_CONFIG = #{f.versionConfig,jdbcType=VARCHAR}
+			</if>
+			<if test="f.basicJar != null ">
+				AND BASIC_JAR = #{f.basicJar,jdbcType=VARCHAR}
+			</if>
+			<if test="f.createTime != null ">
+				AND CREATE_TIME = #{f.createTime,jdbcType=CHAR}
+			</if>
+		</where>
+	</sql>
+	<select id="queryPageListCount" resultType="java.lang.Integer">
+		select count(1) from TBL_CHILD_PROJECT_INFO
+		<include refid="page_where"></include>
+	</select>
+	<select id="queryPageList" resultMap="BaseResultMap">
+        <![CDATA[ select * from ( select interTable.*,rownum rn from ( ]]>
+		select
+		AA.CHILD_PROJECT_CODE,AA.PROJECT_CODE,AA.CHILD_PROJECT_NAME,AA.CHILD_PROJECT_ENG,AA.PROJECT_TYPE,AA.PROJECT_PATH,AA.CONFIG_FILE_NAME,AA.VERSION_CONFIG,AA.BASIC_JAR,AA.CREATE_TIME,AA.PACKAGE_TYPE
+		from TBL_CHILD_PROJECT_INFO AA
+		<include refid="page_where"></include>
+		) interTable where 
+	    <![CDATA[ rownum <= #{limit}+#{offset} ]]>
+		) outerTable where 
+	    <![CDATA[ outerTable.rn > #{limit} ]]>
+	</select>
+	<select id="queryPageVoList" resultMap="BasePoResultMap">
+        <![CDATA[ select * from ( select interTable.*,rownum rn from ( ]]>
+		select
+		AA.CHILD_PROJECT_CODE,AA.PROJECT_CODE,AA.CHILD_PROJECT_NAME,AA.CHILD_PROJECT_ENG,AA.PROJECT_TYPE,AA.PROJECT_PATH,AA.CONFIG_FILE_NAME,AA.VERSION_CONFIG,AA.BASIC_JAR,AA.CREATE_TIME,AA.PACKAGE_TYPE
+		from TBL_CHILD_PROJECT_INFO AA
+		<include refid="page_where"></include>
+		) interTable where 
+	    <![CDATA[ rownum <= #{limit}+#{offset} ]]>
+		) outerTable where 
+	    <![CDATA[ outerTable.rn > #{limit} ]]>
+	</select>
+</mapper>

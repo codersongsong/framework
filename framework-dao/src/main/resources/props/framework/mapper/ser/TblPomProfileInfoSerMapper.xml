@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.gome.framework.dao.mapper.ser.TblPomProfileInfoSerMapper">
+    <resultMap id="BaseResultMap"
+               type="cn.com.gome.framework.dao.entity.TblPomProfileInfo">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="CONFIG_DESCRIPTION" property="configDescription" jdbcType="VARCHAR"/>
+        <result column="CONFIG_NAME" property="configName" jdbcType="VARCHAR"/>
+        <result column="TYPE" property="type" jdbcType="CHAR"/>
+        <result column="AND_DEPENDENCY_ID" property="andDependencyId" jdbcType="VARCHAR"/>
+        <result column="ENV_DEV" property="envDev" jdbcType="VARCHAR"/>
+        <result column="ENV_UAT" property="envUat" jdbcType="VARCHAR"/>
+        <result column="ENV_PRE" property="envPre" jdbcType="VARCHAR"/>
+        <result column="ENV_LIVE" property="envLive" jdbcType="VARCHAR"/>
+        <result column="GROUP_INFO" property="groupInfo" jdbcType="VARCHAR"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="CHAR"/>
+        <result column="UPDATE_TIME" property="updateTime" jdbcType="CHAR"/>
+        <result column="AND_PROJECT_ID" property="andProjectId" jdbcType="VARCHAR"/>
+    </resultMap>
+    <resultMap id="BasePoResultMap"
+               type="cn.com.gome.framework.po.PomProfileInfoPo">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="CONFIG_DESCRIPTION" property="configDescription" jdbcType="VARCHAR"/>
+        <result column="CONFIG_NAME" property="configName" jdbcType="VARCHAR"/>
+        <result column="TYPE" property="type" jdbcType="CHAR"/>
+        <result column="AND_DEPENDENCY_ID" property="andDependencyId" jdbcType="VARCHAR"/>
+        <result column="ENV_DEV" property="envDev" jdbcType="VARCHAR"/>
+        <result column="ENV_UAT" property="envUat" jdbcType="VARCHAR"/>
+        <result column="ENV_PRE" property="envPre" jdbcType="VARCHAR"/>
+        <result column="ENV_LIVE" property="envLive" jdbcType="VARCHAR"/>
+        <result column="GROUP_INFO" property="groupInfo" jdbcType="VARCHAR"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="CHAR"/>
+        <result column="UPDATE_TIME" property="updateTime" jdbcType="CHAR"/>
+        <result column="AND_PROJECT_ID" property="andProjectId" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+	ID,CONFIG_DESCRIPTION,CONFIG_NAME,TYPE,AND_DEPENDENCY_ID,ENV_DEV,ENV_UAT,ENV_PRE,ENV_LIVE,GROUP_INFO,CREATE_TIME,UPDATE_TIME,AND_PROJECT_ID
+	</sql>
+    <select id="query" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from TBL_POM_PROFILE_INFO
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <sql id="comm_where">
+        <where>
+            <if test="id != null and id !='' ">
+                AND ID = #{id,jdbcType=VARCHAR}
+            </if>
+            <if test="configDescription != null and configDescription !='' ">
+                AND CONFIG_DESCRIPTION = #{configDescription,jdbcType=VARCHAR}
+            </if>
+            <if test="configName != null and configName !='' ">
+                AND CONFIG_NAME = #{configName,jdbcType=VARCHAR}
+            </if>
+            <if test="type != null and type !='' ">
+                AND TYPE = #{type,jdbcType=CHAR}
+            </if>
+            <if test="andDependencyId != null and andDependencyId !='' ">
+                AND AND_DEPENDENCY_ID = #{andDependencyId,jdbcType=VARCHAR}
+            </if>
+            <if test="envDev != null and envDev !='' ">
+                AND ENV_DEV = #{envDev,jdbcType=VARCHAR}
+            </if>
+            <if test="envUat != null and envUat !='' ">
+                AND ENV_UAT = #{envUat,jdbcType=VARCHAR}
+            </if>
+            <if test="envPre != null and envPre !='' ">
+                AND ENV_PRE = #{envPre,jdbcType=VARCHAR}
+            </if>
+            <if test="envLive != null and envLive !='' ">
+                AND ENV_LIVE = #{envLive,jdbcType=VARCHAR}
+            </if>
+            <if test="groupInfo != null and groupInfo !='' ">
+                AND GROUP_INFO = #{groupInfo,jdbcType=VARCHAR}
+            </if>
+            <if test="createTime != null and createTime !='' ">
+                AND CREATE_TIME = #{createTime,jdbcType=CHAR}
+            </if>
+            <if test="updateTime != null and updateTime !='' ">
+                AND UPDATE_TIME = #{updateTime,jdbcType=CHAR}
+            </if>
+            <if test="andProjectId != null and andProjectId !='' ">
+                AND AND_PROJECT_ID = #{andProjectId,jdbcType=VARCHAR}
+            </if>
+        </where>
+
+    </sql>
+    <select id="queryObj" resultMap="BaseResultMap" parameterType="cn.com.gome.framework.dao.entity.TblPomProfileInfo">
+        select
+        <include refid="Base_Column_List"/>
+        from TBL_POM_PROFILE_INFO
+        <include refid="comm_where"></include>
+    </select>
+    <select id="queryVo" resultMap="BasePoResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from TBL_POM_PROFILE_INFO
+        <include refid="comm_where"></include>
+    </select>
+    <select id="queryList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from TBL_POM_PROFILE_INFO
+        <include refid="comm_where"></include>
+    </select>
+    <sql id="page_where">
+        <where>
+            <if test="f.id != null  and f.id !=''  ">
+                AND ID = #{f.id,jdbcType=VARCHAR}
+            </if>
+            <if test="f.configDescription != null  and f.configDescription !=''  ">
+                AND CONFIG_DESCRIPTION like CONCAT(CONCAT('%',#{f.configDescription,jdbcType=VARCHAR}),'%')
+            </if>
+            <if test="f.configName != null  and f.configName !=''  ">
+                AND CONFIG_NAME = #{f.configName,jdbcType=VARCHAR}
+            </if>
+            <if test="f.type != null  and f.type !=''  ">
+                AND TYPE = #{f.type,jdbcType=CHAR}
+            </if>
+            <if test="f.andDependencyId != null  and f.andDependencyId !=''  ">
+                AND AND_DEPENDENCY_ID = #{f.andDependencyId,jdbcType=VARCHAR}
+            </if>
+            <if test="f.envDev != null  and f.envDev !=''  ">
+                AND ENV_DEV = #{f.envDev,jdbcType=VARCHAR}
+            </if>
+            <if test="f.envUat != null  and f.envUat !=''  ">
+                AND ENV_UAT = #{f.envUat,jdbcType=VARCHAR}
+            </if>
+            <if test="f.envPre != null  and f.envPre !=''  ">
+                AND ENV_PRE = #{f.envPre,jdbcType=VARCHAR}
+            </if>
+            <if test="f.envLive != null  and f.envLive !=''  ">
+                AND ENV_LIVE = #{f.envLive,jdbcType=VARCHAR}
+            </if>
+            <if test="f.groupInfo != null  and f.groupInfo !=''  ">
+                AND GROUP_INFO = #{f.groupInfo,jdbcType=VARCHAR}
+            </if>
+            <if test="f.createTime != null  and f.createTime !=''  ">
+                AND CREATE_TIME = #{f.createTime,jdbcType=CHAR}
+            </if>
+            <if test="f.updateTime != null  and f.updateTime !=''  ">
+                AND UPDATE_TIME = #{f.updateTime,jdbcType=CHAR}
+            </if>
+            <if test="f.andProjectId != null  and f.andProjectId !=''  ">
+                AND AND_PROJECT_ID = #{f.andProjectId,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </sql>
+    <select id="queryPageListCount" resultType="java.lang.Integer">
+        select count(1) from TBL_POM_PROFILE_INFO
+        <include refid="page_where"></include>
+    </select>
+    <select id="queryPageList" resultMap="BaseResultMap">
+        <![CDATA[ select * from ( select interTable.*,rownum rn from ( ]]>
+        select
+        AA.ID,AA.CONFIG_DESCRIPTION,AA.CONFIG_NAME,AA.TYPE,AA.AND_DEPENDENCY_ID,AA.ENV_DEV,AA.ENV_UAT,AA.ENV_PRE,AA.ENV_LIVE,AA.GROUP_INFO,AA.CREATE_TIME,AA.UPDATE_TIME,AA.AND_PROJECT_ID
+        from TBL_POM_PROFILE_INFO AA
+        <include refid="page_where"></include>
+        ) interTable where
+        <![CDATA[ rownum <= #{limit}+#{offset} ]]>
+        ) outerTable where
+        <![CDATA[ outerTable.rn > #{limit} ]]>
+    </select>
+    <select id="queryPageVoList" resultMap="BasePoResultMap">
+        <![CDATA[ select * from ( select interTable.*,rownum rn from ( ]]>
+        select
+        AA.ID,AA.CONFIG_DESCRIPTION,AA.CONFIG_NAME,AA.TYPE,AA.AND_DEPENDENCY_ID,AA.ENV_DEV,AA.ENV_UAT,AA.ENV_PRE,AA.ENV_LIVE,AA.GROUP_INFO,AA.CREATE_TIME,AA.UPDATE_TIME,AA.AND_PROJECT_ID
+        from TBL_POM_PROFILE_INFO AA
+        <include refid="page_where"></include>
+        ) interTable where
+        <![CDATA[ rownum <= #{limit}+#{offset} ]]>
+        ) outerTable where
+        <![CDATA[ outerTable.rn > #{limit} ]]>
+    </select>
+    <select id="queryListByIds" parameterType="java.util.List" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from TBL_POM_PROFILE_INFO where ID in (
+        <foreach collection="list" item="item" index="index" separator=",">
+            #{item,jdbcType=VARCHAR}
+        </foreach>
+        )
+        ORDER by TYPE,GROUP_INFO,CONFIG_NAME,ID
+    </select>
+    <select id="queryPomProfiles" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from TBL_POM_PROFILE_INFO where
+        AND_PROJECT_ID = #{projectCode,jdbcType=VARCHAR}
+        OR AND_PROJECT_ID IS NULL
+        ORDER by TYPE,GROUP_INFO,CONFIG_NAME,ID
+    </select>
+
+</mapper>

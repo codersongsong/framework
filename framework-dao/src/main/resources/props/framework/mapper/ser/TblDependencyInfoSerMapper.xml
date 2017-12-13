@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.gome.framework.dao.mapper.ser.TblDependencyInfoSerMapper">
+    <resultMap id="BaseResultMap"
+               type="cn.com.gome.framework.dao.entity.TblDependencyInfo">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="GROUP_ID" property="groupId" jdbcType="VARCHAR"/>
+        <result column="ARTIFACT_ID" property="artifactId" jdbcType="VARCHAR"/>
+        <result column="VERSION" property="version" jdbcType="VARCHAR"/>
+        <result column="SCOPE" property="scope" jdbcType="VARCHAR"/>
+        <result column="DEPENDENCY_NAME" property="dependencyName" jdbcType="VARCHAR"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="CHAR"/>
+        <result column="UPDATE_TIME" property="updateTime" jdbcType="CHAR"/>
+        <result column="CONFIG_FILE_NAME" property="configFileName" jdbcType="VARCHAR"/>
+        <result column="CONFIG_FILE_CONTENT" property="configFileContent" jdbcType="VARCHAR"/>
+    </resultMap>
+    <resultMap id="BasePoResultMap"
+               type="cn.com.gome.framework.po.DependencyInfoPo">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="GROUP_ID" property="groupId" jdbcType="VARCHAR"/>
+        <result column="ARTIFACT_ID" property="artifactId" jdbcType="VARCHAR"/>
+        <result column="VERSION" property="version" jdbcType="VARCHAR"/>
+        <result column="SCOPE" property="scope" jdbcType="VARCHAR"/>
+        <result column="DEPENDENCY_NAME" property="dependencyName" jdbcType="VARCHAR"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="CHAR"/>
+        <result column="UPDATE_TIME" property="updateTime" jdbcType="CHAR"/>
+        <result column="CONFIG_FILE_NAME" property="configFileName" jdbcType="VARCHAR"/>
+        <result column="CONFIG_FILE_CONTENT" property="configFileContent" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+	ID,GROUP_ID,ARTIFACT_ID,VERSION,SCOPE,DEPENDENCY_NAME,CREATE_TIME,UPDATE_TIME,CONFIG_FILE_NAME,CONFIG_FILE_CONTENT
+	</sql>
+    <select id="query" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from TBL_DEPENDENCY_INFO
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <sql id="comm_where">
+        <where>
+            <if test="id != null and id !='' ">
+                AND ID = #{id,jdbcType=VARCHAR}
+            </if>
+            <if test="groupId != null and groupId !='' ">
+                AND GROUP_ID = #{groupId,jdbcType=VARCHAR}
+            </if>
+            <if test="artifactId != null and artifactId !='' ">
+                AND ARTIFACT_ID = #{artifactId,jdbcType=VARCHAR}
+            </if>
+            <if test="version != null and version !='' ">
+                AND VERSION = #{version,jdbcType=VARCHAR}
+            </if>
+            <if test="scope != null and scope !='' ">
+                AND SCOPE = #{scope,jdbcType=VARCHAR}
+            </if>
+            <if test="dependencyName != null and dependencyName !='' ">
+                AND DEPENDENCY_NAME = #{dependencyName,jdbcType=VARCHAR}
+            </if>
+            <if test="createTime != null and createTime !='' ">
+                AND CREATE_TIME = #{createTime,jdbcType=CHAR}
+            </if>
+            <if test="updateTime != null and updateTime !='' ">
+                AND UPDATE_TIME = #{updateTime,jdbcType=CHAR}
+            </if>
+            <if test="configFileName != null and configFileName !='' ">
+                AND CONFIG_FILE_NAME = #{configFileName,jdbcType=VARCHAR}
+            </if>
+            <if test="configFileContent != null and configFileContent !='' ">
+                AND CONFIG_FILE_CONTENT = #{configFileContent,jdbcType=VARCHAR}
+            </if>
+        </where>
+
+    </sql>
+    <select id="queryObj" resultMap="BaseResultMap" parameterType="cn.com.gome.framework.dao.entity.TblDependencyInfo">
+        select
+        <include refid="Base_Column_List"/>
+        from TBL_DEPENDENCY_INFO
+        <include refid="comm_where"></include>
+    </select>
+    <select id="queryVo" resultMap="BasePoResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from TBL_DEPENDENCY_INFO
+        <include refid="comm_where"></include>
+    </select>
+    <select id="queryList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from TBL_DEPENDENCY_INFO
+        <include refid="comm_where"></include>
+    </select>
+    <sql id="page_where">
+        <where>
+            <if test="f.id != null  and f.id !=''  ">
+                AND ID = #{f.id,jdbcType=VARCHAR}
+            </if>
+            <if test="f.groupId != null  and f.groupId !=''  ">
+                AND GROUP_ID = #{f.groupId,jdbcType=VARCHAR}
+            </if>
+            <if test="f.artifactId != null  and f.artifactId !=''  ">
+                AND ARTIFACT_ID = #{f.artifactId,jdbcType=VARCHAR}
+            </if>
+            <if test="f.version != null  and f.version !=''  ">
+                AND VERSION = #{f.version,jdbcType=VARCHAR}
+            </if>
+            <if test="f.scope != null  and f.scope !=''  ">
+                AND SCOPE = #{f.scope,jdbcType=VARCHAR}
+            </if>
+            <if test="f.dependencyName != null  and f.dependencyName !=''  ">
+                AND DEPENDENCY_NAME LIKE CONCAT(CONCAT('%',#{f.dependencyName,jdbcType=VARCHAR}),'%')
+            </if>
+            <if test="f.createTime != null  and f.createTime !=''  ">
+                AND CREATE_TIME = #{f.createTime,jdbcType=CHAR}
+            </if>
+            <if test="f.updateTime != null  and f.updateTime !=''  ">
+                AND UPDATE_TIME = #{f.updateTime,jdbcType=CHAR}
+            </if>
+            <if test="f.configFileName != null  and f.configFileName !=''  ">
+                AND CONFIG_FILE_NAME = #{f.configFileName,jdbcType=VARCHAR}
+            </if>
+            <if test="f.configFileContent != null  and f.configFileContent !=''  ">
+                AND CONFIG_FILE_CONTENT = #{f.configFileContent,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </sql>
+    <select id="queryPageListCount" resultType="java.lang.Integer">
+        select count(1) from TBL_DEPENDENCY_INFO
+        <include refid="page_where"></include>
+    </select>
+    <select id="queryPageList" resultMap="BaseResultMap">
+        <![CDATA[ select * from ( select interTable.*,rownum rn from ( ]]>
+        select
+        AA.ID,AA.GROUP_ID,AA.ARTIFACT_ID,AA.VERSION,AA.SCOPE,AA.DEPENDENCY_NAME,AA.CREATE_TIME,AA.UPDATE_TIME,AA.CONFIG_FILE_NAME,AA.CONFIG_FILE_CONTENT
+        from TBL_DEPENDENCY_INFO AA
+        <include refid="page_where"></include>
+        ) interTable where
+        <![CDATA[ rownum <= #{limit}+#{offset} ]]>
+        ) outerTable where
+        <![CDATA[ outerTable.rn > #{limit} ]]>
+    </select>
+    <select id="queryPageVoList" resultMap="BasePoResultMap">
+        <![CDATA[ select * from ( select interTable.*,rownum rn from ( ]]>
+        select
+        AA.ID,AA.GROUP_ID,AA.ARTIFACT_ID,AA.VERSION,AA.SCOPE,AA.DEPENDENCY_NAME,AA.CREATE_TIME,AA.UPDATE_TIME,AA.CONFIG_FILE_NAME,AA.CONFIG_FILE_CONTENT
+        from TBL_DEPENDENCY_INFO AA
+        <include refid="page_where"></include>
+        ) interTable where
+        <![CDATA[ rownum <= #{limit}+#{offset} ]]>
+        ) outerTable where
+        <![CDATA[ outerTable.rn > #{limit} ]]>
+    </select>
+    <select id="queryListByIds" parameterType="java.util.List" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from TBL_DEPENDENCY_INFO where ID in (
+        <foreach collection="list" item="item" index="index" separator=",">
+            #{item,jdbcType=VARCHAR}
+        </foreach>
+        )
+        ORDER BY ARTIFACT_ID
+    </select>
+</mapper>

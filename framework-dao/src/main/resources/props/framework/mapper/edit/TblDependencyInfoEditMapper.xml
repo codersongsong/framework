@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+	<mapper namespace="cn.com.gome.framework.dao.mapper.edit.TblDependencyInfoEditMapper">
+	
+	<insert id="save" parameterType="cn.com.gome.framework.dao.entity.TblDependencyInfo">
+		insert into TBL_DEPENDENCY_INFO(
+		ID,GROUP_ID,ARTIFACT_ID,VERSION,SCOPE,DEPENDENCY_NAME,CREATE_TIME,UPDATE_TIME,CONFIG_FILE_NAME,CONFIG_FILE_CONTENT
+		)
+		values(
+			#{id,jdbcType=VARCHAR},
+			#{groupId,jdbcType=VARCHAR},
+			#{artifactId,jdbcType=VARCHAR},
+			#{version,jdbcType=VARCHAR},
+			#{scope,jdbcType=VARCHAR},
+			#{dependencyName,jdbcType=VARCHAR},
+			#{createTime,jdbcType=CHAR},
+			#{updateTime,jdbcType=CHAR},
+			#{configFileName,jdbcType=VARCHAR},
+			#{configFileContent,jdbcType=VARCHAR}
+		)
+	</insert>
+	
+	<update id="edit" parameterType="cn.com.gome.framework.dao.entity.TblDependencyInfo" >
+		update TBL_DEPENDENCY_INFO
+		<set>
+			<if test="groupId != null">
+				GROUP_ID = #{groupId,jdbcType=VARCHAR},
+			</if>
+			<if test="artifactId != null">
+		     	ARTIFACT_ID = #{artifactId,jdbcType=VARCHAR},
+		     </if>
+			 <if test="version != null">
+		     	VERSION = #{version,jdbcType=VARCHAR},
+		     </if>
+			 <if test="scope != null">
+		     	SCOPE = #{scope,jdbcType=VARCHAR},
+		     </if>
+			 <if test="dependencyName != null">
+		     	DEPENDENCY_NAME = #{dependencyName,jdbcType=VARCHAR},
+		     </if>
+			 <if test="createTime != null">
+		     	CREATE_TIME = #{createTime,jdbcType=CHAR},
+		     </if>
+			 <if test="updateTime != null">
+		     	UPDATE_TIME = #{updateTime,jdbcType=CHAR},
+		     </if>
+			 <if test="configFileName != null">
+		     	CONFIG_FILE_NAME = #{configFileName,jdbcType=VARCHAR},
+		     </if>
+			 <if test="configFileContent != null">
+		     	CONFIG_FILE_CONTENT = #{configFileContent,jdbcType=VARCHAR},
+		     </if>
+		</set>
+		where ID=#{id,jdbcType=VARCHAR}
+	</update>
+
+	<update id="editNull" parameterType="cn.com.gome.framework.dao.entity.TblDependencyInfo" >
+		update TBL_DEPENDENCY_INFO
+		<set>
+			    GROUP_ID=#{groupId,jdbcType=VARCHAR},
+			    ARTIFACT_ID = #{artifactId,jdbcType=VARCHAR},
+		     	VERSION = #{version,jdbcType=VARCHAR},
+		     	SCOPE = #{scope,jdbcType=VARCHAR},
+		     	DEPENDENCY_NAME = #{dependencyName,jdbcType=VARCHAR},
+		     	CREATE_TIME = #{createTime,jdbcType=CHAR},
+		     	UPDATE_TIME = #{updateTime,jdbcType=CHAR},
+		     	CONFIG_FILE_NAME = #{configFileName,jdbcType=VARCHAR},
+		     	CONFIG_FILE_CONTENT = #{configFileContent,jdbcType=VARCHAR},
+		</set>
+		where ID=#{id,jdbcType=VARCHAR}
+	</update>
+
+	<update id="editInfo" parameterType="java.util.Map" >
+		update TBL_DEPENDENCY_INFO
+		<set>
+			 <if test="artifactIdNew != null">
+		     	ARTIFACT_ID = #{artifactIdNew,jdbcType=VARCHAR},
+		     </if>
+			 <if test="versionNew != null">
+		     	VERSION = #{versionNew,jdbcType=VARCHAR},
+		     </if>
+			 <if test="scopeNew != null">
+		     	SCOPE = #{scopeNew,jdbcType=VARCHAR},
+		     </if>
+			 <if test="dependencyNameNew != null">
+		     	DEPENDENCY_NAME = #{dependencyNameNew,jdbcType=VARCHAR},
+		     </if>
+			 <if test="createTimeNew != null">
+		     	CREATE_TIME = #{createTimeNew,jdbcType=CHAR},
+		     </if>
+			 <if test="updateTimeNew != null">
+		     	UPDATE_TIME = #{updateTimeNew,jdbcType=CHAR},
+		     </if>
+			 <if test="configFileNameNew != null">
+		     	CONFIG_FILE_NAME = #{configFileNameNew,jdbcType=VARCHAR},
+		     </if>
+			 <if test="configFileContentNew != null">
+		     	CONFIG_FILE_CONTENT = #{configFileContentNew,jdbcType=VARCHAR},
+		     </if>
+		</set>
+		<where>
+		<if test="id != null  and id !='' ">
+			AND ID = #{id,jdbcType=VARCHAR}
+		</if>
+		<if test="groupId != null  and groupId !='' ">
+			AND GROUP_ID = #{groupId,jdbcType=VARCHAR}
+		</if>
+		<if test="artifactId != null  and artifactId !='' ">
+			AND ARTIFACT_ID = #{artifactId,jdbcType=VARCHAR}
+		</if>
+		<if test="version != null  and version !='' ">
+			AND VERSION = #{version,jdbcType=VARCHAR}
+		</if>
+		<if test="scope != null  and scope !='' ">
+			AND SCOPE = #{scope,jdbcType=VARCHAR}
+		</if>
+		<if test="dependencyName != null  and dependencyName !='' ">
+			AND DEPENDENCY_NAME = #{dependencyName,jdbcType=VARCHAR}
+		</if>
+		<if test="createTime != null  and createTime !='' ">
+			AND CREATE_TIME = #{createTime,jdbcType=CHAR}
+		</if>
+		<if test="updateTime != null  and updateTime !='' ">
+			AND UPDATE_TIME = #{updateTime,jdbcType=CHAR}
+		</if>
+		<if test="configFileName != null  and configFileName !='' ">
+			AND CONFIG_FILE_NAME = #{configFileName,jdbcType=VARCHAR}
+		</if>
+		<if test="configFileContent != null  and configFileContent !='' ">
+			AND CONFIG_FILE_CONTENT = #{configFileContent,jdbcType=VARCHAR}
+		</if>
+		</where>
+	</update>
+
+	<delete id="del" parameterType="java.util.List">
+		delete from TBL_DEPENDENCY_INFO where ID in (
+			<foreach collection="list" item="item" index="index" separator=",">
+				 #{item,jdbcType=VARCHAR}
+			</foreach>
+		)
+	</delete>
+</mapper>

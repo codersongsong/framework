@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.gome.framework.dao.mapper.ser.TblTaskPartConfigSerMapper">
+	<resultMap id="BaseResultMap"
+		type="cn.com.gome.framework.dao.entity.TblTaskPartConfig">
+		<id column="PART_NO" property="partNo" jdbcType="CHAR" />
+		<result column="TASK_NO" property="taskNo" jdbcType="CHAR" />
+		<result column="OBJ_TASK_KEY" property="objTaskKey" jdbcType="VARCHAR" />
+		<result column="TASK_RUN_SERVER" property="taskRunServer" jdbcType="VARCHAR" />
+		<result column="TASK_RUN_PORT" property="taskRunPort" jdbcType="INTEGER" />
+		<result column="PART_VALUE" property="partValue" jdbcType="VARCHAR" />
+		<result column="MODE_VALUE" property="modeValue" jdbcType="VARCHAR" />
+		<result column="OBJECT_TAL" property="objectTal" jdbcType="VARCHAR" />
+		<result column="UP_TIME" property="upTime" jdbcType="CHAR" />
+	</resultMap>
+	<resultMap id="BasePoResultMap"
+		type="cn.com.gome.framework.po.TaskPartConfigPo">
+		<id column="PART_NO" property="partNo" jdbcType="CHAR" />
+		<result column="TASK_NO" property="taskNo" jdbcType="CHAR" />
+		<result column="OBJ_TASK_KEY" property="objTaskKey" jdbcType="VARCHAR" />
+		<result column="TASK_RUN_SERVER" property="taskRunServer" jdbcType="VARCHAR" />
+		<result column="TASK_RUN_PORT" property="taskRunPort" jdbcType="INTEGER" />
+		<result column="PART_VALUE" property="partValue" jdbcType="VARCHAR" />
+		<result column="MODE_VALUE" property="modeValue" jdbcType="VARCHAR" />
+		<result column="OBJECT_TAL" property="objectTal" jdbcType="VARCHAR" />
+		<result column="UP_TIME" property="upTime" jdbcType="CHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+	PART_NO,TASK_NO,OBJ_TASK_KEY,TASK_RUN_SERVER,TASK_RUN_PORT,PART_VALUE,MODE_VALUE,OBJECT_TAL,UP_TIME
+	</sql>
+	<select id="query" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from TBL_TASK_PART_CONFIG
+		where PART_NO = #{partNo,jdbcType=CHAR}
+	</select>
+	<sql id="comm_where">		<where>		<if test="partNo != null ">
+			AND PART_NO = #{partNo,jdbcType=CHAR}
+		</if>
+		<if test="taskNo != null ">
+			AND TASK_NO = #{taskNo,jdbcType=CHAR}
+		</if>
+		<if test="objTaskKey != null ">
+			AND OBJ_TASK_KEY = #{objTaskKey,jdbcType=VARCHAR}
+		</if>
+		<if test="taskRunServer != null ">
+			AND TASK_RUN_SERVER = #{taskRunServer,jdbcType=VARCHAR}
+		</if>
+		<if test="taskRunPort != null ">
+			AND TASK_RUN_PORT = #{taskRunPort,jdbcType=INTEGER}
+		</if>
+		<if test="partValue != null ">
+			AND PART_VALUE = #{partValue,jdbcType=VARCHAR}
+		</if>
+		<if test="modeValue != null ">
+			AND MODE_VALUE = #{modeValue,jdbcType=VARCHAR}
+		</if>
+		<if test="objectTal != null ">
+			AND OBJECT_TAL = #{objectTal,jdbcType=VARCHAR}
+		</if>
+		<if test="upTime != null ">
+			AND UP_TIME = #{upTime,jdbcType=CHAR}
+		</if>
+		</where>
+
+	</sql>
+	<select id="queryObj" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from TBL_TASK_PART_CONFIG
+		<include refid="comm_where"></include>
+	</select>
+	<select id="queryPo" resultMap="BasePoResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from TBL_TASK_PART_CONFIG
+		<include refid="comm_where"></include>
+	</select>
+	<select id="queryList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from TBL_TASK_PART_CONFIG
+		<include refid="comm_where"></include>
+	</select>
+	
+	<select id="queryTaskList" resultMap="BaseResultMap">
+		<!-- TASK_RUN_PORT临时性的做为统计值用 -->
+		select task_no , count(1) as TASK_RUN_PORT  from TBL_TASK_PART_CONFIG
+		where Object_tal not in (select distinct(Object_tal)  from tbl_task_running_log where 
+			(DDL_STATUS='010' or DDL_STATUS='020') and part_value is null )
+		group by task_no
+	</select>
+	
+	<select id="queryNullList" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select *  from TBL_TASK_PART_CONFIG a where a.task_no=#{taskNo,jdbcType=CHAR} and a.object_tal not in 
+		(
+		      select b.object_tal from tbl_task_running_log b where b.task_no=#{taskNo,jdbcType=CHAR}  and (b.ddl_status='010' or b.ddl_status='020') and b.part_value is not null
+		)
+	</select>
+	
+	<sql id="page_where">		
+	<where>		
+	<if test="f.partNo != null ">
+			AND PART_NO = #{f.partNo,jdbcType=CHAR}
+		</if>
+		<if test="f.taskNo != null ">
+			AND TASK_NO = #{f.taskNo,jdbcType=CHAR}
+		</if>
+		<if test="f.objTaskKey != null ">
+			AND OBJ_TASK_KEY = #{f.objTaskKey,jdbcType=VARCHAR}
+		</if>
+		<if test="f.taskRunServer != null ">
+			AND TASK_RUN_SERVER = #{f.taskRunServer,jdbcType=VARCHAR}
+		</if>
+		<if test="f.taskRunPort != null ">
+			AND TASK_RUN_PORT = #{f.taskRunPort,jdbcType=INTEGER}
+		</if>
+		<if test="f.partValue != null ">
+			AND PART_VALUE = #{f.partValue,jdbcType=VARCHAR}
+		</if>
+		<if test="f.modeValue != null ">
+			AND MODE_VALUE = #{f.modeValue,jdbcType=VARCHAR}
+		</if>
+		<if test="f.objectTal != null ">
+			AND OBJECT_TAL = #{f.objectTal,jdbcType=VARCHAR}
+		</if>
+		<if test="f.upTime != null ">
+			AND UP_TIME = #{f.upTime,jdbcType=CHAR}
+		</if>
+		</where>
+	</sql>
+	<select id="queryPageListCount" resultType="java.lang.Integer">
+		select count(1) from TBL_TASK_PART_CONFIG
+		<include refid="page_where"></include>
+	</select>
+	<select id="queryPageList" resultMap="BaseResultMap">
+        <![CDATA[ select * from ( select interTable.*,rownum rn from ( ]]>
+		select
+		AA.PART_NO,AA.TASK_NO,AA.OBJ_TASK_KEY,AA.TASK_RUN_SERVER,AA.TASK_RUN_PORT,AA.PART_VALUE,AA.MODE_VALUE,AA.OBJECT_TAL,AA.UP_TIME
+		from TBL_TASK_PART_CONFIG AA 
+		<include refid="page_where"></include>
+			) interTable where 
+	    <![CDATA[ rownum <= #{limit}+#{offset} ]]>
+			) outerTable where 
+	    <![CDATA[ outerTable.rn > #{limit} ]]>
+	</select>
+	<select id="queryPageVoList" resultMap="BasePoResultMap">
+        <![CDATA[ select * from ( select interTable.*,rownum rn from ( ]]>
+		select
+		AA.PART_NO,AA.TASK_NO,AA.OBJ_TASK_KEY,AA.TASK_RUN_SERVER,AA.TASK_RUN_PORT,AA.PART_VALUE,AA.MODE_VALUE,AA.OBJECT_TAL,AA.UP_TIME
+		from TBL_TASK_PART_CONFIG AA 
+		<include refid="page_where"></include>
+			) interTable where 
+	    <![CDATA[ rownum <= #{limit}+#{offset} ]]>
+			) outerTable where 
+	    <![CDATA[ outerTable.rn > #{limit} ]]>
+	</select>
+
+
+	<select id="queryUniquePartList" resultMap="BaseResultMap">
+		select c.task_no, c.MODE_VALUE
+		  from (SELECT ROW_NUMBER() OVER(PARTITION BY c.task_no ORDER BY c.up_time DESC) rn,
+					   c.task_no,
+					   c.MODE_VALUE
+				  from TBL_TASK_PART_CONFIG c
+				 where c.task_no in
+					   (select distinct c.task_no
+						  from TBL_TASK_PART_CONFIG c
+						  left join (select distinct l.task_run_server,
+													l.task_run_port
+									  from tbl_task_running_log l
+									 where l.ddl_status = '010'
+										or l.ddl_status = '020') a
+							on a.task_run_server = c.task_run_server
+						   and a.task_run_port = c.task_run_port)) c
+		 where c.rn = 1
+	</select>
+</mapper>

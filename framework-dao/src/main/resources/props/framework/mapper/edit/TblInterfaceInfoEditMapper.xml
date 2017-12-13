@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+	<mapper namespace="cn.com.gome.framework.dao.mapper.edit.TblInterfaceInfoEditMapper">
+	
+	<insert id="save" parameterType="cn.com.gome.framework.dao.entity.TblInterfaceInfo">
+		insert into TBL_INTERFACE_INFO(
+		ID,DUBBO_ID,CLASS_NAME,REQUEST_TYPE,PARAMNAME,PARAMNAME_CN,PARAMTYPE,IS_REQUIRE,IS_PRINT,IS_LENGTH,REGEX,DESCRIPTION,UPDATE_TIME,CREATE_TIME
+		)
+		values(
+			SEQ_NUMBER_SERIALIZ_ID.nextval,
+			#{dubboId,jdbcType=VARCHAR},
+			#{className,jdbcType=VARCHAR},
+			#{requestType,jdbcType=VARCHAR},
+			#{paramname,jdbcType=VARCHAR},
+			#{paramnameCn,jdbcType=VARCHAR},
+			#{paramtype,jdbcType=VARCHAR},
+			#{isRequire,jdbcType=VARCHAR},
+			#{isPrint,jdbcType=VARCHAR},
+			#{isLength,jdbcType=VARCHAR},
+			#{regex,jdbcType=VARCHAR},
+			#{description,jdbcType=VARCHAR},
+			#{updateTime,jdbcType=CHAR},
+			#{createTime,jdbcType=CHAR}
+		)
+	</insert>
+	
+	<update id="edit" parameterType="cn.com.gome.framework.dao.entity.TblInterfaceInfo" >
+		update TBL_INTERFACE_INFO
+		<set>
+			 <if test="dubboId != null">
+		     	DUBBO_ID = #{dubboId,jdbcType=VARCHAR},
+		     </if>
+			 <if test="className != null">
+		     	CLASS_NAME = #{className,jdbcType=VARCHAR},
+		     </if>
+			 <if test="requestType != null">
+		     	REQUEST_TYPE = #{requestType,jdbcType=VARCHAR},
+		     </if>
+			 <if test="paramname != null">
+		     	PARAMNAME = #{paramname,jdbcType=VARCHAR},
+		     </if>
+			 <if test="paramnameCn != null">
+		     	PARAMNAME_CN = #{paramnameCn,jdbcType=VARCHAR},
+		     </if>
+			 <if test="paramtype != null">
+		     	PARAMTYPE = #{paramtype,jdbcType=VARCHAR},
+		     </if>
+			 <if test="isRequire != null">
+		     	IS_REQUIRE = #{isRequire,jdbcType=VARCHAR},
+		     </if>
+			 <if test="isPrint != null">
+		     	IS_PRINT = #{isPrint,jdbcType=VARCHAR},
+		     </if>
+			 <if test="isLength != null">
+		     	IS_LENGTH = #{isLength,jdbcType=VARCHAR},
+		     </if>
+			 <if test="regex != null">
+		     	REGEX = #{regex,jdbcType=VARCHAR},
+		     </if>
+			 <if test="description != null">
+		     	DESCRIPTION = #{description,jdbcType=VARCHAR},
+		     </if>
+			 <if test="updateTime != null">
+		     	UPDATE_TIME = #{updateTime,jdbcType=CHAR},
+		     </if>
+			 <if test="createTime != null">
+		     	CREATE_TIME = #{createTime,jdbcType=CHAR},
+		     </if>
+		</set>
+		where ID=#{id,jdbcType=VARCHAR}
+	</update>
+
+	<update id="editNull" parameterType="cn.com.gome.framework.dao.entity.TblInterfaceInfo" >
+		update TBL_INTERFACE_INFO
+		<set>
+		     	DUBBO_ID = #{dubboId,jdbcType=VARCHAR},
+		     	CLASS_NAME = #{className,jdbcType=VARCHAR},
+		     	REQUEST_TYPE = #{requestType,jdbcType=VARCHAR},
+		     	PARAMNAME = #{paramname,jdbcType=VARCHAR},
+		     	PARAMNAME_CN = #{paramnameCn,jdbcType=VARCHAR},
+		     	PARAMTYPE = #{paramtype,jdbcType=VARCHAR},
+		     	IS_REQUIRE = #{isRequire,jdbcType=VARCHAR},
+		     	IS_PRINT = #{isPrint,jdbcType=VARCHAR},
+		     	IS_LENGTH = #{isLength,jdbcType=VARCHAR},
+		     	REGEX = #{regex,jdbcType=VARCHAR},
+		     	DESCRIPTION = #{description,jdbcType=VARCHAR},
+		     	UPDATE_TIME = #{updateTime,jdbcType=CHAR},
+		     	CREATE_TIME = #{createTime,jdbcType=CHAR},
+		</set>
+		where ID=#{id,jdbcType=VARCHAR}
+	</update>
+
+	<update id="editInfo" parameterType="java.util.Map" >
+		update TBL_INTERFACE_INFO
+		<set>
+			 <if test="dubboIdNew != null">
+		     	DUBBO_ID = #{dubboIdNew,jdbcType=VARCHAR},
+		     </if>
+			 <if test="classNameNew != null">
+		     	CLASS_NAME = #{classNameNew,jdbcType=VARCHAR},
+		     </if>
+			 <if test="requestTypeNew != null">
+		     	REQUEST_TYPE = #{requestTypeNew,jdbcType=VARCHAR},
+		     </if>
+			 <if test="paramnameNew != null">
+		     	PARAMNAME = #{paramnameNew,jdbcType=VARCHAR},
+		     </if>
+			 <if test="paramnameCnNew != null">
+		     	PARAMNAME_CN = #{paramnameCnNew,jdbcType=VARCHAR},
+		     </if>
+			 <if test="paramtypeNew != null">
+		     	PARAMTYPE = #{paramtypeNew,jdbcType=VARCHAR},
+		     </if>
+			 <if test="isRequireNew != null">
+		     	IS_REQUIRE = #{isRequireNew,jdbcType=VARCHAR},
+		     </if>
+			 <if test="isPrintNew != null">
+		     	IS_PRINT = #{isPrintNew,jdbcType=VARCHAR},
+		     </if>
+			 <if test="isLengthNew != null">
+		     	IS_LENGTH = #{isLengthNew,jdbcType=VARCHAR},
+		     </if>
+			 <if test="regexNew != null">
+		     	REGEX = #{regexNew,jdbcType=VARCHAR},
+		     </if>
+			 <if test="descriptionNew != null">
+		     	DESCRIPTION = #{descriptionNew,jdbcType=VARCHAR},
+		     </if>
+			 <if test="updateTimeNew != null">
+		     	UPDATE_TIME = #{updateTimeNew,jdbcType=CHAR},
+		     </if>
+			 <if test="createTimeNew != null">
+		     	CREATE_TIME = #{createTimeNew,jdbcType=CHAR},
+		     </if>
+		</set>
+		<where>
+		<if test="id != null  and id !='' ">
+			AND ID = #{id,jdbcType=VARCHAR}
+		</if>
+		<if test="dubboId != null  and dubboId !='' ">
+			AND DUBBO_ID = #{dubboId,jdbcType=VARCHAR}
+		</if>
+		<if test="className != null  and className !='' ">
+			AND CLASS_NAME = #{className,jdbcType=VARCHAR}
+		</if>
+		<if test="requestType != null  and requestType !='' ">
+			AND REQUEST_TYPE = #{requestType,jdbcType=VARCHAR}
+		</if>
+		<if test="paramname != null  and paramname !='' ">
+			AND PARAMNAME = #{paramname,jdbcType=VARCHAR}
+		</if>
+		<if test="paramnameCn != null  and paramnameCn !='' ">
+			AND PARAMNAME_CN = #{paramnameCn,jdbcType=VARCHAR}
+		</if>
+		<if test="paramtype != null  and paramtype !='' ">
+			AND PARAMTYPE = #{paramtype,jdbcType=VARCHAR}
+		</if>
+		<if test="isRequire != null  and isRequire !='' ">
+			AND IS_REQUIRE = #{isRequire,jdbcType=VARCHAR}
+		</if>
+		<if test="isPrint != null  and isPrint !='' ">
+			AND IS_PRINT = #{isPrint,jdbcType=VARCHAR}
+		</if>
+		<if test="isLength != null  and isLength !='' ">
+			AND IS_LENGTH = #{isLength,jdbcType=VARCHAR}
+		</if>
+		<if test="regex != null  and regex !='' ">
+			AND REGEX = #{regex,jdbcType=VARCHAR}
+		</if>
+		<if test="description != null  and description !='' ">
+			AND DESCRIPTION = #{description,jdbcType=VARCHAR}
+		</if>
+		<if test="updateTime != null  and updateTime !='' ">
+			AND UPDATE_TIME = #{updateTime,jdbcType=CHAR}
+		</if>
+		<if test="createTime != null  and createTime !='' ">
+			AND CREATE_TIME = #{createTime,jdbcType=CHAR}
+		</if>
+		</where>
+	</update>
+
+	<delete id="del" parameterType="java.util.List">
+		delete from TBL_INTERFACE_INFO where ID in (
+			<foreach collection="list" item="item" index="index" separator=",">
+				 #{item,jdbcType=VARCHAR}
+			</foreach>
+		)
+	</delete>
+</mapper>

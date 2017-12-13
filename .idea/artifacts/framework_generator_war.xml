@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="framework-generator:war">
+    <output-path>$PROJECT_DIR$/framework-generator/target</output-path>
+    <root id="archive" name="framework-generator.war">
+      <element id="artifact" artifact-name="framework-generator:war exploded" />
+    </root>
+  </artifact>
+</component>

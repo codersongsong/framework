@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="cn.com.gome.framework.dao.mapper.edit.TblProjectBasicInfoEditMapper">
+
+	<insert id="save"
+		parameterType="cn.com.gome.framework.dao.entity.TblProjectBasicInfo">
+		insert into TBL_PROJECT_BASIC_INFO(
+		PROJECT_CODE,PROJECT_NAME,PROJECT_ENG,DATABASE_TYPE,DATABASE_DRIVER,DATABASE_URL,DATABASE_ACCOUNT,DATABASE_PASSWORD,PROJECT_PATH,CREATE_TIME,PACKAGES
+		)
+		values(
+		SEQ_NUMBER_SERIALIZ_ID.nextval,
+		#{projectName,jdbcType=VARCHAR},
+		#{projectEng,jdbcType=VARCHAR},
+		#{databaseType,jdbcType=CHAR},
+		#{databaseDriver,jdbcType=VARCHAR},
+		#{databaseUrl,jdbcType=VARCHAR},
+		#{databaseAccount,jdbcType=VARCHAR},
+		#{databasePassword,jdbcType=VARCHAR},
+		#{projectPath,jdbcType=VARCHAR},
+		#{createTime,jdbcType=CHAR},
+		#{packages,jdbcType=VARCHAR}
+		)
+	</insert>
+
+	<update id="edit"
+		parameterType="cn.com.gome.framework.dao.entity.TblProjectBasicInfo">
+		update TBL_PROJECT_BASIC_INFO
+		<set>
+			<if test="projectName != null">
+				PROJECT_NAME = #{projectName,jdbcType=VARCHAR},
+			</if>
+			<if test="projectEng != null">
+				PROJECT_ENG = #{projectEng,jdbcType=VARCHAR},
+			</if>
+			<if test="databaseType != null">
+				DATABASE_TYPE = #{databaseType,jdbcType=CHAR},
+			</if>
+			<if test="databaseDriver != null">
+				DATABASE_DRIVER = #{databaseDriver,jdbcType=VARCHAR},
+			</if>
+			<if test="databaseUrl != null">
+				DATABASE_URL = #{databaseUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="databaseAccount != null">
+				DATABASE_ACCOUNT = #{databaseAccount,jdbcType=VARCHAR},
+			</if>
+			<if test="databasePassword != null">
+				DATABASE_PASSWORD = #{databasePassword,jdbcType=VARCHAR},
+			</if>
+			<if test="projectPath != null">
+				PROJECT_PATH = #{projectPath,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=CHAR},
+			</if>
+			<if test="packages != null">
+				PACKAGES = #{packages,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where PROJECT_CODE=#{projectCode,jdbcType=INTEGER}
+	</update>
+
+	<update id="editInfo" parameterType="java.util.Map">
+		update TBL_PROJECT_BASIC_INFO
+		<set>
+			<if test="projectNameNew != null">
+				PROJECT_NAME = #{projectNameNew,jdbcType=VARCHAR},
+			</if>
+			<if test="projectEngNew != null">
+				PROJECT_ENG = #{projectEngNew,jdbcType=VARCHAR},
+			</if>
+			<if test="databaseTypeNew != null">
+				DATABASE_TYPE = #{databaseTypeNew,jdbcType=CHAR},
+			</if>
+			<if test="databaseDriverNew != null">
+				DATABASE_DRIVER = #{databaseDriverNew,jdbcType=VARCHAR},
+			</if>
+			<if test="databaseUrlNew != null">
+				DATABASE_URL = #{databaseUrlNew,jdbcType=VARCHAR},
+			</if>
+			<if test="databaseAccountNew != null">
+				DATABASE_ACCOUNT = #{databaseAccountNew,jdbcType=VARCHAR},
+			</if>
+			<if test="databasePasswordNew != null">
+				DATABASE_PASSWORD = #{databasePasswordNew,jdbcType=VARCHAR},
+			</if>
+			<if test="projectPathNew != null">
+				PROJECT_PATH = #{projectPathNew,jdbcType=VARCHAR},
+			</if>
+			<if test="createTimeNew != null">
+				CREATE_TIME = #{createTimeNew,jdbcType=CHAR},
+			</if>
+			<if test="packages != null">
+				PACKAGES = #{packages,jdbcType=VARCHAR},
+			</if>
+		</set>
+		<where>
+			<if test="projectCode != null  and projectCode !='' ">
+				AND PROJECT_CODE = #{projectCode,jdbcType=INTEGER}
+			</if>
+			<if test="projectName != null  and projectName !='' ">
+				AND PROJECT_NAME = #{projectName,jdbcType=VARCHAR}
+			</if>
+			<if test="projectEng != null  and projectEng !='' ">
+				AND PROJECT_ENG = #{projectEng,jdbcType=VARCHAR}
+			</if>
+			<if test="databaseType != null  and databaseType !='' ">
+				AND DATABASE_TYPE = #{databaseType,jdbcType=CHAR}
+			</if>
+			<if test="databaseDriver != null  and databaseDriver !='' ">
+				AND DATABASE_DRIVER = #{databaseDriver,jdbcType=VARCHAR}
+			</if>
+			<if test="databaseUrl != null  and databaseUrl !='' ">
+				AND DATABASE_URL = #{databaseUrl,jdbcType=VARCHAR}
+			</if>
+			<if test="databaseAccount != null  and databaseAccount !='' ">
+				AND DATABASE_ACCOUNT = #{databaseAccount,jdbcType=VARCHAR}
+			</if>
+			<if test="databasePassword != null  and databasePassword !='' ">
+				AND DATABASE_PASSWORD = #{databasePassword,jdbcType=VARCHAR}
+			</if>
+			<if test="projectPath != null  and projectPath !='' ">
+				AND PROJECT_PATH = #{projectPath,jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null  and createTime !='' ">
+				AND CREATE_TIME = #{createTime,jdbcType=CHAR}
+			</if>
+		</where>
+	</update>
+
+	<delete id="del"
+		parameterType="cn.com.gome.framework.dao.entity.TblProjectBasicInfo">
+		delete from TBL_PROJECT_BASIC_INFO
+		<where>
+			<if test="projectCode != null">
+				AND PROJECT_CODE = #{projectCode,jdbcType=INTEGER}
+			</if>
+			<if test="projectName != null">
+				AND PROJECT_NAME = #{projectName,jdbcType=VARCHAR}
+			</if>
+			<if test="projectEng != null">
+				AND PROJECT_ENG = #{projectEng,jdbcType=VARCHAR}
+			</if>
+			<if test="databaseType != null">
+				AND DATABASE_TYPE = #{databaseType,jdbcType=CHAR}
+			</if>
+			<if test="databaseDriver != null">
+				AND DATABASE_DRIVER = #{databaseDriver,jdbcType=VARCHAR}
+			</if>
+			<if test="databaseUrl != null">
+				AND DATABASE_URL = #{databaseUrl,jdbcType=VARCHAR}
+			</if>
+			<if test="databaseAccount != null">
+				AND DATABASE_ACCOUNT =
+				#{databaseAccount,jdbcType=VARCHAR}
+			</if>
+			<if test="databasePassword != null">
+				AND DATABASE_PASSWORD =
+				#{databasePassword,jdbcType=VARCHAR}
+			</if>
+			<if test="projectPath != null">
+				AND PROJECT_PATH = #{projectPath,jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				AND CREATE_TIME = #{createTime,jdbcType=CHAR}
+			</if>
+			<if test="packages != null">
+				AND PACKAGES = #{packages,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</delete>
+
+	<delete id="delList" parameterType="java.util.List">
+		delete from TBL_PROJECT_BASIC_INFO where PROJECT_CODE in (
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			#{item,jdbcType=INTEGER}
+		</foreach>
+		)
+	</delete>
+</mapper>

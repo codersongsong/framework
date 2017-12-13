@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+	<mapper namespace="cn.com.gome.framework.dao.mapper.edit.TblTaskObjectRegisterEditMapper">
+	
+	<insert id="save" parameterType="cn.com.gome.framework.dao.entity.TblTaskObjectRegister">
+		insert into TBL_TASK_OBJECT_REGISTER(
+		REGISTER_NO,OBJECT_TAL,TASK_RUN_SERVER,TASK_RUN_PORT,REGISTER_TIME,OBJECT_STATUS,UP_TIME
+		)
+		values(
+			sys_guid(),
+			#{objectTal,jdbcType=VARCHAR},
+			#{taskRunServer,jdbcType=VARCHAR},
+			#{taskRunPort,jdbcType=INTEGER},
+			#{registerTime,jdbcType=CHAR},
+			#{objectStatus,jdbcType=CHAR},
+			#{upTime,jdbcType=CHAR}
+		)
+	</insert>
+	
+	<update id="edit" parameterType="cn.com.gome.framework.dao.entity.TblTaskObjectRegister" >
+		update TBL_TASK_OBJECT_REGISTER
+		<set>
+			 <if test="objectTal != null">
+		     	OBJECT_TAL = #{objectTal,jdbcType=VARCHAR},
+		     </if>
+			 <if test="taskRunServer != null">
+		     	TASK_RUN_SERVER = #{taskRunServer,jdbcType=VARCHAR},
+		     </if>
+			 <if test="taskRunPort != null">
+		     	TASK_RUN_PORT = #{taskRunPort,jdbcType=INTEGER},
+		     </if>
+			 <if test="registerTime != null">
+		     	REGISTER_TIME = #{registerTime,jdbcType=CHAR},
+		     </if>
+			 <if test="objectStatus != null">
+		     	OBJECT_STATUS = #{objectStatus,jdbcType=CHAR},
+		     </if>
+			 <if test="upTime != null">
+		     	UP_TIME = #{upTime,jdbcType=CHAR},
+		     </if>
+		</set>
+		where REGISTER_NO=#{registerNo,jdbcType=CHAR}
+	</update>
+
+	<update id="editInfo" parameterType="java.util.Map" >
+		update TBL_TASK_OBJECT_REGISTER
+		<set>
+			 <if test="objectTalNew != null">
+		     	OBJECT_TAL = #{objectTalNew,jdbcType=VARCHAR},
+		     </if>
+			 <if test="taskRunServerNew != null">
+		     	TASK_RUN_SERVER = #{taskRunServerNew,jdbcType=VARCHAR},
+		     </if>
+			 <if test="taskRunPortNew != null">
+		     	TASK_RUN_PORT = #{taskRunPortNew,jdbcType=INTEGER},
+		     </if>
+			 <if test="registerTimeNew != null">
+		     	REGISTER_TIME = #{registerTimeNew,jdbcType=CHAR},
+		     </if>
+			 <if test="objectStatusNew != null">
+		     	OBJECT_STATUS = #{objectStatusNew,jdbcType=CHAR},
+		     </if>
+			 <if test="upTimeNew != null">
+		     	UP_TIME = #{upTimeNew,jdbcType=CHAR},
+		     </if>
+		</set>
+		<where>		<if test="registerNo != null  and registerNo !='' ">
+			AND REGISTER_NO = #{registerNo,jdbcType=CHAR}
+		</if>
+		<if test="objectTal != null  and objectTal !='' ">
+			AND OBJECT_TAL = #{objectTal,jdbcType=VARCHAR}
+		</if>
+		<if test="taskRunServer != null  and taskRunServer !='' ">
+			AND TASK_RUN_SERVER = #{taskRunServer,jdbcType=VARCHAR}
+		</if>
+		<if test="taskRunPort != null  and taskRunPort !='' ">
+			AND TASK_RUN_PORT = #{taskRunPort,jdbcType=INTEGER}
+		</if>
+		<if test="registerTime != null  and registerTime !='' ">
+			AND REGISTER_TIME = #{registerTime,jdbcType=CHAR}
+		</if>
+		<if test="objectStatus != null  and objectStatus !='' ">
+			AND OBJECT_STATUS = #{objectStatus,jdbcType=CHAR}
+		</if>
+		<if test="upTime != null  and upTime !='' ">
+			AND UP_TIME = #{upTime,jdbcType=CHAR}
+		</if>
+		</where>
+	</update>
+
+	<delete id="del" parameterType="cn.com.gome.framework.dao.entity.TblTaskObjectRegister">
+		delete from TBL_TASK_OBJECT_REGISTER
+		<where>
+			<if test="registerNo != null">
+				AND REGISTER_NO = #{registerNo,jdbcType=CHAR}
+			 </if>
+			<if test="objectTal != null">
+				AND OBJECT_TAL = #{objectTal,jdbcType=VARCHAR}
+			 </if>
+			<if test="taskRunServer != null">
+				AND TASK_RUN_SERVER = #{taskRunServer,jdbcType=VARCHAR}
+			 </if>
+			<if test="taskRunPort != null">
+				AND TASK_RUN_PORT = #{taskRunPort,jdbcType=INTEGER}
+			 </if>
+			<if test="registerTime != null">
+				AND REGISTER_TIME = #{registerTime,jdbcType=CHAR}
+			 </if>
+			<if test="objectStatus != null">
+				AND OBJECT_STATUS = #{objectStatus,jdbcType=CHAR}
+			 </if>
+			<if test="upTime != null">
+				AND UP_TIME = #{upTime,jdbcType=CHAR}
+			 </if>
+		</where>
+	</delete>	
+
+	<delete id="delList" parameterType="java.util.List">
+		delete from TBL_TASK_OBJECT_REGISTER where REGISTER_NO in (
+			<foreach collection="list" item="item" index="index" separator=",">
+				 #{item,jdbcType=CHAR}
+			</foreach>
+		)
+	</delete>
+</mapper>

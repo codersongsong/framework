@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.gome.framework.dao.mapper.ser.TblBusinessSystemSerMapper">
+	<resultMap id="BaseResultMap" type="cn.com.gome.framework.dao.entity.TblBusinessSystem">
+		<id column="SYS_NO" property="sysNo" jdbcType="INTEGER" />
+		<result column="SYS_NAME" property="sysName" jdbcType="VARCHAR" />
+		<result column="SYS_ENG" property="sysEng" jdbcType="VARCHAR" />
+		<result column="SYS_PERSON" property="sysPerson" jdbcType="VARCHAR" />
+		<result column="PHONE" property="phone" jdbcType="VARCHAR" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="CHAR" />
+		<result column="UP_TIME" property="upTime" jdbcType="CHAR" />
+		<result column="UP_PERSON" property="upPerson" jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="BasePoResultMap" type="cn.com.gome.framework.po.BusinessSystemPo">
+		<id column="SYS_NO" property="sysNo" jdbcType="INTEGER" />
+		<result column="SYS_NAME" property="sysName" jdbcType="VARCHAR" />
+		<result column="SYS_ENG" property="sysEng" jdbcType="VARCHAR" />
+		<result column="SYS_PERSON" property="sysPerson" jdbcType="VARCHAR" />
+		<result column="PHONE" property="phone" jdbcType="VARCHAR" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="CHAR" />
+		<result column="UP_TIME" property="upTime" jdbcType="CHAR" />
+		<result column="UP_PERSON" property="upPerson" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		SYS_NO,SYS_NAME,SYS_ENG,SYS_PERSON,PHONE,CREATE_TIME,UP_TIME,UP_PERSON
+	</sql>
+	<select id="query" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from TBL_BUSINESS_SYSTEM
+		where SYS_NO = #{sysNo,jdbcType=INTEGER}
+	</select>
+	<sql id="comm_where">
+		<where>
+			<if test="sysNo != null ">
+				AND SYS_NO = #{sysNo,jdbcType=INTEGER}
+			</if>
+			<if test="sysName != null ">
+				AND SYS_NAME = #{sysName,jdbcType=VARCHAR}
+			</if>
+			<if test="sysEng != null ">
+				AND SYS_ENG = #{sysEng,jdbcType=VARCHAR}
+			</if>
+			<if test="sysPerson != null ">
+				AND SYS_PERSON = #{sysPerson,jdbcType=VARCHAR}
+			</if>
+			<if test="phone != null ">
+				AND PHONE = #{phone,jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null ">
+				AND CREATE_TIME = #{createTime,jdbcType=CHAR}
+			</if>
+			<if test="upTime != null ">
+				AND UP_TIME = #{upTime,jdbcType=CHAR}
+			</if>
+			<if test="upPerson != null ">
+				AND UP_PERSON = #{upPerson,jdbcType=VARCHAR}
+			</if>
+		</where>
+
+	</sql>
+	<select id="queryObj" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from TBL_BUSINESS_SYSTEM
+		<include refid="comm_where"></include>
+	</select>
+	<select id="queryObjMax" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from TBL_BUSINESS_SYSTEM
+		where SYS_NO = (select max(SYS_NO) from
+		TBL_BUSINESS_SYSTEM)
+	</select>
+
+	<select id="queryPo" resultMap="BasePoResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from TBL_BUSINESS_SYSTEM
+		<include refid="comm_where"></include>
+	</select>
+	<select id="queryList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from TBL_BUSINESS_SYSTEM
+		<include refid="comm_where"></include>
+	</select>
+	
+	<select id="queryUserSysList" resultMap="BaseResultMap"  resultType="java.lang.String">
+		select * from tbl_business_system where sys_no in (
+		select SYS_NO from tbl_sysmenu_info where menu_no in (select parent_no from tbl_sysmenu_info where menu_no in 
+		(select parent_no from tbl_sysmenu_info where menu_no in (select menu_no from tbl_sysmenu_limit where limit_no in 
+		(select limit_no from tbl_sysrole_limit where role_no in (select role_no from tbl_sysuser_role_info where user_no=#{userNo,jdbcType=INTEGER}))))))
+	</select>
+	
+	<sql id="page_where">
+		<where>
+			<if test="f.sysNo != null ">
+				AND SYS_NO = #{f.sysNo,jdbcType=INTEGER}
+			</if>
+			<if test="f.sysName != null ">
+				AND SYS_NAME LIKE CONCAT(CONCAT('%',#{f.sysName,jdbcType=VARCHAR}), '%') 
+			</if>
+			<if test="f.sysEng != null ">
+				AND SYS_ENG LIKE CONCAT(CONCAT('%',#{f.sysEng,jdbcType=VARCHAR}), '%') 
+			</if>
+			<if test="f.sysPerson != null ">
+				AND SYS_PERSON LIKE CONCAT(CONCAT('%',#{f.sysPerson,jdbcType=VARCHAR}), '%') 
+			</if>
+			<if test="f.phone != null ">
+				AND PHONE = #{f.phone,jdbcType=VARCHAR}
+			</if>
+			<if test="f.createTime != null ">
+				AND CREATE_TIME = #{f.createTime,jdbcType=CHAR}
+			</if>
+			<if test="f.upTime != null ">
+				AND UP_TIME = #{f.upTime,jdbcType=CHAR}
+			</if>
+			<if test="f.upPerson != null ">
+				AND UP_PERSON = #{f.upPerson,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</sql>
+	<select id="queryPageListCount" resultType="java.lang.Integer">
+		select count(1) from TBL_BUSINESS_SYSTEM
+		<include refid="page_where"></include>
+	</select>
+	<select id="queryPageList" resultMap="BaseResultMap">
+        <![CDATA[ select * from ( select interTable.*,rownum rn from ( ]]>
+		select
+		AA.SYS_NO,AA.SYS_NAME,AA.SYS_ENG,AA.SYS_PERSON,AA.PHONE,AA.CREATE_TIME,AA.UP_TIME,AA.UP_PERSON
+		from TBL_BUSINESS_SYSTEM AA
+		<include refid="page_where"></include>
+		) interTable where 
+	    <![CDATA[ rownum <= #{limit}+#{offset} ]]>
+		) outerTable where 
+	    <![CDATA[ outerTable.rn > #{limit} ]]>
+	</select>
+	<select id="queryPageVoList" resultMap="BasePoResultMap">
+        <![CDATA[ select * from ( select interTable.*,rownum rn from ( ]]>
+		select
+		AA.SYS_NO,AA.SYS_NAME,AA.SYS_ENG,AA.SYS_PERSON,AA.PHONE,AA.CREATE_TIME,AA.UP_TIME,AA.UP_PERSON
+		from TBL_BUSINESS_SYSTEM AA
+		<include refid="page_where"></include>
+		) interTable where 
+	    <![CDATA[ rownum <= #{limit}+#{offset} ]]>
+		) outerTable where 
+	    <![CDATA[ outerTable.rn > #{limit} ]]>
+	</select>
+</mapper>

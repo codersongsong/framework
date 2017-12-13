@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.gome.framework.dao.mapper.ser.TblInterfaceInfoSerMapper">
+	<resultMap id="BaseResultMap"
+		type="cn.com.gome.framework.dao.entity.TblInterfaceInfo">
+		<id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="DUBBO_ID" property="dubboId" jdbcType="VARCHAR" />
+		<result column="CLASS_NAME" property="className" jdbcType="VARCHAR" />
+		<result column="REQUEST_TYPE" property="requestType" jdbcType="VARCHAR" />
+		<result column="PARAMNAME" property="paramname" jdbcType="VARCHAR" />
+		<result column="PARAMNAME_CN" property="paramnameCn" jdbcType="VARCHAR" />
+		<result column="PARAMTYPE" property="paramtype" jdbcType="VARCHAR" />
+		<result column="IS_REQUIRE" property="isRequire" jdbcType="VARCHAR" />
+		<result column="IS_PRINT" property="isPrint" jdbcType="VARCHAR" />
+		<result column="IS_LENGTH" property="isLength" jdbcType="VARCHAR" />
+		<result column="REGEX" property="regex" jdbcType="VARCHAR" />
+		<result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+		<result column="UPDATE_TIME" property="updateTime" jdbcType="CHAR" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="CHAR" />
+	</resultMap>
+	<resultMap id="BasePoResultMap"
+		type="cn.com.gome.framework.vo.InterfaceInfoVo">
+		<id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="DUBBO_ID" property="dubboId" jdbcType="VARCHAR" />
+		<result column="CLASS_NAME" property="className" jdbcType="VARCHAR" />
+		<result column="REQUEST_TYPE" property="requestType" jdbcType="VARCHAR" />
+		<result column="PARAMNAME" property="paramname" jdbcType="VARCHAR" />
+		<result column="PARAMNAME_CN" property="paramnameCn" jdbcType="VARCHAR" />
+		<result column="PARAMTYPE" property="paramtype" jdbcType="VARCHAR" />
+		<result column="IS_REQUIRE" property="isRequire" jdbcType="VARCHAR" />
+		<result column="IS_PRINT" property="isPrint" jdbcType="VARCHAR" />
+		<result column="IS_LENGTH" property="isLength" jdbcType="VARCHAR" />
+		<result column="REGEX" property="regex" jdbcType="VARCHAR" />
+		<result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+		<result column="UPDATE_TIME" property="updateTime" jdbcType="CHAR" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="CHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+	ID,DUBBO_ID,CLASS_NAME,REQUEST_TYPE,PARAMNAME,PARAMNAME_CN,PARAMTYPE,IS_REQUIRE,IS_PRINT,IS_LENGTH,REGEX,DESCRIPTION,UPDATE_TIME,CREATE_TIME
+	</sql>
+	<select id="query" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from TBL_INTERFACE_INFO
+		where ID = #{id,jdbcType=VARCHAR}
+	</select>
+	<sql id="comm_where">		<where>		<if test="id != null and id !='' ">
+			AND ID = #{id,jdbcType=VARCHAR}
+		</if>
+		<if test="dubboId != null and dubboId !='' ">
+			AND DUBBO_ID = #{dubboId,jdbcType=VARCHAR}
+		</if>
+		<if test="className != null and className !='' ">
+			AND CLASS_NAME = #{className,jdbcType=VARCHAR}
+		</if>
+		<if test="requestType != null and requestType !='' ">
+			AND REQUEST_TYPE = #{requestType,jdbcType=VARCHAR}
+		</if>
+		<if test="paramname != null and paramname !='' ">
+			AND PARAMNAME = #{paramname,jdbcType=VARCHAR}
+		</if>
+		<if test="paramnameCn != null and paramnameCn !='' ">
+			AND PARAMNAME_CN = #{paramnameCn,jdbcType=VARCHAR}
+		</if>
+		<if test="paramtype != null and paramtype !='' ">
+			AND PARAMTYPE = #{paramtype,jdbcType=VARCHAR}
+		</if>
+		<if test="isRequire != null and isRequire !='' ">
+			AND IS_REQUIRE = #{isRequire,jdbcType=VARCHAR}
+		</if>
+		<if test="isPrint != null and isPrint !='' ">
+			AND IS_PRINT = #{isPrint,jdbcType=VARCHAR}
+		</if>
+		<if test="isLength != null and isLength !='' ">
+			AND IS_LENGTH = #{isLength,jdbcType=VARCHAR}
+		</if>
+		<if test="regex != null and regex !='' ">
+			AND REGEX = #{regex,jdbcType=VARCHAR}
+		</if>
+		<if test="description != null and description !='' ">
+			AND DESCRIPTION = #{description,jdbcType=VARCHAR}
+		</if>
+		<if test="updateTime != null and updateTime !='' ">
+			AND UPDATE_TIME = #{updateTime,jdbcType=CHAR}
+		</if>
+		<if test="createTime != null and createTime !='' ">
+			AND CREATE_TIME = #{createTime,jdbcType=CHAR}
+		</if>
+		</where>
+
+	</sql>
+	<select id="queryObj" resultMap="BaseResultMap" parameterType="cn.com.gome.framework.dao.entity.TblInterfaceInfo">
+		select
+		<include refid="Base_Column_List" />
+		from TBL_INTERFACE_INFO
+		<include refid="comm_where"></include>
+	</select>
+	<select id="queryVo" resultMap="BasePoResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from TBL_INTERFACE_INFO
+		<include refid="comm_where"></include>
+	</select>
+	<select id="queryList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from TBL_INTERFACE_INFO
+		<include refid="comm_where"></include>
+	</select>
+	<sql id="page_where">		<where>		<if test="f.id != null  and f.id !=''  ">
+			AND ID = #{f.id,jdbcType=VARCHAR}
+		</if>
+		<if test="f.dubboId != null  and f.dubboId !=''  ">
+			AND DUBBO_ID = #{f.dubboId,jdbcType=VARCHAR}
+		</if>
+		<if test="f.className != null  and f.className !=''  ">
+			AND CLASS_NAME = #{f.className,jdbcType=VARCHAR}
+		</if>
+		<if test="f.requestType != null  and f.requestType !=''  ">
+			AND REQUEST_TYPE = #{f.requestType,jdbcType=VARCHAR}
+		</if>
+		<if test="f.paramname != null  and f.paramname !=''  ">
+			AND PARAMNAME = #{f.paramname,jdbcType=VARCHAR}
+		</if>
+		<if test="f.paramnameCn != null  and f.paramnameCn !=''  ">
+			AND PARAMNAME_CN = #{f.paramnameCn,jdbcType=VARCHAR}
+		</if>
+		<if test="f.paramtype != null  and f.paramtype !=''  ">
+			AND PARAMTYPE = #{f.paramtype,jdbcType=VARCHAR}
+		</if>
+		<if test="f.isRequire != null  and f.isRequire !=''  ">
+			AND IS_REQUIRE = #{f.isRequire,jdbcType=VARCHAR}
+		</if>
+		<if test="f.isPrint != null  and f.isPrint !=''  ">
+			AND IS_PRINT = #{f.isPrint,jdbcType=VARCHAR}
+		</if>
+		<if test="f.isLength != null  and f.isLength !=''  ">
+			AND IS_LENGTH = #{f.isLength,jdbcType=VARCHAR}
+		</if>
+		<if test="f.regex != null  and f.regex !=''  ">
+			AND REGEX = #{f.regex,jdbcType=VARCHAR}
+		</if>
+		<if test="f.description != null  and f.description !=''  ">
+			AND DESCRIPTION = #{f.description,jdbcType=VARCHAR}
+		</if>
+		<if test="f.updateTime != null  and f.updateTime !=''  ">
+			AND UPDATE_TIME = #{f.updateTime,jdbcType=CHAR}
+		</if>
+		<if test="f.createTime != null  and f.createTime !=''  ">
+			AND CREATE_TIME = #{f.createTime,jdbcType=CHAR}
+		</if>
+		</where>
+	</sql>
+	<select id="queryPageListCount" resultType="java.lang.Integer">
+		select count(1) from TBL_INTERFACE_INFO
+		<include refid="page_where"></include>
+	</select>
+	<select id="queryPageList" resultMap="BaseResultMap">
+        <![CDATA[ select * from ( select interTable.*,rownum rn from ( ]]>
+		select
+		AA.ID,AA.DUBBO_ID,AA.CLASS_NAME,AA.REQUEST_TYPE,AA.PARAMNAME,AA.PARAMNAME_CN,AA.PARAMTYPE,AA.IS_REQUIRE,AA.IS_PRINT,AA.IS_LENGTH,AA.REGEX,AA.DESCRIPTION,AA.UPDATE_TIME,AA.CREATE_TIME
+		from TBL_INTERFACE_INFO AA 
+		<include refid="page_where"></include>
+			) interTable where 
+	    <![CDATA[ rownum <= #{limit}+#{offset} ]]>
+			) outerTable where 
+	    <![CDATA[ outerTable.rn > #{limit} ]]>
+	</select>
+	<select id="queryPageVoList" resultMap="BasePoResultMap">
+        <![CDATA[ select * from ( select interTable.*,rownum rn from ( ]]>
+		select
+		AA.ID,AA.DUBBO_ID,AA.CLASS_NAME,AA.REQUEST_TYPE,AA.PARAMNAME,AA.PARAMNAME_CN,AA.PARAMTYPE,AA.IS_REQUIRE,AA.IS_PRINT,AA.IS_LENGTH,AA.REGEX,AA.DESCRIPTION,AA.UPDATE_TIME,AA.CREATE_TIME
+		from TBL_INTERFACE_INFO AA 
+		<include refid="page_where"></include>
+			) interTable where 
+	    <![CDATA[ rownum <= #{limit}+#{offset} ]]>
+			) outerTable where 
+	    <![CDATA[ outerTable.rn > #{limit} ]]>
+	</select>
+</mapper>

@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.com.gome.framework.dao.mapper.ser.TblTaskConfigInfoSerMapper">
+	<resultMap id="BaseResultMap"
+		type="cn.com.gome.framework.dao.entity.TblTaskConfigInfo">
+		<id column="TASK_NO" property="taskNo" jdbcType="CHAR" />
+		<result column="SYS_NO" property="sysNo" jdbcType="INTEGER" />
+		<result column="TASK_NAME" property="taskName" jdbcType="VARCHAR" />
+		<result column="RUN_RULE" property="runRule" jdbcType="VARCHAR" />
+		<result column="BUSINESS_OBJ_NAME" property="businessObjName" jdbcType="VARCHAR" />
+		<result column="TASK_COUNT" property="taskCount" jdbcType="INTEGER" />
+		<result column="TASK_LIMIT_COUNT" property="onetaskLimitCount" jdbcType="INTEGER" />
+		<result column="FULL_TASK_COUNT" property="fullTaskCount" jdbcType="INTEGER" />
+		<result column="BUSINESS_INFO" property="businessInfo" jdbcType="VARCHAR" />
+		<result column="GROUP_TAL" property="groupTal" jdbcType="VARCHAR" />
+		<result column="TASK_RUN_TEMPLATE" property="taskRunTemplate" jdbcType="CHAR" />
+		<result column="STATUS" property="status" jdbcType="INTEGER" />
+		<result column="CONFIG_TIME" property="configTime" jdbcType="CHAR" />
+		<result column="UP_PERSON" property="upPerson" jdbcType="VARCHAR" />
+		<result column="UP_TIME" property="upTime" jdbcType="CHAR" />
+		<result column="ESTIMATE_OBJ_COUNT" property="estimateObjCount" jdbcType="INTEGER" />
+	</resultMap>
+	<resultMap id="BasePoResultMap"
+		type="cn.com.gome.framework.po.TaskConfigInfoPo">
+		<id column="TASK_NO" property="taskNo" jdbcType="CHAR" />
+		<result column="SYS_NO" property="sysNo" jdbcType="INTEGER" />
+		<result column="TASK_NAME" property="taskName" jdbcType="VARCHAR" />
+		<result column="RUN_RULE" property="runRule" jdbcType="VARCHAR" />
+		<result column="BUSINESS_OBJ_NAME" property="businessObjName" jdbcType="VARCHAR" />
+		<result column="TASK_COUNT" property="taskCount" jdbcType="INTEGER" />
+		<result column="TASK_LIMIT_COUNT" property="onetaskLimitCount" jdbcType="INTEGER" />
+		<result column="FULL_TASK_COUNT" property="fullTaskCount" jdbcType="INTEGER" />
+		<result column="BUSINESS_INFO" property="businessInfo" jdbcType="VARCHAR" />
+		<result column="GROUP_TAL" property="groupTal" jdbcType="VARCHAR" />
+		<result column="TASK_RUN_TEMPLATE" property="taskRunTemplate" jdbcType="CHAR" />
+		<result column="STATUS" property="status" jdbcType="INTEGER" />
+		<result column="CONFIG_TIME" property="configTime" jdbcType="CHAR" />
+		<result column="UP_PERSON" property="upPerson" jdbcType="VARCHAR" />
+		<result column="UP_TIME" property="upTime" jdbcType="CHAR" />
+		<result column="ESTIMATE_OBJ_COUNT" property="estimateObjCount" jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="Base_Column_List">
+	TASK_NO,SYS_NO,TASK_NAME,RUN_RULE,BUSINESS_OBJ_NAME,TASK_COUNT,TASK_LIMIT_COUNT,FULL_TASK_COUNT,
+	BUSINESS_INFO,GROUP_TAL,TASK_RUN_TEMPLATE,STATUS,CONFIG_TIME,UP_PERSON,UP_TIME,ESTIMATE_OBJ_COUNT
+	</sql>
+	<select id="query" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from TBL_TASK_CONFIG_INFO
+		where TASK_NO = #{taskNo,jdbcType=CHAR}
+	</select>
+	<sql id="comm_where">		<where>		<if test="taskNo != null ">
+			AND TASK_NO = #{taskNo,jdbcType=CHAR}
+		</if>
+		<if test="sysNo != null ">
+			AND SYS_NO = #{sysNo,jdbcType=INTEGER}
+		</if>
+		<if test="taskName != null ">
+			AND TASK_NAME = #{taskName,jdbcType=VARCHAR}
+		</if>
+		<if test="runRule != null ">
+			AND RUN_RULE = #{runRule,jdbcType=VARCHAR}
+		</if>
+		<if test="businessObjName != null ">
+			AND BUSINESS_OBJ_NAME = #{businessObjName,jdbcType=VARCHAR}
+		</if>
+		<if test="taskCount != null ">
+			AND TASK_COUNT = #{taskCount,jdbcType=INTEGER}
+		</if>
+		<if test="onetaskLimitCount != null ">
+			AND TASK_LIMIT_COUNT = #{onetaskLimitCount,jdbcType=INTEGER}
+		</if>
+		<if test="fullTaskCount != null ">
+			AND FULL_TASK_COUNT = #{fullTaskCount,jdbcType=INTEGER}
+		</if>
+		<if test="businessInfo != null ">
+			AND BUSINESS_INFO = #{businessInfo,jdbcType=VARCHAR}
+		</if>
+		<if test="groupTal != null ">
+			AND GROUP_TAL = #{groupTal,jdbcType=VARCHAR}
+		</if>
+		<if test="taskRunTemplate != null ">
+			AND TASK_RUN_TEMPLATE = #{taskRunTemplate,jdbcType=CHAR}
+		</if>
+		<if test="status != null ">
+			AND STATUS = #{status,jdbcType=INTEGER}
+		</if>
+		<if test="configTime != null ">
+			AND CONFIG_TIME = #{configTime,jdbcType=CHAR}
+		</if>
+		<if test="upPerson != null ">
+			AND UP_PERSON = #{upPerson,jdbcType=VARCHAR}
+		</if>
+		<if test="upTime != null ">
+			AND UP_TIME = #{upTime,jdbcType=CHAR}
+		</if>
+		</where>
+
+	</sql>
+	<select id="queryObj" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from TBL_TASK_CONFIG_INFO
+		<include refid="comm_where"></include>
+	</select>
+	<select id="queryPo" resultMap="BasePoResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from TBL_TASK_CONFIG_INFO
+		<include refid="comm_where"></include>
+	</select>
+	<select id="queryList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from TBL_TASK_CONFIG_INFO
+		<include refid="comm_where"></include>
+	</select>
+	
+	<select id="queryGlobalUnicityList" resultMap="BaseResultMap">
+		 select a.* from tbl_task_config_info a left join tbl_task_running_log b
+		 on a.task_no=b.task_no
+		 where a.full_task_count=1 and a.status=1 and b.ddl_status='010' and b.run_no is null
+	</select>
+	
+	<sql id="page_where">		<where>		<if test="f.taskNo != null ">
+			AND TASK_NO = #{f.taskNo,jdbcType=CHAR}
+		</if>
+		<if test="f.sysNo != null ">
+			AND SYS_NO = #{f.sysNo,jdbcType=INTEGER}
+		</if>
+		<if test="f.taskName != null ">
+			AND TASK_NAME = #{f.taskName,jdbcType=VARCHAR}
+		</if>
+		<if test="f.runRule != null ">
+			AND RUN_RULE = #{f.runRule,jdbcType=VARCHAR}
+		</if>
+		<if test="f.businessObjName != null ">
+			AND BUSINESS_OBJ_NAME = #{f.businessObjName,jdbcType=VARCHAR}
+		</if>
+		<if test="f.taskCount != null ">
+			AND TASK_COUNT = #{f.taskCount,jdbcType=INTEGER}
+		</if>
+		<if test="f.onetaskLimitCount != null ">
+			AND TASK_LIMIT_COUNT = #{f.onetaskLimitCount,jdbcType=INTEGER}
+		</if>
+		<if test="f.fullTaskCount != null ">
+			AND FULL_TASK_COUNT = #{f.fullTaskCount,jdbcType=INTEGER}
+		</if>
+		<if test="f.businessInfo != null ">
+			AND BUSINESS_INFO = #{f.businessInfo,jdbcType=VARCHAR}
+		</if>
+		<if test="f.groupTal != null ">
+			AND GROUP_TAL = #{f.groupTal,jdbcType=VARCHAR}
+		</if>
+		<if test="f.taskRunTemplate != null ">
+			AND TASK_RUN_TEMPLATE = #{f.taskRunTemplate,jdbcType=CHAR}
+		</if>
+		<if test="f.status != null ">
+			AND STATUS = #{f.status,jdbcType=INTEGER}
+		</if>
+		<if test="f.configTime != null ">
+			AND CONFIG_TIME = #{f.configTime,jdbcType=CHAR}
+		</if>
+		<if test="f.upPerson != null ">
+			AND UP_PERSON = #{f.upPerson,jdbcType=VARCHAR}
+		</if>
+		<if test="f.upTime != null ">
+			AND UP_TIME = #{f.upTime,jdbcType=CHAR}
+		</if>
+		</where>
+	</sql>
+	<select id="queryPageListCount" resultType="java.lang.Integer">
+		select count(1) from TBL_TASK_CONFIG_INFO
+		<include refid="page_where"></include>
+	</select>
+	<select id="queryPageList" resultMap="BaseResultMap">
+        <![CDATA[ select * from ( select interTable.*,rownum rn from ( ]]>
+		select
+		AA.TASK_NO,AA.SYS_NO,AA.TASK_NAME,AA.RUN_RULE,AA.BUSINESS_OBJ_NAME,AA.TASK_COUNT,AA.TASK_LIMIT_COUNT,AA.FULL_TASK_COUNT,
+		AA.BUSINESS_INFO,AA.GROUP_TAL,AA.TASK_RUN_TEMPLATE,AA.STATUS,AA.CONFIG_TIME,AA.UP_PERSON,AA.UP_TIME,AA.ESTIMATE_OBJ_COUNT
+		from TBL_TASK_CONFIG_INFO AA 
+		<include refid="page_where"></include>
+			) interTable where 
+	    <![CDATA[ rownum <= #{limit}+#{offset} ]]>
+			) outerTable where 
+	    <![CDATA[ outerTable.rn > #{limit} ]]>
+	</select>
+	<select id="queryPageVoList" resultMap="BasePoResultMap">
+        <![CDATA[ select * from ( select interTable.*,rownum rn from ( ]]>
+		select
+		AA.TASK_NO,AA.SYS_NO,AA.TASK_NAME,AA.RUN_RULE,AA.BUSINESS_OBJ_NAME,AA.TASK_COUNT,AA.TASK_LIMIT_COUNT,AA.FULL_TASK_COUNT,
+		AA.BUSINESS_INFO,AA.GROUP_TAL,AA.TASK_RUN_TEMPLATE,AA.STATUS,AA.CONFIG_TIME,AA.UP_PERSON,AA.UP_TIME,AA.ESTIMATE_OBJ_COUNT
+		from TBL_TASK_CONFIG_INFO AA 
+		<include refid="page_where"></include>
+			) interTable where 
+	    <![CDATA[ rownum <= #{limit}+#{offset} ]]>
+			) outerTable where 
+	    <![CDATA[ outerTable.rn > #{limit} ]]>
+	</select>
+</mapper>

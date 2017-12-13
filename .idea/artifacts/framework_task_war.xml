@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="framework-task:war">
+    <output-path>$PROJECT_DIR$/framework-task/target</output-path>
+    <root id="archive" name="framework-task.war">
+      <element id="artifact" artifact-name="framework-task:war exploded" />
+    </root>
+  </artifact>
+</component>

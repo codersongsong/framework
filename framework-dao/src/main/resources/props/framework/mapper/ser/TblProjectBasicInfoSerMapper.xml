@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="cn.com.gome.framework.dao.mapper.ser.TblProjectBasicInfoSerMapper">
+	<resultMap id="BaseResultMap"
+		type="cn.com.gome.framework.dao.entity.TblProjectBasicInfo">
+		<id column="PROJECT_CODE" property="projectCode" jdbcType="INTEGER" />
+		<result column="PROJECT_NAME" property="projectName" jdbcType="VARCHAR" />
+		<result column="PROJECT_ENG" property="projectEng" jdbcType="VARCHAR" />
+		<result column="DATABASE_TYPE" property="databaseType"
+			jdbcType="CHAR" />
+		<result column="DATABASE_DRIVER" property="databaseDriver"
+			jdbcType="VARCHAR" />
+		<result column="DATABASE_URL" property="databaseUrl" jdbcType="VARCHAR" />
+		<result column="DATABASE_ACCOUNT" property="databaseAccount"
+			jdbcType="VARCHAR" />
+		<result column="DATABASE_PASSWORD" property="databasePassword"
+			jdbcType="VARCHAR" />
+		<result column="PROJECT_PATH" property="projectPath" jdbcType="VARCHAR" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="CHAR" />
+		<result column="PACKAGES" property="packages" jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="BasePoResultMap" type="cn.com.gome.framework.po.ProjectBasicInfoPo">
+		<id column="PROJECT_CODE" property="projectCode" jdbcType="INTEGER" />
+		<result column="PROJECT_NAME" property="projectName" jdbcType="VARCHAR" />
+		<result column="PROJECT_ENG" property="projectEng" jdbcType="VARCHAR" />
+		<result column="DATABASE_TYPE" property="databaseType"
+			jdbcType="CHAR" />
+		<result column="DATABASE_DRIVER" property="databaseDriver"
+			jdbcType="VARCHAR" />
+		<result column="DATABASE_URL" property="databaseUrl" jdbcType="VARCHAR" />
+		<result column="DATABASE_ACCOUNT" property="databaseAccount"
+			jdbcType="VARCHAR" />
+		<result column="DATABASE_PASSWORD" property="databasePassword"
+			jdbcType="VARCHAR" />
+		<result column="PROJECT_PATH" property="projectPath" jdbcType="VARCHAR" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="CHAR" />
+		<result column="PACKAGES" property="packages" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		PROJECT_CODE,PROJECT_NAME,PROJECT_ENG,DATABASE_TYPE,DATABASE_DRIVER,DATABASE_URL,DATABASE_ACCOUNT,DATABASE_PASSWORD,PROJECT_PATH,CREATE_TIME,PACKAGES
+	</sql>
+	<select id="query" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from TBL_PROJECT_BASIC_INFO
+		where PROJECT_CODE =
+		#{projectCode,jdbcType=INTEGER}
+	</select>
+	<sql id="comm_where">
+		<where>
+			<if test="projectCode != null ">
+				AND PROJECT_CODE = #{projectCode,jdbcType=INTEGER}
+			</if>
+			<if test="projectName != null ">
+				AND PROJECT_NAME = #{projectName,jdbcType=VARCHAR}
+			</if>
+			<if test="projectEng != null ">
+				AND PROJECT_ENG = #{projectEng,jdbcType=VARCHAR}
+			</if>
+			<if test="databaseType != null ">
+				AND DATABASE_TYPE = #{databaseType,jdbcType=CHAR}
+			</if>
+			<if test="databaseDriver != null ">
+				AND DATABASE_DRIVER = #{databaseDriver,jdbcType=VARCHAR}
+			</if>
+			<if test="databaseUrl != null ">
+				AND DATABASE_URL = #{databaseUrl,jdbcType=VARCHAR}
+			</if>
+			<if test="databaseAccount != null ">
+				AND DATABASE_ACCOUNT =
+				#{databaseAccount,jdbcType=VARCHAR}
+			</if>
+			<if test="databasePassword != null ">
+				AND DATABASE_PASSWORD =
+				#{databasePassword,jdbcType=VARCHAR}
+			</if>
+			<if test="projectPath != null ">
+				AND PROJECT_PATH = #{projectPath,jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null ">
+				AND CREATE_TIME = #{createTime,jdbcType=CHAR}
+			</if>
+		</where>
+
+	</sql>
+	<select id="queryObj" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from TBL_PROJECT_BASIC_INFO
+		<include refid="comm_where"></include>
+	</select>
+	<select id="queryPo" resultMap="BasePoResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from TBL_PROJECT_BASIC_INFO
+		<include refid="comm_where"></include>
+	</select>
+	<select id="queryList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from TBL_PROJECT_BASIC_INFO
+		<include refid="comm_where"></include>
+	</select>
+	<sql id="page_where">
+		<where>
+			<if test="f.projectCode != null ">
+				AND PROJECT_CODE = #{f.projectCode,jdbcType=INTEGER}
+			</if>
+			<if test="f.projectName != null ">
+				AND PROJECT_NAME LIKE CONCAT(CONCAT('%',#{f.f.projectName,jdbcType=VARCHAR}), '%') 
+			</if>
+			<if test="f.projectEng != null ">
+				AND PROJECT_ENG = #{f.projectEng,jdbcType=VARCHAR}
+			</if>
+			<if test="f.databaseType != null ">
+				AND DATABASE_TYPE = #{f.databaseType,jdbcType=CHAR}
+			</if>
+			<if test="f.databaseDriver != null ">
+				AND DATABASE_DRIVER =
+				#{f.databaseDriver,jdbcType=VARCHAR}
+			</if>
+			<if test="f.databaseUrl != null ">
+				AND DATABASE_URL = #{f.databaseUrl,jdbcType=VARCHAR}
+			</if>
+			<if test="f.databaseAccount != null ">
+				AND DATABASE_ACCOUNT =
+				#{f.databaseAccount,jdbcType=VARCHAR}
+			</if>
+			<if test="f.databasePassword != null ">
+				AND DATABASE_PASSWORD =
+				#{f.databasePassword,jdbcType=VARCHAR}
+			</if>
+			<if test="f.projectPath != null ">
+				AND PROJECT_PATH = #{f.projectPath,jdbcType=VARCHAR}
+			</if>
+			<if test="f.createTime != null ">
+				AND CREATE_TIME = #{f.createTime,jdbcType=CHAR}
+			</if>
+		</where>
+	</sql>
+	<select id="queryPageListCount" resultType="java.lang.Integer">
+		select count(1) from TBL_PROJECT_BASIC_INFO
+		<include refid="page_where"></include>
+	</select>
+	<select id="queryPageList" resultMap="BaseResultMap">
+        <![CDATA[ select * from ( select interTable.*,rownum rn from ( ]]>
+		select
+		AA.PROJECT_CODE,AA.PROJECT_NAME,AA.PROJECT_ENG,AA.DATABASE_TYPE,AA.DATABASE_DRIVER,AA.DATABASE_URL,AA.DATABASE_ACCOUNT,AA.DATABASE_PASSWORD,AA.PROJECT_PATH,AA.CREATE_TIME,AA.PACKAGES
+		from TBL_PROJECT_BASIC_INFO AA
+		<include refid="page_where"></include>
+		) interTable where 
+	    <![CDATA[ rownum <= #{limit}+#{offset} ]]>
+		) outerTable where 
+	    <![CDATA[ outerTable.rn > #{limit} ]]>
+	</select>
+	<select id="queryPageVoList" resultMap="BasePoResultMap">
+        <![CDATA[ select * from ( select interTable.*,rownum rn from ( ]]>
+		select
+		AA.PROJECT_CODE,AA.PROJECT_NAME,AA.PROJECT_ENG,AA.DATABASE_TYPE,AA.DATABASE_DRIVER,AA.DATABASE_URL,AA.DATABASE_ACCOUNT,AA.DATABASE_PASSWORD,AA.PROJECT_PATH,AA.CREATE_TIME,AA.PACKAGES
+		from TBL_PROJECT_BASIC_INFO AA
+		<include refid="page_where"></include>
+		) interTable where 
+	    <![CDATA[ rownum <= #{limit}+#{offset} ]]>
+		) outerTable where 
+	    <![CDATA[ outerTable.rn > #{limit} ]]>
+	</select>
+</mapper>

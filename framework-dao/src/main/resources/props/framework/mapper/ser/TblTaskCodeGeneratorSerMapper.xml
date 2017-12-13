@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="cn.com.gome.framework.dao.mapper.ser.TblTaskCodeGeneratorSerMapper">
+	<resultMap id="BaseResultMap"
+		type="cn.com.gome.framework.dao.entity.TblTaskCodeGenerator">
+		<id column="TABLE_NUMBERS" property="tableNumbers" jdbcType="INTEGER" />
+		<result column="CHILD_PROJECT_CODE" property="childProjectCode"
+			jdbcType="INTEGER" />
+		<result column="TABLE_CHAN" property="tableChan" jdbcType="VARCHAR" />
+		<result column="TABLE_ENG" property="tableEng" jdbcType="VARCHAR" />
+		<result column="LOCK_FLG" property="lockFlg" jdbcType="VARCHAR" />
+		<result column="LOCK_TM" property="lockTm" jdbcType="VARCHAR" />
+		<result column="RUN_COUNTS" property="runCounts" jdbcType="VARCHAR" />
+		<result column="TABLE_KEY" property="tableKey" jdbcType="VARCHAR" />
+		<result column="TASK_ASK" property="taskAsk" jdbcType="VARCHAR" />
+		<result column="TASK_CLASS_NAME" property="taskClassName"
+			jdbcType="VARCHAR" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="CHAR" />
+	</resultMap>
+	<resultMap id="BasePoResultMap" type="cn.com.gome.framework.po.TaskCodeGeneratorPo">
+		<id column="TABLE_NUMBERS" property="tableNumbers" jdbcType="INTEGER" />
+		<result column="CHILD_PROJECT_CODE" property="childProjectCode"
+			jdbcType="INTEGER" />
+		<result column="TABLE_CHAN" property="tableChan" jdbcType="VARCHAR" />
+		<result column="TABLE_ENG" property="tableEng" jdbcType="VARCHAR" />
+		<result column="LOCK_FLG" property="lockFlg" jdbcType="VARCHAR" />
+		<result column="LOCK_TM" property="lockTm" jdbcType="VARCHAR" />
+		<result column="RUN_COUNTS" property="runCounts" jdbcType="VARCHAR" />
+		<result column="TABLE_KEY" property="tableKey" jdbcType="VARCHAR" />
+		<result column="TASK_ASK" property="taskAsk" jdbcType="VARCHAR" />
+		<result column="TASK_CLASS_NAME" property="taskClassName"
+			jdbcType="VARCHAR" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="CHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		TABLE_NUMBERS,CHILD_PROJECT_CODE,TABLE_CHAN,TABLE_ENG,LOCK_FLG,LOCK_TM,RUN_COUNTS,TABLE_KEY,TASK_ASK,TASK_CLASS_NAME,CREATE_TIME
+	</sql>
+	<select id="query" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from TBL_TASK_CODE_GENERATOR
+		where TABLE_NUMBERS =
+		#{tableNumbers,jdbcType=INTEGER}
+	</select>
+	<sql id="comm_where">
+		<where>
+			<if test="tableNumbers != null ">
+				AND TABLE_NUMBERS = #{tableNumbers,jdbcType=INTEGER}
+			</if>
+			<if test="childProjectCode != null ">
+				AND CHILD_PROJECT_CODE = #{childProjectCode,jdbcType=INTEGER}
+			</if>
+			<if test="tableChan != null ">
+				AND TABLE_CHAN = #{tableChan,jdbcType=VARCHAR}
+			</if>
+			<if test="tableEng != null ">
+				AND TABLE_ENG = #{tableEng,jdbcType=VARCHAR}
+			</if>
+			<if test="lockFlg != null ">
+				AND LOCK_FLG = #{lockFlg,jdbcType=VARCHAR}
+			</if>
+			<if test="lockTm != null ">
+				AND LOCK_TM = #{lockTm,jdbcType=VARCHAR}
+			</if>
+			<if test="runCounts != null ">
+				AND RUN_COUNTS = #{runCounts,jdbcType=VARCHAR}
+			</if>
+			<if test="tableKey != null ">
+				AND TABLE_KEY = #{tableKey,jdbcType=VARCHAR}
+			</if>
+			<if test="taskAsk != null ">
+				AND TASK_ASK = #{taskAsk,jdbcType=VARCHAR}
+			</if>
+			<if test="taskClassName != null ">
+				AND TASK_CLASS_NAME = #{taskClassName,jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null ">
+				AND CREATE_TIME = #{createTime,jdbcType=CHAR}
+			</if>
+		</where>
+
+	</sql>
+	<select id="queryObj" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from TBL_TASK_CODE_GENERATOR
+		<include refid="comm_where"></include>
+	</select>
+	<select id="queryPo" resultMap="BasePoResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from TBL_TASK_CODE_GENERATOR
+		<include refid="comm_where"></include>
+	</select>
+	<select id="queryList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from TBL_TASK_CODE_GENERATOR
+		<include refid="comm_where"></include>
+	</select>
+	<sql id="page_where">
+		<where>
+			<if test="f.tableNumbers != null ">
+				AND TABLE_NUMBERS = #{f.tableNumbers,jdbcType=INTEGER}
+			</if>
+			<if test="f.childProjectCode != null ">
+				AND CHILD_PROJECT_CODE = #{f.childProjectCode,jdbcType=INTEGER}
+			</if>
+			<if test="f.tableChan != null ">
+				AND TABLE_CHAN = #{f.tableChan,jdbcType=VARCHAR}
+			</if>
+			<if test="f.tableEng != null ">
+				AND TABLE_ENG = #{f.tableEng,jdbcType=VARCHAR}
+			</if>
+			<if test="f.lockFlg != null ">
+				AND LOCK_FLG = #{f.lockFlg,jdbcType=VARCHAR}
+			</if>
+			<if test="f.lockTm != null ">
+				AND LOCK_TM = #{f.lockTm,jdbcType=VARCHAR}
+			</if>
+			<if test="f.runCounts != null ">
+				AND RUN_COUNTS = #{f.runCounts,jdbcType=VARCHAR}
+			</if>
+			<if test="f.tableKey != null ">
+				AND TABLE_KEY = #{f.tableKey,jdbcType=VARCHAR}
+			</if>
+			<if test="f.taskAsk != null ">
+				AND TASK_ASK = #{f.taskAsk,jdbcType=VARCHAR}
+			</if>
+			<if test="f.taskClassName != null ">
+				AND TASK_CLASS_NAME = #{f.taskClassName,jdbcType=VARCHAR}
+			</if>
+			<if test="f.createTime != null ">
+				AND CREATE_TIME = #{f.createTime,jdbcType=CHAR}
+			</if>
+		</where>
+	</sql>
+	<select id="queryPageListCount" resultType="java.lang.Integer">
+		select count(1) from TBL_TASK_CODE_GENERATOR
+		<include refid="page_where"></include>
+	</select>
+	<select id="queryPageList" resultMap="BaseResultMap">
+        <![CDATA[ select * from ( select interTable.*,rownum rn from ( ]]>
+		select
+		AA.TABLE_NUMBERS,AA.CHILD_PROJECT_CODE,AA.TABLE_CHAN,AA.TABLE_ENG,AA.LOCK_FLG,AA.LOCK_TM,AA.RUN_COUNTS,AA.TABLE_KEY,AA.TASK_ASK,AA.TASK_CLASS_NAME,AA.CREATE_TIME
+		from TBL_TASK_CODE_GENERATOR AA
+		<include refid="page_where"></include>
+		) interTable where 
+	    <![CDATA[ rownum <= #{limit}+#{offset} ]]>
+		) outerTable where 
+	    <![CDATA[ outerTable.rn > #{limit} ]]>
+	</select>
+	<select id="queryPageVoList" resultMap="BasePoResultMap">
+        <![CDATA[ select * from ( select interTable.*,rownum rn from ( ]]>
+		select
+		AA.TABLE_NUMBERS,AA.CHILD_PROJECT_CODE,AA.TABLE_CHAN,AA.TABLE_ENG,AA.LOCK_FLG,AA.LOCK_TM,AA.RUN_COUNTS,AA.TABLE_KEY,AA.TASK_ASK,AA.TASK_CLASS_NAME,AA.CREATE_TIME
+		from TBL_TASK_CODE_GENERATOR AA
+		<include refid="page_where"></include>
+		) interTable where 
+	    <![CDATA[ rownum <= #{limit}+#{offset} ]]>
+		) outerTable where 
+	    <![CDATA[ outerTable.rn > #{limit} ]]>
+	</select>
+</mapper>
